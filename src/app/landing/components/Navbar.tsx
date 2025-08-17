@@ -85,7 +85,7 @@ export default function Navbar() {
             </Link>
 
             <Link
-              href="/about"
+              href="/"
               className={`text-lg font-medium font-poppins ${
                 activeTab === "Aboutus" ? "text-primary" : "text-white"
               }`}

@@ -48,7 +48,7 @@ export default function How() {
   ];
 
   return (
-    <section className="bg-gray-100 py-12 md:py-16 lg:py-20">
+    <section className="bg-white py-12 md:py-16 lg:py-20">
       <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-12">
         {/* Section Header */}
         <div className="text-center mb-12 md:mb-16 lg:mb-20">
@@ -58,7 +58,7 @@ export default function How() {
               HOW IT WORKS
             </span>
           </div>
-          <h2 className="font-poppins text-black text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-semibold leading-tight">
+          <h2 className="font-poppins text-heading text-3xl md:text-4xl lg:text-5xl  font-semibold leading-tight">
             Your Simple, Secure
             <br />
             Gold Release Process
@@ -125,7 +125,7 @@ export default function How() {
                         {step.id}
                       </div>
                     </div>
-                    <h3 className="font-poppins font-semibold text-gray-800 mb-3 text-lg xl:text-xl max-w-48">
+                    <h3 className="font-poppins font-semibold text-gray-800 mb-3 text-lg  max-w-48">
                       {step.title}
                     </h3>
                     <p className="font-poppins text-gray-600 text-sm xl:text-base leading-relaxed max-w-48">
@@ -162,7 +162,7 @@ export default function How() {
                   {step.id}
                 </div>
               </div>
-              <h3 className="font-poppins font-semibold text-gray-800 mb-3 text-base md:text-lg">
+              <h3 className="font-poppins text-gray-800 mb-3 text-base md:text-lg">
                 {step.title}
               </h3>
               <p className="font-poppins text-gray-600 text-sm md:text-base leading-relaxed px-2">
