@@ -5,7 +5,7 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export const formatTimestamp = (timestamp: any) => {
+export const formatTimestamp = (timestamp: string | number | Date) => {
   const now = new Date();
   const date = new Date(timestamp);
   const diffTime = Math.abs(now.getTime() - date.getTime());

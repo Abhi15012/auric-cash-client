@@ -1,7 +1,6 @@
 import React from "react";
 import { Button } from "../../../../components/ui/button";
-import { MessageCircle, Phone } from "lucide-react";
-import localFont from "next/font/local";
+import { Phone } from "lucide-react";
 import Image from "next/image";
 
 export default function Hero() {
