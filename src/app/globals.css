@@ -3,18 +3,21 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-
 }
 
 @theme inline {
-  --color-primary:#EA5518;
-  --color-footer:#0F172A;
-  --color-label:#000000;
-  --color-heading:#101828;
-  --color-roman:#F4D1C3;
-  --font-poppins:var(--font-poppins);
-  
-  --font-button: 'Inter', sans-serif; 
+  /* 🎨 Custom Colors */
+  --color-primary: #EA5518;
+  --color-footer: #0F172A;
+  --color-label: #000000;
+  --color-heading: #101828;
+  --color-roman: #F4D1C3;
+
+  /* 🔤 Custom Fonts */
+  --font-poppins: var(--font-poppins);
+  --font-button: 'Inter', sans-serif;
+
+  /* 📏 Custom Sizes */
   --font-size-button: 16px;
 }
 
@@ -22,7 +25,6 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
-
   }
 }
 
@@ -30,4 +32,31 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* 🎬 Accordion animations */
+@keyframes slideDown {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
+}
+
+.animate-slideDown {
+  animation: slideDown 300ms ease-out forwards;
+}
+
+.animate-slideUp {
+  animation: slideUp 300ms ease-out forwards;
 }
