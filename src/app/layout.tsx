@@ -4,33 +4,33 @@ import Navbar from "../../src/app/landing/components/Navbar";
 import localFont from "next/font/local";
 import { Inter } from "next/font/google";
 
-export const poppins = localFont({
+const poppins = localFont({
   src: [
     {
       path: "../../public/fonts/Poppins-Regular.ttf",
       weight: "400",
-      style: "Regular",
+      style: "normal",
     },
     {
       path: "../../public/fonts/Poppins-Medium.ttf",
       weight: "500",
-      style: "Medium",
+      style: "normal",
     },
     {
       path: "../../public/fonts/Poppins-Bold.ttf",
       weight: "700",
-      style: "Bold",
+      style: "normal",
     },
     {
       path: "../../public/fonts/Poppins-SemiBold.ttf",
       weight: "600",
-      style: "SemiBold",
+      style: "normal",
     },
   ],
   variable: "--font-poppins",
 });
 
-export const inter = Inter({
+const inter = Inter({
   subsets: ["latin"],
   weight: ["700"],
   variable: "--font-inter",
@@ -44,13 +44,13 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
       <body className={`${poppins.variable} ${inter.variable} antialiased`}>
-        <Navbar/>
+        <Navbar />
         {children}
       </body>
     </html>
