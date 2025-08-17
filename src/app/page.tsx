@@ -1,5 +1,5 @@
 import Hero from "../app/landing/components/Hero";
-import How from "../app/landing/components/How";
+import How from "./landing/components/How-t-works";
 
 
 export default function Home() {
