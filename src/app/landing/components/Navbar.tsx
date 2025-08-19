@@ -1,29 +1,87 @@
-"use client";
-import React from "react";
-import { Button } from "../../../../components/ui/button";
-import Link from "next/link";
-import { Menu, X } from "lucide-react";
+"use client"
+import React from "react"
+import { Button } from "../../../../components/ui/button"
+import Link from "next/link"
+import { Menu, X } from "lucide-react"
 
 export default function Navbar() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
-  const [activeTab, setActiveTab] = React.useState("Home");
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false)
+  const [activeTab, setActiveTab] = React.useState("Home")
+  const [isVisible, setIsVisible] = React.useState(true)
+  const [lastScrollY, setLastScrollY] = React.useState(0)
+  const [scrollTimeout, setScrollTimeout] = React.useState<NodeJS.Timeout | null>(null)
+  const [isPastHero, setIsPastHero] = React.useState(false)
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY
+      const heroHeight = window.innerHeight // Assuming hero is full viewport height
+
+      // Check if past hero section
+      setIsPastHero(currentScrollY > heroHeight * 0.8)
+
+      // Hide on scroll down, show on scroll up
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        setIsVisible(false)
+      } else {
+        setIsVisible(true)
+      }
+
+      setLastScrollY(currentScrollY)
+
+      // Clear existing timeout
+      if (scrollTimeout) {
+        clearTimeout(scrollTimeout)
+      }
+
+      // Show navbar when scrolling stops
+      const newTimeout = setTimeout(() => {
+        setIsVisible(true)
+      }, 150)
+
+      setScrollTimeout(newTimeout)
+    }
+
+    window.addEventListener("scroll", handleScroll, { passive: true })
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+      if (scrollTimeout) {
+        clearTimeout(scrollTimeout)
+      }
+    }
+  }, [lastScrollY, scrollTimeout])
 
   const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
+    setIsMobileMenuOpen(!isMobileMenuOpen)
+  }
 
   return (
-    <div className="bg-gradient-to-b md:bg-gradient-to-r from-[#0F172A] via-[#282f3f61] to-[#2d3038cf]">
-      <header className="flex items-center justify-between px-6 py-6 lg:px-20">
+    <div
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out ${
+        isVisible ? "translate-y-0" : "-translate-y-full"
+      } ${
+        isPastHero
+          ? "bg-white/95 backdrop-blur-md shadow-lg"
+          : "bg-gradient-to-b md:bg-gradient-to-r from-[#0F172A] via-[#282f3f61] to-[#2d3038cf]"
+      }`}
+    >
+      <header className="flex items-center justify-between px-4 py-4 lg:px-20 lg:py-6">
         {/* Logo placeholder */}
-        <div className="w-28 h-12 bg-gray-300 rounded"></div>
+        <div className="w-24 h-10 lg:w-28 lg:h-12 bg-gray-300 rounded flex-shrink-0"></div>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-6 divide-x divide-white/50">
+        <nav className="hidden md:flex items-center space-x-4 lg:space-x-6 divide-x divide-white/50">
           <Link
             href="/"
-            className={`px-3 text-lg font-medium font-poppins ${
-              activeTab === "Home" ? "text-primary" : "text-white"
+            className={`px-2 lg:px-3 text-base lg:text-lg font-medium font-poppins transition-colors ${
+              activeTab === "Home"
+                ? isPastHero
+                  ? "text-orange-500"
+                  : "text-primary"
+                : isPastHero
+                  ? "text-gray-800"
+                  : "text-white"
             }`}
             onClick={() => setActiveTab("Home")}
           >
@@ -32,8 +90,14 @@ export default function Navbar() {
 
           <Link
             href="/about"
-            className={`px-3 text-lg font-medium font-poppins ${
-              activeTab === "Aboutus" ? "text-primary" : "text-white"
+            className={`px-2 lg:px-3 text-base lg:text-lg font-medium font-poppins transition-colors ${
+              activeTab === "Aboutus"
+                ? isPastHero
+                  ? "text-orange-500"
+                  : "text-primary"
+                : isPastHero
+                  ? "text-gray-800"
+                  : "text-white"
             }`}
             onClick={() => setActiveTab("Aboutus")}
           >
@@ -41,13 +105,14 @@ export default function Navbar() {
           </Link>
         </nav>
 
-        {/* Enquire Now (Always in center on desktop & mobile) */}
-        <div className="flex-shrink-0 mx-4">
+        {/* Enquire Now - Mobile optimized */}
+        <div className="flex-shrink-0 mx-2 lg:mx-4">
           <Button
-            className="bg-primary cursor-pointer hover:bg-orange-400 font-semibold text-white px-5 py-2 rounded-lg sm:w-[120px]
-            md:w-[150px] lg:w-[180px] lg:h-12 text-base lg:text-lg font-poppins transition-colors duration-500 flex items-center justify-center ease-in-out"
+            className="bg-primary cursor-pointer hover:bg-orange-400 font-semibold text-white px-3 py-2 lg:px-5 lg:py-2 rounded-lg
+            w-[100px] sm:w-[120px] md:w-[140px] lg:w-[180px] h-10 lg:h-12 text-sm lg:text-lg font-poppins transition-colors duration-500 flex items-center justify-center ease-in-out"
           >
-            Enquire Now
+            <span className="hidden sm:inline">Enquire Now</span>
+            <span className="sm:hidden">Enquire</span>
           </Button>
         </div>
 
@@ -55,43 +120,63 @@ export default function Navbar() {
         <div className="md:hidden flex items-center">
           <button
             onClick={toggleMobileMenu}
-            className="text-white hover:text-gray-200 focus:outline-none transition-colors"
+            className={`hover:opacity-70 focus:outline-none transition-colors ${
+              isPastHero ? "text-gray-800" : "text-white"
+            }`}
             aria-label="Toggle menu"
           >
-            {isMobileMenuOpen ? (
-              <X className="h-6 w-6" />
-            ) : (
-              <Menu className="h-6 w-6" />
-            )}
+            {isMobileMenuOpen ? <X className="h-5 w-5 lg:h-6 lg:w-6" /> : <Menu className="h-5 w-5 lg:h-6 lg:w-6" />}
           </button>
         </div>
       </header>
 
       {/* Mobile Navigation Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden px-6 pb-6 bg-gradient-to-r from-[#0F172A] via-[#282f3f61] to-[#2d3038cf]">
-          <nav className="flex flex-col items-start space-y-4 border-t border-white/20 pt-4">
+        <div
+          className={`md:hidden px-4 pb-4 lg:px-6 lg:pb-6 ${
+            isPastHero
+              ? "bg-white/95 backdrop-blur-md"
+              : "bg-gradient-to-r from-[#0F172A] via-[#282f3f61] to-[#2d3038cf]"
+          }`}
+        >
+          <nav
+            className={`flex flex-col items-start space-y-3 lg:space-y-4 border-t pt-3 lg:pt-4 ${
+              isPastHero ? "border-gray-200" : "border-white/20"
+            }`}
+          >
             <Link
               href="/"
-              className={`text-lg font-medium font-poppins ${
-                activeTab === "Home" ? "text-primary" : "text-white"
+              className={`text-base lg:text-lg font-medium font-poppins transition-colors ${
+                activeTab === "Home"
+                  ? isPastHero
+                    ? "text-orange-500"
+                    : "text-primary"
+                  : isPastHero
+                    ? "text-gray-800"
+                    : "text-white"
               }`}
               onClick={() => {
-                setActiveTab("Home");
-                setIsMobileMenuOpen(false);
+                setActiveTab("Home")
+                setIsMobileMenuOpen(false)
               }}
             >
               Home
             </Link>
 
             <Link
-              href="/"
-              className={`text-lg font-medium font-poppins ${
-                activeTab === "Aboutus" ? "text-primary" : "text-white"
+              href="/about"
+              className={`text-base lg:text-lg font-medium font-poppins transition-colors ${
+                activeTab === "Aboutus"
+                  ? isPastHero
+                    ? "text-orange-500"
+                    : "text-primary"
+                  : isPastHero
+                    ? "text-gray-800"
+                    : "text-white"
               }`}
               onClick={() => {
-                setActiveTab("Aboutus");
-                setIsMobileMenuOpen(false);
+                setActiveTab("Aboutus")
+                setIsMobileMenuOpen(false)
               }}
             >
               About Us
@@ -100,5 +185,5 @@ export default function Navbar() {
         </div>
       )}
     </div>
-  );
+  )
 }

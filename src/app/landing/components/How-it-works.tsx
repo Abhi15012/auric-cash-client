@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
+import CommonTitle from "./commonTitle";
 
 export default function How() {
   const steps = [
@@ -52,12 +53,7 @@ export default function How() {
       <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-12">
         {/* Section Header */}
         <div className="text-center mb-12 md:mb-16 lg:mb-20">
-          <div className="flex items-center justify-center mb-6">
-            <div className="w-1 h-8 bg-primary mr-3"></div>
-            <span className="font-poppins font-bold text-sm md:text-base uppercase tracking-wide text-gray-700">
-              HOW IT WORKS
-            </span>
-          </div>
+                <CommonTitle title={"How it works"} />
           <h2 className="font-poppins text-heading text-3xl md:text-4xl lg:text-5xl  font-semibold leading-tight">
             Your Simple, Secure
             <br />

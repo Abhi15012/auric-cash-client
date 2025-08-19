@@ -1,5 +1,6 @@
 import Image from "next/image";
 import React from "react";
+import CommonTitle from "./commonTitle";
 
 export default function WhyChooseUs() {
     const row1 = [
@@ -32,12 +33,7 @@ const row2 = [
     <section className="w-full min-h-screen lg:px-20 bg-[#EEF8FE] mx-auto px-6 py-16 pb-20">
       {/* Header */}
       <div className="text-center mb-12 md:mb-16 lg:mb-20">
-        <div className="flex items-center justify-center mb-6">
-          <div className="w-1 h-8 bg-primary mr-3"></div>
-          <span className="font-poppins font-bold text-sm md:text-base uppercase tracking-wide text-gray-700">
-            WHY US
-          </span>
-        </div>
+          <CommonTitle title={"Why us"} />
         <h2 className="font-poppins text-heading text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight">
           Why Customers Choose Us
         </h2>

@@ -9,6 +9,7 @@ import {
   AccordionTrigger,
 } from "../../../../components/ui/accordion"
 import { useState, useRef, useEffect } from "react"
+import CommonTitle from "./commonTitle"
 
 // Custom FAQ Trigger with Plus/Minus animation
 function FAQTrigger({
@@ -105,12 +106,7 @@ export default function FAQSection() {
     <section className="w-full lg:px-20 bg-[#EEF8FE] mx-auto px-6 py-16">
       {/* Header */}
       <div className="text-center mb-12">
-        <div className="inline-flex items-center gap-2 mb-6">
-          <div className="w-1 h-6 bg-primary"></div>
-          <span className="font-poppins font-bold text-sm md:text-base uppercase tracking-wide text-gray-700">
-            FAQS
-          </span>
-        </div>
+      <CommonTitle title={"faq"} />
         <h2 className="text-4xl md:text-5xl font-bold text-heading leading-tight">
           You&apos;ve Got Questions,
           <br />

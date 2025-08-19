@@ -5,8 +5,8 @@ import Image from "next/image";
 
 export default function Hero() {
   return (
-    <main className="bg-gradient-to-r from-[#0F172A] via-[#282f3f61] to-[#2d3038cf] flex flex-col lg:flex-row items-start  justify-between  max-h-screen   md:pt-10 lg:pl-20  pb-8 md:pb-12 lg:pb-16">
-      <div className="flex-1 max-w-3xl mb-8 lg:mb-0 lg:pr-4 text-center lg:text-left mt-6">
+    <main className="bg-gradient-to-r from-[#0F172A] via-[#282f3f61] to-[#2d3038cf] flex flex-col lg:flex-row items-start  justify-between  max-h-screen  md:pt-10 lg:pl-20  pb-8 md:pb-12 lg:pb-16">
+      <div className="flex-1  py-[70px] pb-[30px]  max-w-3xl mb-8 lg:mb-0 lg:pr-4 text-center lg:text-left mt-6">
         <h1 className="font-poppins md:text-4xl lg:text-5xl font-semibold  text-white mb-4 md:mb-6 line-clamp-2  ">
      Get your gold back 
           <br />
@@ -87,7 +87,7 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="hidden  md:flex flex-1 lg:flex-none lg:max-w-3xl -mt-24 justify-start lg:justify-start">
+      <div className="hidden  md:flex flex-1 lg:flex-none lg:max-w-3xl -mt-12 justify-start lg:justify-start">
         <Image
           src="/hero.png"
           alt="Hands holding gold jewelry"

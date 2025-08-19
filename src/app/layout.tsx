@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "../../src/app/landing/components/Navbar";
 import localFont from "next/font/local";
 import { Inter } from "next/font/google";
+import Footer from "./landing/components/footer";
 
 const poppins = localFont({
   src: [
@@ -50,8 +51,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${poppins.variable} ${inter.variable} antialiased`}>
-        <Navbar />
+      <div className='fixed top-0 left-0 w-full z-50'>
+           <Navbar />
+      </div>
         {children}
+        <Footer/>
       </body>
     </html>
   );
