@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Navbar from "../../src/app/landing/components/Navbar";
+import Navbar from "./Navbar";
 import localFont from "next/font/local";
 import { Inter } from "next/font/google";
-import Footer from "./landing/components/footer";
+import Footer from "./footer";
 
 const poppins = localFont({
   src: [

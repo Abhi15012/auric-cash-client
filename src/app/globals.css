@@ -12,7 +12,8 @@
   --color-label: #000000;
   --color-heading: #101828;
   --color-roman: #F4D1C3;
-
+   --color-gold: #FFD700;
+   --color-gold-hover:#B8860B;
   /* 🔤 Custom Fonts */
   --font-poppins: var(--font-poppins);
   --font-button: 'Inter', sans-serif;

@@ -1,60 +1,62 @@
-"use client"
-import React from "react"
-import { Button } from "../../../../components/ui/button"
-import Link from "next/link"
-import { Menu, X } from "lucide-react"
+"use client";
+import React from "react";
+import { Button } from "../../components/ui/button";
+import Link from "next/link";
+import { Menu, X } from "lucide-react";
+import Image from "next/image";
 
 export default function Navbar() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false)
-  const [activeTab, setActiveTab] = React.useState("Home")
-  const [isVisible, setIsVisible] = React.useState(true)
-  const [lastScrollY, setLastScrollY] = React.useState(0)
-  const [scrollTimeout, setScrollTimeout] = React.useState<NodeJS.Timeout | null>(null)
-  const [isPastHero, setIsPastHero] = React.useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+  const [activeTab, setActiveTab] = React.useState("Home");
+  const [isVisible, setIsVisible] = React.useState(true);
+  const [lastScrollY, setLastScrollY] = React.useState(0);
+  const [scrollTimeout, setScrollTimeout] =
+    React.useState<NodeJS.Timeout | null>(null);
+  const [isPastHero, setIsPastHero] = React.useState(false);
 
   React.useEffect(() => {
     const handleScroll = () => {
-      const currentScrollY = window.scrollY
-      const heroHeight = window.innerHeight // Assuming hero is full viewport height
+      const currentScrollY = window.scrollY;
+      const heroHeight = window.innerHeight; // Assuming hero is full viewport height
 
       // Check if past hero section
-      setIsPastHero(currentScrollY > heroHeight * 0.8)
+      setIsPastHero(currentScrollY > heroHeight * 0.8);
 
       // Hide on scroll down, show on scroll up
       if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        setIsVisible(false)
+        setIsVisible(false);
       } else {
-        setIsVisible(true)
+        setIsVisible(true);
       }
 
-      setLastScrollY(currentScrollY)
+      setLastScrollY(currentScrollY);
 
       // Clear existing timeout
       if (scrollTimeout) {
-        clearTimeout(scrollTimeout)
+        clearTimeout(scrollTimeout);
       }
 
       // Show navbar when scrolling stops
       const newTimeout = setTimeout(() => {
-        setIsVisible(true)
-      }, 150)
+        setIsVisible(true);
+      }, 150);
 
-      setScrollTimeout(newTimeout)
-    }
+      setScrollTimeout(newTimeout);
+    };
 
-    window.addEventListener("scroll", handleScroll, { passive: true })
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => {
-      window.removeEventListener("scroll", handleScroll)
+      window.removeEventListener("scroll", handleScroll);
       if (scrollTimeout) {
-        clearTimeout(scrollTimeout)
+        clearTimeout(scrollTimeout);
       }
-    }
-  }, [lastScrollY, scrollTimeout])
+    };
+  }, [lastScrollY, scrollTimeout]);
 
   const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen)
-  }
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
 
   return (
     <div
@@ -68,10 +70,18 @@ export default function Navbar() {
     >
       <header className="flex items-center justify-between px-4 py-4 lg:px-20 lg:py-6">
         {/* Logo placeholder */}
-        <div className="w-24 h-10 lg:w-28 lg:h-12 bg-gray-300 rounded flex-shrink-0"></div>
+        <div className="w-24 h-10 lg:w-[200px] -mt-14 lg:h-18 rounded flex-shrink-0">
+          <Image
+            src="/logo.png"
+            alt="Logo"
+            width={200}
+            height={80}
+            className="max-w-full w-full h-auto"
+          />
+        </div>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-4 lg:space-x-6 divide-x divide-white/50">
+        <nav className="hidden md:flex ml-20 items-center space-x-4 lg:space-x-6 divide-x divide-white/50">
           <Link
             href="/"
             className={`px-2 lg:px-3 text-base lg:text-lg font-medium font-poppins transition-colors ${
@@ -80,12 +90,42 @@ export default function Navbar() {
                   ? "text-orange-500"
                   : "text-primary"
                 : isPastHero
-                  ? "text-gray-800"
-                  : "text-white"
+                ? "text-gray-800"
+                : "text-white"
             }`}
             onClick={() => setActiveTab("Home")}
           >
             Home
+          </Link>
+          <Link
+            href="/buy-gold"
+            className={`px-2 lg:px-3 text-base lg:text-lg font-medium font-poppins transition-colors ${
+              activeTab === "sellGold"
+                ? isPastHero
+                  ? "text-yellow-500"
+                  : "text-yellow-400"
+                : isPastHero
+                ? "text-gray-800"
+                : "text-white"
+            }`}
+            onClick={() => setActiveTab("sellGold")}
+          >
+            Sell your Gold
+          </Link>
+          <Link
+            href="/release-gold"
+            className={`px-2 lg:px-3 text-base lg:text-lg font-medium font-poppins transition-colors ${
+              activeTab === "releaseGold"
+                ? isPastHero
+                  ? "text-orange-500"
+                  : "text-primary"
+                : isPastHero
+                ? "text-gray-800"
+                : "text-white"
+            }`}
+            onClick={() => setActiveTab("releaseGold")}
+          >
+            Release Pledged Gold
           </Link>
 
           <Link
@@ -96,8 +136,8 @@ export default function Navbar() {
                   ? "text-orange-500"
                   : "text-primary"
                 : isPastHero
-                  ? "text-gray-800"
-                  : "text-white"
+                ? "text-gray-800"
+                : "text-white"
             }`}
             onClick={() => setActiveTab("Aboutus")}
           >
@@ -125,7 +165,11 @@ export default function Navbar() {
             }`}
             aria-label="Toggle menu"
           >
-            {isMobileMenuOpen ? <X className="h-5 w-5 lg:h-6 lg:w-6" /> : <Menu className="h-5 w-5 lg:h-6 lg:w-6" />}
+            {isMobileMenuOpen ? (
+              <X className="h-5 w-5 lg:h-6 lg:w-6" />
+            ) : (
+              <Menu className="h-5 w-5 lg:h-6 lg:w-6" />
+            )}
           </button>
         </div>
       </header>
@@ -152,12 +196,12 @@ export default function Navbar() {
                     ? "text-orange-500"
                     : "text-primary"
                   : isPastHero
-                    ? "text-gray-800"
-                    : "text-white"
+                  ? "text-gray-800"
+                  : "text-white"
               }`}
               onClick={() => {
-                setActiveTab("Home")
-                setIsMobileMenuOpen(false)
+                setActiveTab("Home");
+                setIsMobileMenuOpen(false);
               }}
             >
               Home
@@ -171,12 +215,12 @@ export default function Navbar() {
                     ? "text-orange-500"
                     : "text-primary"
                   : isPastHero
-                    ? "text-gray-800"
-                    : "text-white"
+                  ? "text-gray-800"
+                  : "text-white"
               }`}
               onClick={() => {
-                setActiveTab("Aboutus")
-                setIsMobileMenuOpen(false)
+                setActiveTab("Aboutus");
+                setIsMobileMenuOpen(false);
               }}
             >
               About Us
@@ -185,5 +229,5 @@ export default function Navbar() {
         </div>
       )}
     </div>
-  )
+  );
 }

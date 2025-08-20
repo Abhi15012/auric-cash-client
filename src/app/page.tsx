@@ -1,20 +1,9 @@
-import Hero from "../app/landing/components/Hero";
-import FAQSection from "./landing/components/Faq";
-import How from "./landing/components/How-it-works";
-
-import VideoSection from "./landing/components/videoSection";
-import WhyChooseUs from "./landing/components/why-choose-us";
+import Home from "./home/page";
 
 
-export default function Home() {
+
+export default function page() {
   return (
-    <div >
-      <Hero />
-      <How />
-      <WhyChooseUs/>
-      <VideoSection/>
-      <FAQSection />
-    
-    </div>
+<Home />
   );
 }

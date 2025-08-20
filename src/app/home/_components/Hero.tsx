@@ -8,9 +8,9 @@ export default function Hero() {
     <main className="bg-gradient-to-r from-[#0F172A] via-[#282f3f61] to-[#2d3038cf] flex flex-col lg:flex-row items-start  justify-between  max-h-screen  md:pt-10 lg:pl-20  pb-8 md:pb-12 lg:pb-16">
       <div className="flex-1  py-[70px] pb-[30px]  max-w-3xl mb-8 lg:mb-0 lg:pr-4 text-center lg:text-left mt-6">
         <h1 className="font-poppins md:text-4xl lg:text-5xl font-semibold  text-white mb-4 md:mb-6 line-clamp-2  ">
-     Get your gold back 
+          Get your gold back
           <br />
-        at Lowest Commission
+          at Lowest Commission
         </h1>
 
         <div className="space-y-3 md:space-y-4 lg:space-y-6 mb-6 md:mb-8 w-full">
