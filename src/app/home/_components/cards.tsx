@@ -1,7 +1,8 @@
 "use client";
 import React from "react";
 import { useTab } from "../../TabContext";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
+
 import { CheckCircle, ArrowRight, ExternalLink } from "lucide-react";
 import Link from "next/link";
 interface CardProps {
