@@ -6,35 +6,42 @@ import Image from "next/image";
 export default function Hero() {
   return (
     <main className="bg-gradient-to-r from-[#0F172A] via-[#282f3f61] to-[#2d3038cf] flex flex-col lg:flex-row items-start  justify-between  max-h-screen  md:pt-10 lg:pl-20  pb-8 md:pb-12 lg:pb-16">
-      <div className="flex-1  py-[70px] pb-[30px]  max-w-3xl mb-8 lg:mb-0 lg:pr-4 text-center lg:text-left mt-6">
+      <div className="flex-1  py-[100px] pb-[30px]  max-w-3xl mb-8 lg:mb-0 lg:pr-4 text-center lg:text-left mt-6">
         <h1 className="font-poppins md:text-4xl lg:text-5xl font-semibold  text-white mb-4 md:mb-6 line-clamp-2  ">
-          Get your gold back
+          PRC Gold Buyers
           <br />
-          at Lowest Commission
         </h1>
 
-        <div className="space-y-3 md:space-y-4 lg:space-y-6 mb-6 md:mb-8 w-full">
-          <p className=" font-poppins text-white  text-base md:text-lg lg:text-xl line-clamp-5 letter-spacing-wide my-2">
-            We release your <span className="text-primary">Pledged gold</span>{" "}
-            from banks,
+        <h2 className="font-poppins text-gold text-base md:text-lg lg:text-4xl font-medium line-clamp-5 letter-spacing-wide my-2">
+          Sell or Release
+          <span className="text-white"> Your Gold</span>
+        </h2>
+
+        <h2 className="font-poppins text-white text-base md:text-lg lg:text-4xl font-medium line-clamp-5 letter-spacing-wide my-2">
+          at the Best Market Price
+        </h2>
+
+        <div className="space-y-3 mt-10 md:space-y-4 lg:space-y-6 mb-6 md:mb-8 w-full">
+          <p className="font-poppins text-white text-base md:text-lg lg:text-xl line-clamp-5 letter-spacing-wide my-2">
+            We buy your gold hassle-free,
           </p>
-          <p className=" font-poppins text-white text-base md:text-lg lg:text-xl line-clamp-5 letter-spacing-wide my-2">
-            NBFCs, and financiers at the lowest service
+          <p className="font-poppins text-white text-base md:text-lg lg:text-xl line-clamp-5 letter-spacing-wide my-2">
+            whether it is in hand or pledged with banks,
           </p>
-          <p className=" font-poppins text-white text-base md:text-lg lg:text-xl line-clamp-5 letter-spacing-wide my-2">
-            charges.
+          <p className="font-poppins text-white text-base md:text-lg lg:text-xl line-clamp-5 letter-spacing-wide my-2">
+            NBFCs, or financiers — at the lowest service charges.
           </p>
-          <p className=" font-poppins text-white text-base md:text-lg lg:text-xl line-clamp-5 letter-spacing-wide my-2">
-            Clear loans early, save on interest, or take
+          <p className="font-poppins text-white text-base md:text-lg lg:text-xl line-clamp-5 letter-spacing-wide my-2">
+            Clear loans early, save on interest,
           </p>
-          <p className=" font-poppins text-white text-base md:text-lg lg:text-xl line-clamp-5 letter-spacing-wide my-2">
-            advantage of our high gold prices.
+          <p className="font-poppins text-white text-base md:text-lg lg:text-xl line-clamp-5 letter-spacing-wide my-2">
+            and take advantage of our high gold prices.
           </p>
         </div>
 
         <Button
-          className="bg-primary h-14 mt-14 mb-6 font-poppins text-white px-8 py-4 md:px-10 md:py-5 lg:px-8 lg:py-4 rounded-lg
-         flex items-center justify-center gap-2 hover:bg-orange-400 transition-colors duration-500 ease-in-out
+          className="bg-gold h-14 mt-14 mb-6 font-poppins text-black px-8 py-4 md:px-10 md:py-5 lg:px-8 lg:py-4 rounded-lg
+         flex items-center justify-center gap-2 hover:bg-yellow-300 transition-colors duration-500 ease-in-out
          w-[300px] sm:w-[350px] md:w-[400px] lg:w-[500px]
          text-sm md:text-lg lg:text-xl 
         "
@@ -47,7 +54,7 @@ export default function Hero() {
           Request a Call Back
         </Button>
 
-        <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3 sm:gap-4 items-center lg:items-start">
+        <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3 sm:gap-4 items-center lg:items-start mt-2">
           <div className="flex items-center bg-[#FFFFFF17] px-4 py-2 rounded-3xl gap-2">
             <Image
               style={{ width: "14px", height: "14px" }}
@@ -57,7 +64,7 @@ export default function Hero() {
               height={12}
             />
             <span className="text-gray-200 text-sm font-poppins">
-              Lowest Commission
+              Best Market Price
             </span>
           </div>
           <div className="flex items-center bg-[#FFFFFF17] px-4 py-2 rounded-3xl gap-2">
@@ -81,7 +88,7 @@ export default function Hero() {
               height={16}
             />
             <span className="text-gray-200 text-sm font-poppins">
-              Fast Processing
+              Instant Cash Settlement
             </span>
           </div>
         </div>

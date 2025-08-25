@@ -4,6 +4,8 @@ import Navbar from "./Navbar";
 import localFont from "next/font/local";
 import { Inter } from "next/font/google";
 import Footer from "./footer";
+import ContactCard from "../../components/ui/quickcontacts";
+import { TabProvider } from "./TabContext";
 
 const poppins = localFont({
   src: [
@@ -49,6 +51,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
+    <TabProvider>
     <html lang="en">
       <body className={`${poppins.variable} ${inter.variable} antialiased`}>
       <div className='fixed top-0 left-0 w-full z-50'>
@@ -56,7 +59,12 @@ export default function RootLayout({
       </div>
         {children}
         <Footer/>
+
+        <div className="fixed bottom-4 right-4 z-50">
+          <ContactCard/>
+        </div>
       </body>
     </html>
+    </TabProvider>
   );
 }

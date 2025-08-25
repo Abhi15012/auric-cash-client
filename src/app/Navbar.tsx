@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import { useTab } from "./TabContext";
 import { Button } from "../../components/ui/button";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
@@ -7,7 +8,7 @@ import Image from "next/image";
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
-  const [activeTab, setActiveTab] = React.useState("Home");
+  const { activeTab, setActiveTab } = useTab();
   const [isVisible, setIsVisible] = React.useState(true);
   const [lastScrollY, setLastScrollY] = React.useState(0);
   const [scrollTimeout, setScrollTimeout] =
@@ -76,7 +77,7 @@ export default function Navbar() {
             alt="Logo"
             width={200}
             height={80}
-            className="max-w-full w-full h-auto"
+            className="max-w-full -ml-9 w-full h-auto"
           />
         </div>
 
@@ -87,8 +88,8 @@ export default function Navbar() {
             className={`px-2 lg:px-3 text-base lg:text-lg font-medium font-poppins transition-colors ${
               activeTab === "Home"
                 ? isPastHero
-                  ? "text-orange-500"
-                  : "text-primary"
+                  ? "text-gold"
+                  : "text-yellow-300"
                 : isPastHero
                 ? "text-gray-800"
                 : "text-white"
@@ -102,8 +103,8 @@ export default function Navbar() {
             className={`px-2 lg:px-3 text-base lg:text-lg font-medium font-poppins transition-colors ${
               activeTab === "sellGold"
                 ? isPastHero
-                  ? "text-yellow-500"
-                  : "text-yellow-400"
+                  ? "text-gold"
+                  : "text-yellow-300"
                 : isPastHero
                 ? "text-gray-800"
                 : "text-white"
@@ -117,8 +118,8 @@ export default function Navbar() {
             className={`px-2 lg:px-3 text-base lg:text-lg font-medium font-poppins transition-colors ${
               activeTab === "releaseGold"
                 ? isPastHero
-                  ? "text-orange-500"
-                  : "text-primary"
+                  ? "text-gold"
+                  : "text-yellow-300"
                 : isPastHero
                 ? "text-gray-800"
                 : "text-white"
@@ -133,8 +134,8 @@ export default function Navbar() {
             className={`px-2 lg:px-3 text-base lg:text-lg font-medium font-poppins transition-colors ${
               activeTab === "Aboutus"
                 ? isPastHero
-                  ? "text-orange-500"
-                  : "text-primary"
+                  ? "text-gold"
+                  : "text-yellow-300"
                 : isPastHero
                 ? "text-gray-800"
                 : "text-white"
@@ -148,7 +149,7 @@ export default function Navbar() {
         {/* Enquire Now - Mobile optimized */}
         <div className="flex-shrink-0 mx-2 lg:mx-4">
           <Button
-            className="bg-primary cursor-pointer hover:bg-orange-400 font-semibold text-white px-3 py-2 lg:px-5 lg:py-2 rounded-lg
+            className="bg-gold cursor-pointer hover:bg-yellow-300 font-semibold text-black px-3 py-2 lg:px-5 lg:py-2 rounded-lg
             w-[100px] sm:w-[120px] md:w-[140px] lg:w-[180px] h-10 lg:h-12 text-sm lg:text-lg font-poppins transition-colors duration-500 flex items-center justify-center ease-in-out"
           >
             <span className="hidden sm:inline">Enquire Now</span>
