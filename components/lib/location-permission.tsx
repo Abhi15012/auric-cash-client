@@ -142,7 +142,7 @@ function initializeLocationRequest(): void {
         );
       }
     );
-  };git 
+  };
 
   // Request location immediately when DOM is ready
   if (document.readyState === "loading") {
