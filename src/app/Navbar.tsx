@@ -5,7 +5,7 @@ import { Button } from "../../components/ui/button"; // fix Button import path t
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
-import { GoldHelpDialog } from "../../components/ui/gold-contact";
+
 import { useDialog } from "../../context/handleDialog";
 
 export default function Navbar() {
@@ -15,7 +15,7 @@ export default function Navbar() {
   const [isVisible, setIsVisible] = React.useState(true);
   const lastScrollYRef = React.useRef(0);
   const [isPastHero, setIsPastHero] = React.useState(false);
-  const { open, setOpen } = useDialog();
+  const {setOpen } = useDialog();
 
   React.useEffect(() => {
     const handleScroll = () => {

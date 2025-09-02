@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { useDialog } from "../../../../context/handleDialog";
 
 import { CheckCircle, ArrowRight, ExternalLink } from "lucide-react";
-import Link from "next/link";
+
 interface CardProps {
   title: string;
   points: string[];

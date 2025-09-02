@@ -1,7 +1,5 @@
 import React from 'react'
 import CommonTitle from './commonTitle'
-import { Button } from '../../../../components/ui/button'
-import { Phone } from 'lucide-react'
 
 export default function VideoSection() {
   return (
