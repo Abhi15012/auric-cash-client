@@ -66,25 +66,8 @@ const ContactCard = () => {
               />
             </a>
           </li>
-          {/* phone */}
-          <li className="iso-pro phone-item lg:hidden ">
-            <span />
-            <span />
-            <span />
-            <a
-              href="tel:+919999999999"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Image
-                src="/phone-call.png"
-                alt="Phone"
-                className="s phone-icon sm:hidden md:block  hover:scale-105"
-                width={30}
-                height={30}
-              />
-            </a>
-          </li>
+    
+  
         </ul>
       </div>
     </StyledWrapper>

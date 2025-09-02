@@ -1,7 +1,8 @@
 "use client";
 import React from "react";
-import { useTab } from "../../TabContext";
+import { useTab } from "../../../../context/TabContext";
 import { motion } from "framer-motion";
+import { useDialog } from "../../../../context/handleDialog";
 
 import { CheckCircle, ArrowRight, ExternalLink } from "lucide-react";
 import Link from "next/link";
@@ -30,10 +31,15 @@ const Card = ({
     if (link === "/about") return "Aboutus";
     return "Home";
   };
+  const { openWithIntent} = useDialog();
   return (
     <motion.div
+        whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, y: 20 }}
+      transition={{ duration: 1, ease: "easeInOut" }}
+      viewport={{ once: true }}
       whileHover={{ scale: 1.03 }}
-      className="flex flex-col justify-between bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 p-6 w-full max-w-md"
+      className="flex flex-col justify-between bg-white border-[0.5] border-[#666] rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 p-6 w-full max-w-md"
     >
       <div>
         <h2 className="text-2xl font-semibold font-poppins mb-4 text-black">
@@ -50,22 +56,42 @@ const Card = ({
       </div>
       <div className="flex flex-col gap-3">
         {/* Primary Button */}
-        <motion.a
-          whileTap={{ scale: 0.95 }}
-          href={primaryLink}
-          className="flex items-center font-poppins justify-center gap-2 bg-gold text-black font-semibold py-3 rounded-lg hover:bg-yellow-300 transition"
+        <button
+          type="button"
+          className="flex items-center cursor-pointer font-poppins justify-center gap-2 bg-primary text-white font-semibold py-3 rounded-lg hover:bg-orange-400 transition"
+          onClick={() => {
+            // Primary action logic
+            if (
+              primaryLink === "sell" ||
+              primaryLink === "release" ||
+              primaryLink === "#"
+            ) {
+              openWithIntent(primaryLink === "sell" ? "sell" : primaryLink === "release" ? "release" : "sell-pledged");
+            } else if (primaryLink.startsWith("/")) {
+              setActiveTab(getTabName(primaryLink));
+              window.location.href = primaryLink;
+            } else {
+              window.location.href = primaryLink;
+            }
+          }}
         >
           {primaryText} <ArrowRight size={18} />
-        </motion.a>
+        </button>
 
         {/* Secondary Button */}
-        <Link
-          href={secondaryLink}
+        <button
+          type="button"
           className="flex items-center justify-center font-poppins gap-2 border border-gray-300 text-gray-800 font-medium py-3 rounded-lg hover:bg-gray-100 transition"
-          onClick={() => setActiveTab(getTabName(secondaryLink))}
+          onClick={() => {
+            // Secondary action logic
+            if (secondaryLink) {
+              setActiveTab(getTabName(secondaryLink));
+              window.location.href = secondaryLink;
+            }
+          }}
         >
           Learn More <ExternalLink size={18} />
-        </Link>
+        </button>
       </div>
 
       <p className="text-sm text-gray-500 mt-4">{footerText}</p>
@@ -83,7 +109,7 @@ export default function ServicesCards() {
         "Instant valuation and same-day payment at market-best prices",
       ],
       primaryText: "Sell Gold",
-      primaryLink: "#",
+      primaryLink: "sell",
       secondaryLink: "/buy-gold",
       footerText:
         "Turn your idle gold into instant cash — at the best market rate",
@@ -96,7 +122,7 @@ export default function ServicesCards() {
         "Get your jewelry back safely, quickly, and securely",
       ],
       primaryText: "Release Pledged Gold",
-      primaryLink: "#",
+      primaryLink: "release",
       secondaryLink: "/release-gold",
       footerText:
         "Don’t let high interest eat your gold’s value — release it today",

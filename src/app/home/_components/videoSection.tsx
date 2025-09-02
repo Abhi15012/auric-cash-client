@@ -18,21 +18,7 @@ export default function VideoSection() {
         </div>
         {/* Video Section */}
 
-        <Button
-          className="bg-primary h-14 mb-6 font-poppins text-white px-8 py-4 md:px-10 md:py-5 lg:px-8 lg:py-4 rounded-lg
-         flex items-center justify-center gap-2 hover:bg-orange-400 transition-colors duration-500 ease-in-out
-         w-[300px] sm:w-[350px] md:w-[400px] lg:w-[500px]
-         text-sm md:text-lg lg:text-xl 
-         mx-auto
-        "
-        >
-          <Phone
-            width={25}
-            height={20}
-            className="w-5 h-5 md:w-6 md:h-6 lg:w-7 lg:h-10"
-          />
-          Request a Call Back
-        </Button>
+ 
 
 
         <div className="flex justify-center">

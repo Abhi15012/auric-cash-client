@@ -1,8 +1,10 @@
+'use client'
 import React from "react";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import CommonTitle from "./commonTitle";
 import ServicesCards from "./cards";
+import { motion } from "framer-motion";
 
 export default function Services() {
   const steps = [
@@ -50,10 +52,12 @@ export default function Services() {
   ];
 
   return (
-    <section className="bg-white py-12 md:py-16 lg:py-20">
+    <motion.section 
+  
+    className="bg-white py-12 md:py-16 lg:py-20">
       <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-12">
         {/* Section Header */}
-        <div className="text-center mb-12 md:mb-16 lg:mb-20">
+        <div className="text-center mb-12 md:mb-10 lg:mb-10">
                 <CommonTitle title={"our services"} />
           <h2 className="font-poppins text-heading text-3xl md:text-4xl lg:text-5xl  font-semibold leading-tight">
            Fast & Secure 
@@ -65,6 +69,6 @@ export default function Services() {
         {/* Desktop Layout */}
       
       </div>
-    </section>
+    </motion.section>
   );
 }

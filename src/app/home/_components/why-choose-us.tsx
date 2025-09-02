@@ -1,13 +1,15 @@
+'use client';
 import Image from "next/image";
 import React from "react";
 import CommonTitle from "./commonTitle";
+import { motion } from "framer-motion";
 
 export default function WhyChooseUs() {
     const row1 = [
   {
-    title: "Lowest Commission Rates",
-    description: "Pay less than market rates and save more",
-    image: "/why-icon1.png", // replace with your image path
+    title: "Best Market Rates",
+    description: "Get the higest value for your gold at today's prices",
+    image: "/why-rupee.png", // replace with your image path
   },
   {
     title: "Fast & Transparent Process",
@@ -30,7 +32,9 @@ const row2 = [
 ]
 
   return (
-    <section className="w-full min-h-screen lg:px-20 bg-[#EEF8FE] mx-auto px-6 py-16 pb-20">
+    <motion.section 
+    
+    className="w-full min-h-screen lg:px-20 bg-[#EEF8FE] mx-auto px-6 py-16 pb-20">
       {/* Header */}
       <div className="text-center mb-12 md:mb-16 lg:mb-20">
           <CommonTitle title={"Why us"} />
@@ -39,7 +43,12 @@ const row2 = [
         </h2>
       </div>
 
-    <div className="absolute z-0">
+    <motion.div className="absolute z-0"
+     whileInView={{transform:'translateX(0px)', opacity:1}}
+      initial={{transform:'translateX(-100px)', opacity:0}}
+      transition={{ duration: 0.2, ease: "easeInOut" }}
+      viewport={{ once: true }}
+    >
           <Image src='/Rectangle-why.svg'
       alt="rectangle"
        height={400}
@@ -47,11 +56,18 @@ const row2 = [
        className="w-full "
       />
 
-    </div>
+    </motion.div>
 <div className="flex flex-col  gap-y-10 justify-center py-10">
-          <div className=" flex flex-row mx-auto self-center z-10 gap-x-10   w-full h-full justify-center items-center ">
+          <motion.div className=" flex flex-row mx-auto self-center z-10 gap-x-10   w-full h-full justify-center items-center "
+   
+    
+          >
             {row1.map((item, index) => (
-              <div
+              <motion.div
+                 whileHover={{ scale: 1.03 }}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.2, delay: 0.2 }}
                 key={index}
                 className="bg-white rounded-lg  p-6 w-[350px] h-[250px] flex flex-col items-center justify-center"
                 >
@@ -70,16 +86,20 @@ const row2 = [
                 <p className="font-poppins text-gray-600 text-sm text-center">
                   {item.description}
                 </p>
-                </div>
+                </motion.div>
 
             ))}
    
-</div>
+</motion.div>
 
-      <div className=" mx-20  flex flex-row   z-10 gap-x-10   w-full h-full justify-center items-center ">
+      <motion.div className=" mx-20  flex flex-row   z-10 gap-x-10   w-full h-full justify-center items-center ">
    {row2.map((item, index) => (
-              <div
+              <motion.div
                 key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.2, delay: 0.2 }}
+                   whileHover={{ scale: 1.03 }}
                 className="bg-white rounded-lg shadow-lg p-6 w-[350px] h-[250px] flex flex-col items-center justify-center"
                 >
                 <Image
@@ -90,19 +110,18 @@ const row2 = [
                   className="w-14 h-16 mb-4"
                 />
                 <h3 className="font-poppins text-gray-800 mb-2 text-lg font-semibold">
-                        
-                  {item.title}
+                {item.title}
                 </h3>
 
                 <p className="font-poppins text-gray-600 text-sm text-center">
                   {item.description}
                 </p>
-                </div>
+                </motion.div>
 
             ))}
      
    
-</div>
+</motion.div>
 </div>
     
 
@@ -111,6 +130,6 @@ const row2 = [
 
 
 
-    </section>
+    </motion.section>
   );
 }

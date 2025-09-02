@@ -1,19 +1,21 @@
 "use client";
 import React from "react";
-import { useTab } from "./TabContext";
-import { Button } from "../../components/ui/button";
+import { useTab } from "../../context/TabContext";
+import { Button } from "../../components/ui/button"; // fix Button import path to use local UI component instead of unresolved external
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
+import { GoldHelpDialog } from "../../components/ui/gold-contact";
+import { useDialog } from "../../context/handleDialog";
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
   const { activeTab, setActiveTab } = useTab();
+
   const [isVisible, setIsVisible] = React.useState(true);
-  const [lastScrollY, setLastScrollY] = React.useState(0);
-  const [scrollTimeout, setScrollTimeout] =
-    React.useState<NodeJS.Timeout | null>(null);
+  const lastScrollYRef = React.useRef(0);
   const [isPastHero, setIsPastHero] = React.useState(false);
+  const { open, setOpen } = useDialog();
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -23,41 +25,26 @@ export default function Navbar() {
       // Check if past hero section
       setIsPastHero(currentScrollY > heroHeight * 0.8);
 
-      // Hide on scroll down, show on scroll up
-      if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        setIsVisible(false);
+      const isScrollingUp = currentScrollY < lastScrollYRef.current;
+
+      // Always show at very top; otherwise show only when scrolling up
+      if (currentScrollY < 10) {
+        setIsVisible(true);
       } else {
-        setIsVisible(true);
+        setIsVisible(isScrollingUp);
       }
 
-      setLastScrollY(currentScrollY);
-
-      // Clear existing timeout
-      if (scrollTimeout) {
-        clearTimeout(scrollTimeout);
-      }
-
-      // Show navbar when scrolling stops
-      const newTimeout = setTimeout(() => {
-        setIsVisible(true);
-      }, 150);
-
-      setScrollTimeout(newTimeout);
+      lastScrollYRef.current = currentScrollY;
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      if (scrollTimeout) {
-        clearTimeout(scrollTimeout);
-      }
-    };
-  }, [lastScrollY, scrollTimeout]);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
+
 
   return (
     <div
@@ -88,8 +75,8 @@ export default function Navbar() {
             className={`px-2 lg:px-3 text-base lg:text-lg font-medium font-poppins transition-colors ${
               activeTab === "Home"
                 ? isPastHero
-                  ? "text-gold"
-                  : "text-yellow-300"
+                  ? "text-primary"
+                  : "text-primary"
                 : isPastHero
                 ? "text-gray-800"
                 : "text-white"
@@ -103,8 +90,8 @@ export default function Navbar() {
             className={`px-2 lg:px-3 text-base lg:text-lg font-medium font-poppins transition-colors ${
               activeTab === "sellGold"
                 ? isPastHero
-                  ? "text-gold"
-                  : "text-yellow-300"
+                  ? "text-primary"
+                  : "text-primary"
                 : isPastHero
                 ? "text-gray-800"
                 : "text-white"
@@ -118,8 +105,8 @@ export default function Navbar() {
             className={`px-2 lg:px-3 text-base lg:text-lg font-medium font-poppins transition-colors ${
               activeTab === "releaseGold"
                 ? isPastHero
-                  ? "text-gold"
-                  : "text-yellow-300"
+                  ? "text-primary"
+                  : "text-primary"
                 : isPastHero
                 ? "text-gray-800"
                 : "text-white"
@@ -134,8 +121,8 @@ export default function Navbar() {
             className={`px-2 lg:px-3 text-base lg:text-lg font-medium font-poppins transition-colors ${
               activeTab === "Aboutus"
                 ? isPastHero
-                  ? "text-gold"
-                  : "text-yellow-300"
+                  ? "text-primary"
+                  : "text-primary"
                 : isPastHero
                 ? "text-gray-800"
                 : "text-white"
@@ -149,8 +136,9 @@ export default function Navbar() {
         {/* Enquire Now - Mobile optimized */}
         <div className="flex-shrink-0 mx-2 lg:mx-4">
           <Button
-            className="bg-gold cursor-pointer hover:bg-yellow-300 font-semibold text-black px-3 py-2 lg:px-5 lg:py-2 rounded-lg
+            className="bg-primary cursor-pointer hover:bg-orange-400 font-semibold text-white px-3 py-2 lg:px-5 lg:py-2 rounded-lg
             w-[100px] sm:w-[120px] md:w-[140px] lg:w-[180px] h-10 lg:h-12 text-sm lg:text-lg font-poppins transition-colors duration-500 flex items-center justify-center ease-in-out"
+            onClick={() => setOpen(true)}
           >
             <span className="hidden sm:inline">Enquire Now</span>
             <span className="sm:hidden">Enquire</span>

@@ -77,13 +77,13 @@ export default function Hero() {
               style={{ width: "14px", height: "14px" ,
                 color:"yellow"
               }}
-              src="/fast.png"
+              src="/grp.png"
               alt="Secure Icon"
               width={16}
               height={16}
             />
             <span className="text-gray-200 text-sm font-poppins">
-              Instant Cash Settlement
+              Trusted by Thousands of Customers
             </span>
           </div>
         </div>

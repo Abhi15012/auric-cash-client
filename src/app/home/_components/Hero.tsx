@@ -1,18 +1,28 @@
+'use client';
 import React from "react";
 import { Button } from "../../../../components/ui/button";
 import { Phone } from "lucide-react";
 import Image from "next/image";
-
+import { GoldHelpDialog } from "../../../../components/ui/gold-contact";
+import { motion } from "framer-motion";
 export default function Hero() {
-  return (
-    <main className="bg-gradient-to-r from-[#0F172A] via-[#282f3f61] to-[#2d3038cf] flex flex-col lg:flex-row items-start  justify-between  max-h-screen  md:pt-10 lg:pl-20  pb-8 md:pb-12 lg:pb-16">
-      <div className="flex-1  py-[100px] pb-[30px]  max-w-3xl mb-8 lg:mb-0 lg:pr-4 text-center lg:text-left mt-6">
-        <h1 className="font-poppins md:text-4xl lg:text-5xl font-semibold  text-white mb-4 md:mb-6 line-clamp-2  ">
-          PRC Gold Buyers
-          <br />
-        </h1>
+  const [open, setOpen] = React.useState(false);
 
-        <h2 className="font-poppins text-gold text-base md:text-lg lg:text-4xl font-medium line-clamp-5 letter-spacing-wide my-2">
+  return (
+    <motion.main
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      
+      transition={{ duration: 0.5 }}
+    className="bg-gradient-to-r from-[#0F172A] via-[#282f3f61] to-[#2d3038cf] flex flex-col lg:flex-row items-start  justify-between  max-h-screen  md:pt-10 lg:pl-20  pb-8 md:pb-12 lg:pb-16">
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+      className="flex-1  py-[100px] pb-[30px]  max-w-3xl mb-8 lg:mb-0 lg:pr-4 text-center lg:text-left mt-6">
+   
+
+        <h2 className="font-poppins text-primary text-base md:text-lg lg:text-4xl font-medium line-clamp-5 letter-spacing-wide my-2">
           Sell or Release
           <span className="text-white"> Your Gold</span>
         </h2>
@@ -40,11 +50,12 @@ export default function Hero() {
         </div>
 
         <Button
-          className="bg-gold h-14 mt-14 mb-6 font-poppins text-black px-8 py-4 md:px-10 md:py-5 lg:px-8 lg:py-4 rounded-lg
-         flex items-center justify-center gap-2 hover:bg-yellow-300 transition-colors duration-500 ease-in-out
+          className="bg-primary h-14 mt-14 mb-6 font-poppins text-white px-8 py-4 md:px-10 md:py-5 lg:px-8 lg:py-4 rounded-lg
+         flex items-center justify-center gap-2 hover:bg-orange-400 transition-colors duration-500 ease-in-out
          w-[300px] sm:w-[350px] md:w-[400px] lg:w-[500px]
          text-sm md:text-lg lg:text-xl 
         "
+          onClick={() => setOpen(true)}
         >
           <Phone
             width={25}
@@ -82,19 +93,23 @@ export default function Hero() {
           <div className="flex items-center bg-[#FFFFFF17] px-4 py-2 rounded-3xl gap-2">
             <Image
               style={{ width: "14px", height: "14px" }}
-              src="/fast.png"
+              src="/grp.png"
               alt="Secure Icon"
               width={16}
               height={16}
             />
             <span className="text-gray-200 text-sm font-poppins">
-              Instant Cash Settlement
+            Trusted by Thousands of Customers
             </span>
           </div>
         </div>
-      </div>
+      </motion.div>
 
-      <div className="hidden  md:flex flex-1 lg:flex-none lg:max-w-3xl -mt-12 justify-start lg:justify-start">
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+      className="hidden  md:flex flex-1 lg:flex-none lg:max-w-3xl -mt-12 justify-start lg:justify-start">
         <Image
           src="/hero.png"
           alt="Hands holding gold jewelry"
@@ -102,7 +117,8 @@ export default function Hero() {
           height={500}
           className="max-w-full w-full"
         />
-      </div>
-    </main>
+      </motion.div>
+         <GoldHelpDialog open={open} onClose={() => setOpen(false)} />
+    </motion.main>
   );
 }
