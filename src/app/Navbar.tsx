@@ -48,23 +48,23 @@ export default function Navbar() {
 
   return (
     <div
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ease-in-out ${
         isVisible ? "translate-y-0" : "-translate-y-full"
       } ${
         isPastHero
           ? "bg-white/95 backdrop-blur-md shadow-lg"
-          : "bg-gradient-to-b md:bg-gradient-to-r from-[#0F172A] via-[#282f3f61] to-[#2d3038cf]"
+          : "md:bg-black bg-white md:bg-gradient-to-r from-[#0F172A] via-[#282f3f61] to-[#2d3038cf]"
       }`}
     >
-      <header className="flex items-center justify-between px-4 py-4 lg:px-20 lg:py-6">
+      <header className="flex items-center justify-between px-5 py-6 lg:px-20 lg:py-6">
         {/* Logo placeholder */}
-        <div className="w-24 h-10 lg:w-[200px] -mt-14 lg:h-18 rounded flex-shrink-0">
+        <div className=" h-[50px] -ml-6 md:w-[200px] -mt-14 w-[150px]  md:h-18 rounded flex-shrink-0">
           <Image
             src="/logo.png"
             alt="Logo"
             width={200}
             height={80}
-            className="max-w-full -ml-9 w-full h-auto"
+            className="max-w-full md:-ml-9 w-full mt-2 md:mt-0 h-24  md:h-32 object-contain"
           />
         </div>
 
@@ -134,30 +134,38 @@ export default function Navbar() {
         </nav>
 
         {/* Enquire Now - Mobile optimized */}
-        <div className="flex-shrink-0 mx-2 lg:mx-4">
+        <div className="md:flex-shrink-0  md:flex hidden    lg:mx-4">
           <Button
-            className="bg-primary cursor-pointer hover:bg-orange-400 font-semibold text-white px-3 py-2 lg:px-5 lg:py-2 rounded-lg
-            w-[100px] sm:w-[120px] md:w-[140px] lg:w-[180px] h-10 lg:h-12 text-sm lg:text-lg font-poppins transition-colors duration-500 flex items-center justify-center ease-in-out"
+            className="bg-primary  lg:ml-0 cursor-pointer hover:bg-orange-400 font-semibold text-white px-3 py-2 lg:px-5 lg:py-2 rounded-lg
+            w-[100px] sm:w-[120px] md:w-[140px] lg:w-[180px] h-8 lg:h-12 text-sm lg:text-lg font-poppins transition-colors duration-500 flex items-center justify-center ease-in-out"
             onClick={() => setOpen(true)}
           >
-            <span className="hidden sm:inline">Enquire Now</span>
-            <span className="sm:hidden">Enquire</span>
+            <span className="sm:inline text-[13px] md:text-base">Enquire Now</span>
+       
           </Button>
         </div>
 
         {/* Mobile Menu Button */}
-        <div className="md:hidden flex items-center">
+        <div className="md:hidden flex space-x-3 items-center">
+              <Button
+            className="bg-primary  lg:ml-0 cursor-pointer hover:bg-orange-400 font-semibold text-white px-3 py-2 lg:px-5 lg:py-2 rounded-lg
+            w-[100px] sm:w-[120px] md:w-[140px] lg:w-[180px] h-8 lg:h-12 text-sm lg:text-lg font-poppins transition-colors duration-500 flex items-center justify-center ease-in-out"
+            onClick={() => setOpen(true)}
+          >
+            <span className="sm:inline text-[13px] md:text-base">Enquire Now</span>
+       
+          </Button>
           <button
             onClick={toggleMobileMenu}
             className={`hover:opacity-70 focus:outline-none transition-colors ${
-              isPastHero ? "text-gray-800" : "text-white"
+              isPastHero ? "text-gray-800" : "text-gray-800"
             }`}
             aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? (
               <X className="h-5 w-5 lg:h-6 lg:w-6" />
             ) : (
-              <Menu className="h-5 w-5 lg:h-6 lg:w-6" />
+              <Menu className="h-6 w-6 lg:h-6 lg:w-6" />
             )}
           </button>
         </div>

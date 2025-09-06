@@ -44,10 +44,7 @@ const row2 = [
       </div>
 
     <motion.div className="absolute z-0"
-     whileInView={{transform:'translateX(0px)', opacity:1}}
-      initial={{transform:'translateX(-100px)', opacity:0}}
-      transition={{ duration: 0.2, ease: "easeInOut" }}
-      viewport={{ once: true }}
+   
     >
           <Image src='/Rectangle-why.svg'
       alt="rectangle"
@@ -58,7 +55,7 @@ const row2 = [
 
     </motion.div>
 <div className="flex flex-col  gap-y-10 justify-center py-10">
-          <motion.div className=" flex flex-row mx-auto self-center z-10 gap-x-10   w-full h-full justify-center items-center "
+          <motion.div className=" flex md:flex-row flex-col sm:gap-y-10 mx-auto self-center z-10 md:gap-x-10   w-full h-full justify-center items-center "
    
     
           >
@@ -69,7 +66,7 @@ const row2 = [
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.2, delay: 0.2 }}
                 key={index}
-                className="bg-white rounded-lg  p-6 w-[350px] h-[250px] flex flex-col items-center justify-center"
+                className="bg-white rounded-lg  p-6 w-[350px] h-[250px] flex md:flex-col  items-center justify-center"
                 >
                 <Image
                   src={item.image}
@@ -92,7 +89,7 @@ const row2 = [
    
 </motion.div>
 
-      <motion.div className=" mx-20  flex flex-row   z-10 gap-x-10   w-full h-full justify-center items-center ">
+      <motion.div className=" md:mx-20  flex md:flex-row flex-col   z-10 gap-x-10   w-full h-full justify-center items-center ">
    {row2.map((item, index) => (
               <motion.div
                 key={index}

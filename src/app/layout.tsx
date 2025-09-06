@@ -61,7 +61,7 @@ export default function RootLayout({
       <body className={`${poppins.variable} ${inter.variable} antialiased`}>
         <DialogProvider>
         <TabProvider>
-          <div className="fixed top-0 left-0 w-full z-50">
+          <div className=" sm-hidden mg-fixed lg-fixed  top-0 left-0 w-full z-50">
             <Navbar />
           </div>
           {children}
