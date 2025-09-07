@@ -1,5 +1,5 @@
 "use client";
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 
 type TabContextType = {
   activeTab: string;
@@ -10,6 +10,9 @@ const TabContext = createContext<TabContextType | undefined>(undefined);
 
 export const TabProvider = ({ children }: { children: React.ReactNode }) => {
   const [activeTab, setActiveTab] = useState("Home");
+
+
+
   return (
     <TabContext.Provider value={{ activeTab, setActiveTab }}>
       {children}

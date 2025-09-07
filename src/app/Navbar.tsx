@@ -12,6 +12,17 @@ export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
   const { activeTab, setActiveTab } = useTab();
 
+  // get pathname to highlight active link
+
+  const pathname = typeof window !== "undefined" ? window.location.pathname : "";
+  React.useEffect(() => {
+    if (pathname === "/") setActiveTab("Home");
+    else if (pathname === "/buy-gold") setActiveTab("sellGold");
+    else if (pathname === "/release-gold") setActiveTab("releaseGold");
+    else if (pathname === "/about") setActiveTab("Aboutus");
+    else setActiveTab("Home");
+  }, [pathname, setActiveTab]);
+
   const [isVisible, setIsVisible] = React.useState(true);
   const lastScrollYRef = React.useRef(0);
   const [isPastHero, setIsPastHero] = React.useState(false);
@@ -147,14 +158,7 @@ export default function Navbar() {
 
         {/* Mobile Menu Button */}
         <div className="md:hidden flex space-x-3 items-center">
-              <Button
-            className="bg-primary  lg:ml-0 cursor-pointer hover:bg-orange-400 font-semibold text-white px-3 py-2 lg:px-5 lg:py-2 rounded-lg
-            w-[100px] sm:w-[120px] md:w-[140px] lg:w-[180px] h-8 lg:h-12 text-sm lg:text-lg font-poppins transition-colors duration-500 flex items-center justify-center ease-in-out"
-            onClick={() => setOpen(true)}
-          >
-            <span className="sm:inline text-[13px] md:text-base">Enquire Now</span>
-       
-          </Button>
+        
           <button
             onClick={toggleMobileMenu}
             className={`hover:opacity-70 focus:outline-none transition-colors ${
