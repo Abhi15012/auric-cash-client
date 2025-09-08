@@ -7,7 +7,7 @@ import React from "react";
 const ContactCard = () => {
   const [isVisible, setIsVisible] = React.useState(true);
   const [lastScrollY, setLastScrollY] = React.useState(0);
-  const [scrollTimeout, setScrollTimeout] = React.useState(null);
+  const [scrollTimeout, setScrollTimeout] = React.useState<NodeJS.Timeout | null>(null);
 
   React.useEffect(() => {
     const handleScroll = () => {

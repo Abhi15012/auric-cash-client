@@ -123,7 +123,7 @@ export function GoldHelpDialog({
 
             <form
               className="mt-6 space-y-5"
-              onSubmit={handleSubmit((data) => {
+              onSubmit={handleSubmit(() => {
                 alert("Request submitted!");
               })}
             >
