@@ -54,14 +54,14 @@ export default function Services() {
   return (
     <motion.section 
   
-    className="bg-white py-12 md:py-16 lg:py-20">
+    className="bg-white  md:py-16 lg:py-20">
       <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-12">
         {/* Section Header */}
-        <div className="text-center mb-12 md:mb-10 lg:mb-10">
+        <div className="text-center  md:mb-10 lg:mb-10">
                 <CommonTitle title={"our services"} />
-          <h2 className="font-poppins text-heading text-3xl md:text-4xl lg:text-5xl  font-semibold leading-tight">
-           Fast & Secure 
-            <br />
+          <h2 className="font-poppins text-heading text-2xl md:text-4xl font-medium line-clamp-5 letter-spacing-wide  lg:text-5xl  md:font-semibold leading-tight">
+           Fast & Secure {" "}
+            <br className="hidden " />
             Gold Solutions
           </h2>
         </div>

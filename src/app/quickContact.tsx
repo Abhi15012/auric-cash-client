@@ -1,61 +1,195 @@
-import CommonTitle from "../app/home/_components/commonTitle";
-import { Button } from "../../components/ui/button";
-import { Input } from "../../components/ui/input";
-import { Phone } from "lucide-react";
+"use client";
+import Image from "next/image";
+import styled from "styled-components";
 
-export default function QuickContact() {
+import React from "react";
+
+const ContactCard = () => {
+  const [isVisible, setIsVisible] = React.useState(true);
+  const [lastScrollY, setLastScrollY] = React.useState(0);
+  const [scrollTimeout, setScrollTimeout] = React.useState(null);
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      // Hide on scroll down, show on scroll up
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        setIsVisible(false);
+      } else {
+        setIsVisible(true);
+      }
+      setLastScrollY(currentScrollY);
+      if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+      }
+      const newTimeout = setTimeout(() => {
+        setIsVisible(true);
+      }, 150);
+      setScrollTimeout(newTimeout);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+      }
+    };
+  }, [lastScrollY, scrollTimeout]);
+
   return (
-    <section className="bg-white py-12 md:py-16 lg:py-20">
-      <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-12">
-        <div className="max-w-7xl mx-auto text-center">
-          {/* Free Consultation Label */}
-         
-
-          {/* Main Heading */}
-          {CommonTitle({ title: "Quick Contact" })}
-
-          {/* Form Section */}
-          <div className="flex flex-col sm:flex-row gap-4 items-end max-w-7xl  mx-auto">
-            {/* Name Input */}
-            <div className="flex-1 w-full">
-              <label
-                htmlFor="fullName"
-                className="block text-left text-sm font-medium text-gray-700 mb-2 font-poppins"
-              >
-                Enter your full name
-              </label>
-              <Input
-                id="fullName"
-                type="text"
-                placeholder="e.g. Anil Kumar"
-                className="w-full h-12 px-4 border text-gray-400 border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+    <StyledWrapper
+      style={{
+        transition: "all 0.3s",
+        transform: isVisible ? "translateY(0)" : "translateY(100px)",
+        opacity: isVisible ? 1 : 0,
+        pointerEvents: isVisible ? "auto" : "none",
+      }}
+    >
+      <div className="card ">
+        <ul>
+          {/* whatsapp */}
+          <li className="iso-pro h-20">
+            <span />
+            <span />
+            <span />
+            <a
+              href="https://wa.me/+918142659346"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Image
+                src="/whatsapp.png"
+                alt="WhatsApp"
+                className="pb hover:scale-105 icon-image"
+                width={30}
+                height={30}
               />
-            </div>
-
-            {/* Phone Input */}
-            <div className="flex-1 w-full">
-              <label
-                htmlFor="phoneNumber"
-                className="block text-left text-sm font-medium text-gray-700 mb-2 font-poppins"
-              >
-                Enter number
-              </label>
-              <Input
-                id="phoneNumber"
-                type="tel"
-                placeholder="Add 10 digit number"
-                className="w-full h-12 px-4 border text-gray-400 border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
-              />
-            </div>
-
-            {/* Call Back Button */}
-            <Button className="w-full sm:w-auto h-12 px-6 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-md transition-colors duration-200 flex items-center justify-center gap-2 font-poppins">
-              <Phone className="w-4 h-4" />
-              Request a Call Back
-            </Button>
-          </div>
-        </div>
+            </a>
+          </li>
+        </ul>
       </div>
-    </section>
+    </StyledWrapper>
   );
-}
+};
+
+const StyledWrapper = styled.div`
+  .card {
+    max-width: fit-content;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    gap: 1rem;
+    /* Enhanced glass morphism effect */
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .card ul {
+    padding: 1rem; /* Reduced padding for mobile */
+    display: flex;
+    list-style: none;
+    gap: 1rem; /* Reduced gap for mobile */
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+
+    /* Medium screens and up */
+    @media (min-width: 768px) {
+      padding: 1.5rem;
+      gap: 1.5rem;
+    }
+  }
+
+  .card ul li {
+    cursor: pointer;
+    position: relative;
+  }
+
+  .card ul li a {
+    display: inline-block;
+    transition: transform 0.3s ease;
+  }
+
+  .card ul li:hover a {
+    transform: scale(1.2);
+  }
+
+  /* Responsive icon sizing */
+  .icon-image {
+    width: 20px !important;
+    height: 20px !important;
+
+    /* Medium screens and up - back to original size */
+    @media (min-width: 768px) {
+      width: 30px !important;
+      height: 30px !important;
+    }
+  }
+
+  .svg {
+    padding: 0.75rem; /* Reduced padding for mobile */
+    height: 45px; /* Reduced height for mobile */
+    width: 45px; /* Reduced width for mobile */
+    border-radius: 100%;
+    color: rgb(255, 174, 0);
+    fill: currentColor;
+    /* Enhanced glass morphism for icons */
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+
+    /* Medium screens and up - back to original size */
+    @media (min-width: 768px) {
+      padding: 1rem;
+      height: 60px;
+      width: 60px;
+    }
+  }
+
+  /* Added gold color for phone icon */
+  .phone-item .phone-icon {
+    filter: sepia(1) saturate(2) hue-rotate(35deg) brightness(1.2);
+  }
+
+  /*isometric projection*/
+  .iso-pro {
+    transition: transform 0.3s ease;
+  }
+
+  .iso-pro:hover .text {
+    opacity: 1;
+  }
+
+  .iso-pro span {
+    opacity: 0;
+    position: absolute;
+    color: #1877f2;
+    border-color: #1877f2;
+    /* Enhanced glass morphism for spans */
+    background: rgba(24, 119, 242, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(24, 119, 242, 0.3);
+    border-radius: 50%;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    height: 45px; /* Reduced for mobile */
+    width: 45px; /* Reduced for mobile */
+
+    /* Medium screens and up - back to original size */
+    @media (min-width: 768px) {
+      height: 60px;
+      width: 60px;
+    }
+  }
+`;
+
+export default ContactCard;

@@ -31,10 +31,10 @@ const Card = ({
     if (link === "/about") return "Aboutus";
     return "Home";
   };
-  const { openWithIntent} = useDialog();
+  const { openWithIntent } = useDialog();
   return (
     <motion.div
-        whileInView={{ opacity: 1, y: 0 }}
+      whileInView={{ opacity: 1, y: 0 }}
       initial={{ opacity: 0, y: 20 }}
       transition={{ duration: 1, ease: "easeInOut" }}
       viewport={{ once: true }}
@@ -42,14 +42,16 @@ const Card = ({
       className="flex flex-col justify-between bg-white border-[0.5] border-[#666] rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 p-6 w-full max-w-md"
     >
       <div>
-        <h2 className="text-2xl font-semibold font-poppins mb-4 text-black">
+        <h2 className=" md:text-2xl text-xl md:font-semibold font-medium font-poppins md:mb-4 mb-2 text-black">
           {title}
         </h2>
-        <ul className="space-y-3 mb-6">
+        <ul className="space-y-3 md:mb-6 mb-4">
           {points.map((point, index) => (
             <li key={index} className="flex items-start gap-2">
-              <CheckCircle className="text-green-500 w-5 h-5 mt-0.5" />
-              <span className="text-gray-700 font-poppins">{point}</span>
+              <CheckCircle className="text-green-500 md:w-5 md:h-5 h-4 w-4 mt-0.5" />
+              <span className="text-gray-700 text-[12px] md:text-base font-poppins">
+                {point}
+              </span>
             </li>
           ))}
         </ul>
@@ -58,7 +60,7 @@ const Card = ({
         {/* Primary Button */}
         <button
           type="button"
-          className="flex items-center cursor-pointer font-poppins justify-center gap-2 bg-primary text-white font-semibold py-3 rounded-lg hover:bg-orange-400 transition"
+          className="flex items-center cursor-pointer font-poppins justify-center gap-2 bg-primary text-white font-semibold py-3 rounded-lg hover:bg-orange-400 transition text-sm md:text-base"
           onClick={() => {
             // Primary action logic
             if (
@@ -66,7 +68,13 @@ const Card = ({
               primaryLink === "release" ||
               primaryLink === "#"
             ) {
-              openWithIntent(primaryLink === "sell" ? "sell" : primaryLink === "release" ? "release" : "sell-pledged");
+              openWithIntent(
+                primaryLink === "sell"
+                  ? "sell"
+                  : primaryLink === "release"
+                  ? "release"
+                  : "sell-pledged"
+              );
             } else if (primaryLink.startsWith("/")) {
               setActiveTab(getTabName(primaryLink));
               window.location.href = primaryLink;
@@ -81,7 +89,7 @@ const Card = ({
         {/* Secondary Button */}
         <button
           type="button"
-          className="flex items-center justify-center font-poppins gap-2 border border-gray-300 text-gray-800 font-medium py-3 rounded-lg hover:bg-gray-100 transition"
+          className="flex items-center justify-center font-poppins gap-2 border border-gray-300 text-gray-800 font-medium py-3 rounded-lg hover:bg-gray-100 transition text-sm md:text-base"
           onClick={() => {
             // Secondary action logic
             if (secondaryLink) {
@@ -94,7 +102,7 @@ const Card = ({
         </button>
       </div>
 
-      <p className="text-sm text-gray-500 mt-4">{footerText}</p>
+      <p className="text-xs md:text-sm text-gray-500 md:mt-4 mt-2">{footerText}</p>
     </motion.div>
   );
 };
