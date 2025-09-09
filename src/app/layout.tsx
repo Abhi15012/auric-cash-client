@@ -4,8 +4,9 @@ import Navbar from "./Navbar";
 import localFont from "next/font/local";
 import { Inter } from "next/font/google";
 import Footer from "./footer";
+
 import { TabProvider } from "../../context/TabContext";
-import QuickContact from "./quickContact";
+
 import GoldHelpDialogWrapper from "./gold-contact-wrapper"; // ✅ Import here
 import React from "react";
 import { DialogProvider } from "../../context/handleDialog";
@@ -65,11 +66,11 @@ export default function RootLayout({
             <Navbar />
           </div>
           {children}
-          <QuickContact />
+   
           <GoldHelpDialogWrapper /> {/* ✅ This is client now */}
           <Footer />
 
-        
+       
 
              <div className="fixed w-full   md:hidden bottom-0  z-50">
           <Tabs />
