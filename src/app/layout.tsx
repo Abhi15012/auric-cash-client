@@ -4,7 +4,6 @@ import Navbar from "./Navbar";
 import localFont from "next/font/local";
 import { Inter } from "next/font/google";
 import Footer from "./footer";
-import ContactCard from "../../components/ui/quickcontacts";
 import { TabProvider } from "../../context/TabContext";
 import QuickContact from "./quickContact";
 import GoldHelpDialogWrapper from "./gold-contact-wrapper"; // ✅ Import here
@@ -70,9 +69,7 @@ export default function RootLayout({
           <GoldHelpDialogWrapper /> {/* ✅ This is client now */}
           <Footer />
 
-          <div className="fixed bottom-20 md:bottom-4   right-4 z-50">
-            {/* <ContactCard /> */}
-          </div>
+        
 
              <div className="fixed w-full   md:hidden bottom-0  z-50">
           <Tabs />
