@@ -65,8 +65,8 @@ export default function Tabs() {
       tabActive: "releaseGold",
       href: "/release-gold",
       iconSize: "w-5 h-5",
-      inactive: "/loan-ia.png",
-      active: "/loan-a.png",
+      active: "/loan-ia.png",
+      inactive: "/loan-a.png",
     },
   ];
   return (
