@@ -71,10 +71,10 @@ export default function RootLayout({
           <Footer />
 
           <div className="fixed bottom-20 md:bottom-4   right-4 z-50">
-            <ContactCard />
+            {/* <ContactCard /> */}
           </div>
 
-             <div className="fixed md:hidden bottom-0 right-0 left-0 z-50">
+             <div className="fixed w-full   md:hidden bottom-0  z-50">
           <Tabs />
           </div>
 
