@@ -10,9 +10,8 @@ export default function page() {
     <>
       <Hero />
       <How />
-      <WhyChooseUs />
-      <VideoSection />
       <FAQSection />
+      
     </>
   );
 }

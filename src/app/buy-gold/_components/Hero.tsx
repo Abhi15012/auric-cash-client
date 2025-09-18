@@ -5,36 +5,32 @@ import Image from "next/image";
 
 export default function Hero() {
   return (
-    <main className="bg-gradient-to-r from-[#0F172A] via-[#282f3f61] to-[#2d3038cf] flex flex-col lg:flex-row items-start  justify-between  max-h-screen  md:pt-10 lg:pl-20  pb-8 md:pb-12 lg:pb-16">
+    <main className="bg-gradient-to-r min-h-screen from-[#0F172A] via-[#282f3f61] to-[#2d3038cf] flex flex-col lg:flex-row items-start  justify-between  max-h-screen  md:pt-10 lg:pl-20  pb-8 md:pb-12 lg:pb-16">
       <div className="flex-1  py-[70px] pb-[30px]  max-w-3xl mb-8 lg:mb-0 lg:pr-4 text-center lg:text-left mt-6">
         <h1 className="font-poppins md:text-4xl lg:text-5xl font-semibold  text-white mb-4 md:mb-6 line-clamp-2  ">
          Sell Your Gold
           <br />
-          at the Best Market Price
+          at today's
+          {"\n"} Best Prices
         </h1>
 
-
-<div className="space-y-3 md:space-y-4 lg:space-y-6 mb-6 md:mb-8 w-full">
-  <p className="font-poppins text-white text-base md:text-lg lg:text-xl line-clamp-5 letter-spacing-wide my-2">
-    We <span className="text-gold">buy your gold</span>{" "} hassle-free,
-  </p>
-  <p className="font-poppins text-white text-base md:text-lg lg:text-xl line-clamp-5 letter-spacing-wide my-2">
-      whether it is in hand or pledged with banks.
-  </p>
-  <p className="font-poppins text-white text-base md:text-lg lg:text-xl line-clamp-5 letter-spacing-wide my-2">
-    giving you instant cash at the best value.
-  </p>
-  <p className="font-poppins text-white text-base md:text-lg lg:text-xl line-clamp-5 letter-spacing-wide my-2">
-    Enjoy a transparent process, save on interest,
-  </p>
-  <p className="font-poppins text-white text-base md:text-lg lg:text-xl line-clamp-5 letter-spacing-wide my-2">
-    and take advantage of today’s high gold prices.
-  </p>
-</div>
+        <div className="space-y-3 md:space-y-4 lg:space-y-6 mb-6 md:mb-8 w-full">
+          <p className="text-gray-300 md:text-lg lg:text-xl font-poppins">
+            Get instant cash for your gold jewelry - safe,
+            transparent, at the best rates.
+          </p>
+          <ul className="list-disc list-inside text-gray-400 text-base md:text-lg lg:text-xl font-poppins pl-4">
+            <li>No hidden charges or deductions</li>
+            <li>Free purity testing and valuation</li>
+            <li>On-the-spot payment via cash, UPI, or bank transfer</li>
+            <li>Professional staff and secure process</li>
+          </ul>
+      
+        </div>
 
         <Button
-          className="bg-gold h-14 mt-14 mb-6 font-poppins text-black px-8 py-4 md:px-10 md:py-5 lg:px-8 lg:py-4 rounded-lg
-         flex items-center justify-center gap-2 hover:bg-yellow-400 transition-colors duration-500 ease-in-out
+          className="bg-primary h-14 mt-14 mb-6 font-poppins text-black px-8 py-4 md:px-10 md:py-5 lg:px-8 lg:py-4 rounded-lg
+         flex items-center justify-center gap-2 hover:bg-orange-400 transition-colors duration-500 ease-in-out
          w-[300px] sm:w-[350px] md:w-[400px] lg:w-[500px]
          text-sm md:text-lg lg:text-xl 
         "

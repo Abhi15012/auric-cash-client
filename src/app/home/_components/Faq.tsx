@@ -12,6 +12,7 @@ import { useState, useRef, useEffect } from "react"
 import CommonTitle from "./commonTitle"
 
 // Custom FAQ Trigger with Plus/Minus animation
+
 function FAQTrigger({
   children,
   ...props
@@ -29,7 +30,6 @@ function FAQTrigger({
     </AccordionTrigger>
   )
 }
-
 const faqData = [
   {
     question: "Do you provide gold loans?",
