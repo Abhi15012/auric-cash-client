@@ -1,23 +1,18 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { useForm } from "react-hook-form";
+import { useEffect, useRef, useState } from "react";
+import { useForm, Controller } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AnimatePresence, motion } from "framer-motion";
-import { X } from "lucide-react";
+import { X, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
 import { cn } from "../lib/utils";
 import { Button } from "./button";
 import { Input } from "./input";
 import { Label } from "./label";
 import { Switch } from "./switch";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "./select";
+import { Select, SelectTrigger, SelectContent, SelectValue, SelectItem } from "@/components/ui/select";
+import { getUserLocation } from "../lib/getLoction";
 
 type GoldHelpDialogProps = {
   open: boolean;
@@ -25,42 +20,130 @@ type GoldHelpDialogProps = {
   defaultIntent?: "sell" | "sell-pledged" | "release";
 };
 
-// Zod schema for validation
-const goldContactSchema = z.object({
-  fullName: z
-    .string()
-    .min(1, "Name is required")
-    .refine((val) => /^[^\d]+$/.test(val), {
-      message: "Name must not contain numbers",
-    }),
-  phone: z
-    .string()
-    .length(10, "Mobile number must be exactly 10 digits")
-    .refine((val) => /^[0-9]{10}$/.test(val), {
-      message: "Mobile number must be 10 digits, no alphabets or symbols",
-    }),
-  whatsapp: z.boolean().optional(),
-  intent: z.string().optional(),
+// Updated Zod schema with CountryCode
+export const userContactSchema = z.object({
+  fullName: z.string().min(1, "Full name is required"),
+  CountryCode: z.string().min(1, "Country code is required"),
+  mobile: z.string().min(10, "Mobile number must be at least 10 characters long"),
+  customerType: z.enum(["sellgold", "releasegold", "loangold", "quickContact", "other"]),
   address: z.string().optional(),
+  isVerified: z.boolean(),
+  isWhatsApp: z.boolean(),
 });
+
+type UserContactFormData = z.infer<typeof userContactSchema>;
+
+
 
 export function GoldHelpDialog({
   open,
   onClose,
   defaultIntent,
 }: GoldHelpDialogProps) {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{
+    type: "success" | "error" | null;
+    message: string;
+  }>({ type: null, message: "" });
+
+  const [location, setLocation] = useState<{ lat: number; lng: number } | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleGetLocation = async () => {
+    try {
+      const loc = await getUserLocation();
+      setLocation(loc);
+    } catch (err: any) {
+      setError(err.message);
+    }
+  };
+
   const {
     register,
     handleSubmit,
+    control,
+    reset,
     formState: { errors },
-  } = useForm({
-    resolver: zodResolver(goldContactSchema),
+  } = useForm<UserContactFormData>({
+    resolver: zodResolver(userContactSchema),
     defaultValues: {
-      intent: defaultIntent,
+      fullName: "",
+      CountryCode: "+91",
+      mobile: "",
+      customerType: defaultIntent
+        ? (defaultIntent === "sell"
+          ? "sellgold"
+          : defaultIntent === "release"
+            ? "releasegold"
+            : defaultIntent === "sell-pledged"
+              ? "loangold"
+              : "quickContact")
+        : "quickContact",
+      address: "",
+      isVerified: false,
+      isWhatsApp: false,
     },
   });
+
   const containerRef = useRef<HTMLDivElement>(null);
 
+  // API call function
+  const submitUserContact = async (data: UserContactFormData): Promise<any> => {
+    const response = await fetch("https://api.prcgoldbuyers.com/api/user/verifyuser", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        ...data,
+        countryCodes: "+91",
+        isVerified: true, // Set to true as per API example
+      }),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
+    }
+
+    return response.json();
+  };
+
+  // Form submission handler
+  async function onSubmit(values: UserContactFormData) {
+    setIsSubmitting(true);
+    setSubmitStatus({ type: null, message: "" });
+
+    try {
+      const result = await submitUserContact({
+        ...values,
+        isVerified: true,
+      });
+
+      setSubmitStatus({
+        type: "success",
+        message: result.message || "Request submitted successfully! We'll call you back soon.",
+      });
+
+      // Reset form after successful submission
+      setTimeout(() => {
+        reset();
+        onClose();
+        setSubmitStatus({ type: null, message: "" });
+      }, 2000);
+
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      setSubmitStatus({
+        type: "error",
+        message: error instanceof Error ? error.message : "Failed to submit request. Please try again.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
+
+  // Keyboard and body scroll handlers
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => {
@@ -77,6 +160,13 @@ export function GoldHelpDialog({
     return () => {
       document.body.style.overflow = prev;
     };
+  }, [open]);
+
+  // Reset status when dialog opens
+  useEffect(() => {
+    if (open) {
+      setSubmitStatus({ type: null, message: "" });
+    }
   }, [open]);
 
   return (
@@ -108,44 +198,56 @@ export function GoldHelpDialog({
             <button
               aria-label="Close dialog"
               onClick={onClose}
-              className="absolute right-3 top-3 inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-orange-500"
+              disabled={isSubmitting}
+              className="absolute right-3 top-3 inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-orange-500 disabled:opacity-50"
             >
               <X className="h-5 w-5" />
             </button>
 
-            {/* Title only (no subheading/tags as requested) */}
+            {/* Title */}
             <h2
               id="gold-help-title"
-              className="text-balance pr-12 text-center text-2xl font-poppins  font-semibold tracking-tight text-slate-900 md:text-3xl"
+              className="text-balance pr-12 text-center text-2xl font-poppins font-semibold tracking-tight text-slate-900 md:text-3xl"
             >
               Get Instant Help with Your Gold 👋
             </h2>
 
-            <form
-              className="mt-6 space-y-5"
-              onSubmit={handleSubmit(() => {
-                alert("Request submitted!");
-              })}
-            >
+            {/* Success/Error Messages */}
+            {submitStatus.type && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className={cn(
+                  "mt-4 flex items-center gap-2 rounded-lg p-3 text-sm",
+                  submitStatus.type === "success"
+                    ? "bg-green-50 text-green-800 border border-green-200"
+                    : "bg-red-50 text-red-800 border border-red-200"
+                )}
+              >
+                {submitStatus.type === "success" ? (
+                  <CheckCircle className="h-4 w-4 flex-shrink-0" />
+                ) : (
+                  <AlertCircle className="h-4 w-4 flex-shrink-0" />
+                )}
+                <span>{submitStatus.message}</span>
+              </motion.div>
+            )}
+
+            <form className="mt-6 space-y-5" onSubmit={handleSubmit(onSubmit)}>
               {/* Name */}
               <div className="space-y-2">
-                <Label
-                  htmlFor="fullName"
-                  className="inline-flex items-center gap-1"
-                >
+                <Label htmlFor="fullName" className="inline-flex items-center gap-1">
                   Enter your full name
-                  <span aria-hidden="true" className="text-red-600">
-                    *
-                  </span>
+                  <span aria-hidden="true" className="text-red-600">*</span>
                   <span className="sr-only">(required)</span>
                 </Label>
-
                 <Input
                   id="fullName"
                   {...register("fullName")}
-                  placeholder="Anil Mehra"
+                  placeholder="Kiran Kumar"
                   autoFocus
                   aria-required="true"
+                  disabled={isSubmitting}
                 />
                 {errors.fullName && (
                   <span className="text-xs text-red-600">
@@ -154,29 +256,29 @@ export function GoldHelpDialog({
                 )}
               </div>
 
-              {/* Number */}
+              {/* Country Code and Mobile Number */}
               <div className="space-y-2">
-                <Label
-                  htmlFor="phone"
-                  className="inline-flex items-center gap-1"
-                >
+                <Label htmlFor="phone" className="inline-flex items-center gap-1">
                   Enter your Mobile number
-                  <span aria-hidden="true" className="text-red-600">
-                    *
-                  </span>
+                  <span aria-hidden="true" className="text-red-600">*</span>
                   <span className="sr-only">(required)</span>
                 </Label>
-                <Input
-                  id="phone"
-                  type="tel"
-                  inputMode="tel"
-                  placeholder="2345623456"
-                  {...register("phone")}
-                  aria-required="true"
-                />
-                {errors.phone && (
+
+
+                <div className="flex-1">
+                  <Input
+                    id="phone"
+                    type="tel"
+                    inputMode="tel"
+                    placeholder="9876543210"
+                    {...register("mobile")}
+                    aria-required="true"
+                    disabled={isSubmitting}
+                  />
+                </div>
+                {(errors.mobile || errors.CountryCode) && (
                   <span className="text-xs text-red-600">
-                    {errors.phone.message}
+                    {errors.mobile?.message || errors.CountryCode?.message}
                   </span>
                 )}
               </div>
@@ -186,59 +288,120 @@ export function GoldHelpDialog({
                 <span className="text-sm font-medium text-slate-800">
                   Number linked to WhatsApp?
                 </span>
-                <Switch id="whatsapp" {...register("whatsapp")} />
-              </div>
-
-              {/* Optional Dropdown */}
-              <div className="space-y-2">
-                <Label htmlFor="intent" className="flex items-center gap-2">
-                  What do you want to do?
-                  <span className="text-xs font-normal text-slate-500">
-                    (optional)
-                  </span>
-                </Label>
-                <Select
-                  name="intent"
-                  defaultValue={defaultIntent}
-                  {...register("intent")}
-                >
-                  <SelectTrigger id="intent" className="w-full justify-between">
-                    <SelectValue placeholder="Choose an option (optional)" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="sell">Sell your gold</SelectItem>
-                    <SelectItem value="sell-pledged">
-                      Sell pledged gold
-                    </SelectItem>
-                    <SelectItem value="release">
-                      Release pledged gold
-                    </SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-
-              {/* Address */}
-              <div className="space-y-2 ">
-                <Label htmlFor="address">
-                  Address
-                  <span className="text-xs font-normal text-slate-500">
-                    (optional)
-                  </span>
-                </Label>
-
-                <textarea
-                  id="address"
-                  rows={3}
-                  placeholder="1-2/2, Jubili hills, Punjagutta, Telangana"
-                  className="w-full resize-none rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-slate-900 placeholder:text-slate-400 shadow-sm outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-500/30"
-                  {...register("address")}
+                <Controller
+                  control={control}
+                  name="isWhatsApp"
+                  render={({ field }) => (
+                    <Switch
+                      id="whatsapp"
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                      disabled={isSubmitting}
+                    />
+                  )}
                 />
               </div>
 
-              {/* CTA */}
+              {/* Customer Type Dropdown */}
+              <div className="space-y-2">
+                <Label htmlFor="customerType" className="inline-flex items-center gap-1">
+                  What do you want to do?
+                  <span aria-hidden="true" className="text-red-600">*</span>
+                </Label>
+                <Controller
+                  control={control}
+                  name="customerType"
+                  render={({ field }) => (
+                    <Select
+                      value={field.value}
+                      onValueChange={field.onChange}
+                      disabled={isSubmitting}
+                    >
+                      <SelectTrigger className="w-full justify-between">
+                        <SelectValue placeholder="Choose an option" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem className="!rounded-none overflow-auto h-10" value="sellgold">
+                          Sell your gold
+                        </SelectItem>
+                        <SelectItem className="!rounded-none overflow-auto h-10" value="releasegold">
+                          Release pledged gold
+                        </SelectItem>
+                        <SelectItem className="!rounded-none overflow-auto h-10" value="loangold">
+                          Sell pledged gold
+                        </SelectItem>
+                        <SelectItem className="!rounded-none overflow-auto h-10" value="quickContact">
+                          Quick Contact
+                        </SelectItem>
+                        <SelectItem className="!rounded-none overflow-auto h-10" value="other">
+                          Other
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
+                  )}
+                />
+                {errors.customerType && (
+                  <span className="text-xs text-red-600">
+                    {errors.customerType.message}
+                  </span>
+                )}
+              </div>
+
+              <div>
+                <button
+                  onClick={handleGetLocation}
+                  className="rounded-xl bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
+                >
+                  Get My Location
+                </button>
+                {location && (
+                  <p className="mt-2">
+                    📍 Latitude: {location.lat}, Longitude: {location.lng}
+                  </p>
+                )}
+
+                {error && <p className="mt-2 text-red-500">⚠️ {error}</p>}
+
+              </div>
+
+              {/* Address */}
+              <div className="space-y-2">
+                <Label htmlFor="address">
+                  Address
+                  <span className="text-xs font-normal text-slate-500 ml-1">
+                    (optional)
+                  </span>
+                </Label>
+                <textarea
+                  id="address"
+                  rows={3}
+                  placeholder="123 MG Road, Bangalore, India"
+                  className="w-full resize-none rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-slate-900 placeholder:text-slate-400 shadow-sm outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-500/30 disabled:opacity-50"
+                  {...register("address")}
+                  disabled={isSubmitting}
+                />
+              </div>
+
+              {/* Submit Button */}
               <div className="pt-1">
-                <Button className="h-11 w-full font-poppins  rounded-xl bg-primary text-white hover:bg-orange-400">
-                  Request a Free Call Back
+                <Button
+                  type="submit"
+                  disabled={isSubmitting || submitStatus.type === "success"}
+                  className="h-11 w-full font-poppins rounded-xl bg-primary text-white hover:bg-orange-400 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isSubmitting ? (
+                    <div className="flex items-center gap-2">
+                      <Loader2 className="h-4 w-4 animate-spin" />
+                      Submitting...
+                    </div>
+                  ) : submitStatus.type === "success" ? (
+                    <div className="flex items-center gap-2">
+                      <CheckCircle className="h-4 w-4" />
+                      Request Submitted
+                    </div>
+                  ) : (
+                    "Request a Free Call Back"
+                  )}
                 </Button>
               </div>
             </form>
