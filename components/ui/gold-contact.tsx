@@ -67,7 +67,7 @@ export function GoldHelpDialog({
     try {
       const loc = await getUserLocation();
       setLocation(loc);
-    } catch (err: string | any) {
+    } catch (err: string ) {
       setError(err.message);
     }
   };
