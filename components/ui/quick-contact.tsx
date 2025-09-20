@@ -1,37 +1,110 @@
 "use client";
-import React from "react";
-import Image from "next/image";
-import { ArrowRight } from "lucide-react";
+import React, { useState } from "react";
 import CommonTitle from "../../src/app/buy-gold/_components/commonTitle";
 
 import { motion } from "framer-motion";
 import { Button } from "./button";
 import { Label } from "./label";
-import { cn } from "../lib/utils";
 import { Input } from "./input";
 import { Switch } from "./switch";
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { userContactSchema } from "./gold-contact";
+import { z } from "zod";
+import { CheckCircle, Loader2 } from "lucide-react";
 
 export default function QuickContact({ title }: { title: string }) {
+
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitStatus, setSubmitStatus] = useState<{
+      type: "success" | "error" | null;
+      message: string;
+    }>({ type: null, message: "" });
+  
+
+  const defaultIntent = typeof window !== "undefined" ? (window.location.href.includes("sell-gold") ? "sell" : window.location.href.includes("release-gold") ? "release" : window.location.href.includes("loan-gold") ? "sell-pledged" : null) : null;
+
+  type UserContactFormData = z.infer<typeof userContactSchema>;
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm({
-    defaultValues: {
+  } = useForm <UserContactFormData>({
+    resolver: zodResolver(userContactSchema),
+   defaultValues: {
       fullName: "",
-      phone: "",
+      CountryCode: "+91",
+      mobile: "",
+      customerType: defaultIntent
+        ? (defaultIntent === "sell"
+            ? "sellgold"
+            : defaultIntent === "release"
+            ? "releasegold"
+            : defaultIntent === "sell-pledged"
+            ? "loangold"
+            : "quickContact")
+        : "quickContact",
       address: "",
-      whatsapp: false,
+      isVerified: false,
+      isWhatsApp: false,
     },
   });
 
-  const onSubmit = (data: any) => {
-    console.log("Form data:", data);
-    alert("Request submitted!");
-    reset(); // Optional: reset form after submission
+  const submitUserContact = async (data: UserContactFormData): Promise<any> => {
+    const response = await fetch("https://api.prcgoldbuyers.com/api/user/verifyuser", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        ...data,
+        countryCodes:"+91",
+        isVerified: true, // Set to true as per API example
+      }),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
+    }
+
+    return response.json();
   };
+
+
+  async function onSubmit(values: UserContactFormData) {
+    setIsSubmitting(true);
+    setSubmitStatus({ type: null, message: "" });
+
+    try {
+      const result = await submitUserContact({
+        ...values,
+        isVerified: true,
+      });
+
+      setSubmitStatus({
+        type: "success",
+        message: result.message || "Request submitted successfully! We'll call you back soon.",
+      });
+
+      // Reset form after successful submission
+      setTimeout(() => {
+        reset();
+        setSubmitStatus({ type: null, message: "" });
+      }, 2000);
+
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      setSubmitStatus({
+        type: "error",
+        message: error instanceof Error ? error.message : "Failed to submit request. Please try again.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
+
 
   return (
     <motion.section className="bg-white md:py-16 lg:py-20 flex justify-center">
@@ -77,7 +150,7 @@ export default function QuickContact({ title }: { title: string }) {
             </div>
             {/* Number */}
             <div className="space-y-2">
-              <Label htmlFor="phone" className="inline-flex items-center gap-1">
+              <Label htmlFor="mobile" className="inline-flex items-center gap-1">
                 Enter your Mobile number
                 <span aria-hidden="true" className="text-red-600">
                   *
@@ -89,7 +162,7 @@ export default function QuickContact({ title }: { title: string }) {
                 type="tel"
                 inputMode="tel"
                 placeholder="2345623456"
-                {...register("phone", {
+                {...register("mobile", {
                   required: "Mobile number is required",
                   pattern: {
                     value: /^[0-9]{10}$/,
@@ -99,9 +172,9 @@ export default function QuickContact({ title }: { title: string }) {
                 })}
                 aria-required="true"
               />
-              {errors.phone && (
+              {errors.mobile && (
                 <span className="text-xs text-red-600">
-                  {errors.phone.message}
+                  {errors.mobile.message}
                 </span>
               )}
             </div>
@@ -110,7 +183,7 @@ export default function QuickContact({ title }: { title: string }) {
               <span className="text-sm font-medium text-slate-800">
                 Number linked to WhatsApp?
               </span>
-              <Switch id="whatsapp" {...register("whatsapp")} />
+              <Switch id="whatsapp" {...register("isWhatsApp")} />
             </div>
             {/* Address */}
             <div className="space-y-2">
@@ -129,11 +202,27 @@ export default function QuickContact({ title }: { title: string }) {
               />
             </div>
             {/* CTA */}
-            <div className="pt-1">
-              <Button className="h-11 w-full font-poppins rounded-xl bg-primary text-white hover:bg-orange-400">
-                Request a Free Call Back
-              </Button>
-            </div>
+           <div className="pt-1">
+                <Button
+                  type="submit"
+                  disabled={isSubmitting || submitStatus.type === "success"}
+                  className="h-11 w-full font-poppins rounded-xl bg-primary text-white hover:bg-orange-400 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isSubmitting ? (
+                    <div className="flex items-center gap-2">
+                      <Loader2 className="h-4 w-4 animate-spin" />
+                      Submitting...
+                    </div>
+                  ) : submitStatus.type === "success" ? (
+                    <div className="flex items-center gap-2">
+                      <CheckCircle className="h-4 w-4" />
+                      Request Submitted
+                    </div>
+                  ) : (
+                    "Request a Free Call Back"
+                  )}
+                </Button>
+              </div>
           </form>
         </div>
       </div>

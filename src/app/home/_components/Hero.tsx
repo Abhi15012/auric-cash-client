@@ -20,7 +20,7 @@ export default function Hero() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.1 }}
-        className="flex-1 py-[70px] md:py-[100px] pb-[30px] max-w-3xl mb-8 lg:mb-0  text-center items-center justify-center md:text-left sm:items-start md:justify-start mt-6"
+        className="flex-1 py-[70px] md:py-[100px] pb-[30px] max-w-xl mb-8 lg:mb-0  text-center items-center justify-center md:text-left sm:items-start md:justify-start mt-6"
       >
 
         <h2 className="font-poppins text-primary text-2xl md:text-4xl font-medium line-clamp-5 letter-spacing-wide my-2">
@@ -69,7 +69,7 @@ export default function Hero() {
           </Button>
         </div>
 
-        <div className="md:flex hidden  flex-col sm:flex-row sm:flex-wrap gap-3 sm:gap-4 items-center lg:items-start mt-2">
+        <div className="md:flex hidden  flex-col sm:flex-row sm:flex-wrap min-w-6xl gap-3 sm:gap-4 items-center lg:items-start mt-2">
           <div className="flex items-center bg-[#FFFFFF17] px-4 py-2 rounded-3xl gap-2">
             <Image
               style={{ width: "14px", height: "14px" }}
