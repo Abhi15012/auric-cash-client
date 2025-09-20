@@ -51,7 +51,7 @@ export default function QuickContact({ title }: { title: string }) {
     },
   });
 
-  const submitUserContact = async (data: UserContactFormData): Promise<any> => {
+  const submitUserContact = async (data: UserContactFormData): Promise<string> => {
     const response = await fetch("https://api.prcgoldbuyers.com/api/user/verifyuser", {
       method: "POST",
       headers: {
