@@ -139,7 +139,7 @@ export function GoldHelpDialog({
                   </span>
                   <span className="sr-only">(required)</span>
                 </Label>
-               
+
                 <Input
                   id="fullName"
                   {...register("fullName")}
@@ -182,11 +182,10 @@ export function GoldHelpDialog({
               </div>
 
               {/* WhatsApp toggle */}
-              <div className="flex items-center justify-end space-x-4  p-3">
+              <div className="flex items-center justify-end space-x-4 p-3">
                 <span className="text-sm font-medium text-slate-800">
-                  Number linked to WhatsApp ?
+                  Number linked to WhatsApp?
                 </span>
-               
                 <Switch id="whatsapp" {...register("whatsapp")} />
               </div>
 
@@ -198,7 +197,11 @@ export function GoldHelpDialog({
                     (optional)
                   </span>
                 </Label>
-                <Select name="intent" defaultValue={defaultIntent}>
+                <Select
+                  name="intent"
+                  defaultValue={defaultIntent}
+                  {...register("intent")}
+                >
                   <SelectTrigger id="intent" className="w-full justify-between">
                     <SelectValue placeholder="Choose an option (optional)" />
                   </SelectTrigger>
@@ -207,7 +210,9 @@ export function GoldHelpDialog({
                     <SelectItem value="sell-pledged">
                       Sell pledged gold
                     </SelectItem>
-                    <SelectItem value="release">Release pledged gold</SelectItem>
+                    <SelectItem value="release">
+                      Release pledged gold
+                    </SelectItem>
                   </SelectContent>
                 </Select>
               </div>

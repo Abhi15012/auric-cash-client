@@ -11,6 +11,7 @@ import GoldHelpDialogWrapper from "./gold-contact-wrapper"; // ✅ Import here
 import React from "react";
 import { DialogProvider } from "../../context/handleDialog";
 import Tabs from "./tabs";
+import QuickContact from "../../components/ui/quick-contact";
 
 // Fonts
 const poppins = localFont({
@@ -68,6 +69,7 @@ export default function RootLayout({
           {children}
    
           <GoldHelpDialogWrapper /> {/* ✅ This is client now */}
+          <QuickContact title="Quick Contact"/>
           <Footer />
 
        
