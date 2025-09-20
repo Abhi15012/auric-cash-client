@@ -1,4 +1,5 @@
 import { Facebook, Instagram, Youtube, Phone } from "lucide-react"
+import Image from "next/image"
 
 
 export default function Footer() {
@@ -10,9 +11,7 @@ export default function Footer() {
           {/* Brand Section */}
           <div className="lg:col-span-1">
             <div className="flex items-center mb-4">
-              <div className="w-8 h-8 bg-yellow-500 rounded-full flex items-center justify-center mr-3">
-                <div className="w-4 h-4 bg-white rounded-full"></div>
-              </div>
+              <Image src="/icon.png" alt="Logo" className="h-10 w-10 mr-3" width={24} height={24} />
               <h3 className="text-xl font-poppins font-bold">PRC GOLD BUYERS</h3>
             </div>
             <p className="text-gray-300 text-sm leading-relaxed font-poppins mb-6">

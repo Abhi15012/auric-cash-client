@@ -69,7 +69,7 @@ export default function Navbar() {
     >
       <header className="flex items-center justify-between px-5 py-6 lg:px-20 lg:py-6">
         {/* Logo placeholder */}
-        <div className=" h-[50px] -ml-6 md:w-[200px] -mt-14 w-[150px]  md:h-18 rounded flex-shrink-0">
+        <div className=" h-[50px]  md:w-[200px] -mt-14 w-[150px]  md:h-18 rounded flex-shrink-0">
           <Image
             src="/logo.png"
             alt="Logo"
