@@ -1,7 +1,6 @@
 'use client'
 import React from "react";
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
 import CommonTitle from "../../src/app/buy-gold/_components/commonTitle";
 
 import { motion } from "framer-motion";

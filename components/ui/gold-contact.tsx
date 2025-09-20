@@ -109,7 +109,9 @@ export function GoldHelpDialog({
     message: string;
   }>({ show: false, message: "" });
 
-  const submitUserContact = async (data: UserContactFormData): Promise<any> => {
+  const submitUserContact = async (
+    data: UserContactFormData
+  ): Promise<{ message: string }> => {
     const response = await fetch(
       "https://api.prcgoldbuyers.com/api/user/verifyuser",
       {
