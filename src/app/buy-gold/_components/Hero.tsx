@@ -8,16 +8,16 @@ export default function Hero() {
     <main className="bg-gradient-to-r min-h-screen from-[#0F172A] via-[#282f3f61] to-[#2d3038cf] flex flex-col lg:flex-row items-start  justify-between  max-h-screen  md:pt-10 lg:pl-20  pb-8 md:pb-12 lg:pb-16">
       <div className="flex-1  py-[70px] pb-[30px]  max-w-3xl mb-8 lg:mb-0 lg:pr-4 text-center lg:text-left mt-6">
         <h1 className="font-poppins md:text-4xl lg:text-5xl font-semibold  text-white mb-4 md:mb-6 line-clamp-2  ">
-         Sell Your Gold
+          Sell Your Gold
           <br />
-          at today's
+          at today&apos;s
           {"\n"} Best Prices
         </h1>
 
         <div className="space-y-3 md:space-y-4 lg:space-y-6 mb-6 md:mb-8 w-full">
           <p className="text-gray-300 md:text-lg lg:text-xl font-poppins">
-            Get instant cash for your gold jewelry - safe,
-            transparent, at the best rates.
+            Get instant cash for your gold jewelry - safe, transparent, at the
+            best rates.
           </p>
           <ul className="list-disc list-inside text-gray-400 text-base md:text-lg lg:text-xl font-poppins pl-4">
             <li>No hidden charges or deductions</li>
@@ -25,7 +25,6 @@ export default function Hero() {
             <li>On-the-spot payment via cash, UPI, or bank transfer</li>
             <li>Professional staff and secure process</li>
           </ul>
-      
         </div>
 
         <Button
@@ -40,7 +39,7 @@ export default function Hero() {
             height={20}
             className="w-5 h-5 md:w-6 text-black md:h-6 lg:w-7 lg:h-10"
           />
-         Get Best Price Now
+          Get Best Price Now
         </Button>
 
         <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3 sm:gap-4 items-center lg:items-start">
@@ -53,7 +52,7 @@ export default function Hero() {
               height={12}
             />
             <span className="text-gray-200 text-sm font-poppins">
-        Highest Market Value
+              Highest Market Value
             </span>
           </div>
           <div className="flex items-center bg-[#FFFFFF17] px-4 py-2 rounded-3xl gap-2">
@@ -70,9 +69,7 @@ export default function Hero() {
           </div>
           <div className="flex items-center bg-[#FFFFFF17] px-4 py-2 rounded-3xl gap-2">
             <Image
-              style={{ width: "14px", height: "14px" ,
-                color:"yellow"
-              }}
+              style={{ width: "14px", height: "14px", color: "yellow" }}
               src="/grp.png"
               alt="Secure Icon"
               width={16}
