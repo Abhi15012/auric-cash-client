@@ -4,7 +4,6 @@ import Hero from "./_components/Hero";
 import WhyChooseUs from "./_components/why-choose-us";
 import VideoSection from "./_components/videoSection";
 import Services from "./_components/our-services";
-import TestimonialsSection from "./_components/testimonials";
 
 export default function Home() {
   return (
@@ -13,7 +12,7 @@ export default function Home() {
       <Services />
       <WhyChooseUs />
       <VideoSection />
-     <TestimonialsSection/>
+  
 
 
     </>

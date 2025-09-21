@@ -29,10 +29,10 @@ export default function ServiceComp({title, data}: {title: string, data : string
 
         <div className="my-20 mx-auto max-w-3xl">
 {data && data.length > 0 && data.map((item, index) => (
-  <div key={`${item}-${index}`} className="flex flex-row gap-4 items-center">
-  <Image src={'/check.png'} alt={item} width={20} height={20} key={`${item}-${index}`} className="inline-block mr-2 mb-2"/>
+  <div key={index} className="flex flex-row gap-4 items-center">
+  <Image src={'/check.png'} alt={item} width={20} height={20} key={index} className="inline-block mr-2 mb-2"/>
  
-  <p key={`${item}-${index}`} className="text-gray-700 text-lg md:text-xl font-poppins mb-4 inline-block">{item}</p>
+  <p key={index} className="text-gray-700 text-lg md:text-xl font-poppins mb-4 inline-block">{item}</p>
  </div>
   )
 )
