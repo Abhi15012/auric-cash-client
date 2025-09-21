@@ -32,7 +32,7 @@ export const userContactSchema = z.object({
   CountryCode: z.string().min(1, "Country code is required"),
   mobile: z
     .string()
-    .min(10, "Mobile number must be at least 10 characters long"),
+    .min(10, "Mobile number must be at least 10 characters long").max(10, "Mobile number must be at most 10 characters long"),
   customerType: z.enum([
     "sellgold",
     "releasegold",

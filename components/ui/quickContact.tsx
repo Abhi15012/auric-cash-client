@@ -13,6 +13,13 @@ import { Switch } from "./switch";
 import { useForm } from "react-hook-form";
 
 export default function QuickContact({ title }: { title: string }) {
+ interface FormData {
+    fullName: string;
+    phone: string;
+    address?: string;
+    whatsapp: boolean;
+  }
+
   const {
     register,
     handleSubmit,
@@ -27,7 +34,7 @@ export default function QuickContact({ title }: { title: string }) {
     },
   });
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data:  FormData ) => {
     console.log("Form data:", data);
     alert("Request submitted!");
     reset(); // Optional: reset form after submission
