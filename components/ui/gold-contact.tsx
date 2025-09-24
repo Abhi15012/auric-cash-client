@@ -416,7 +416,7 @@ export function GoldHelpDialog({
                         onValueChange={field.onChange}
                         disabled={isSubmitting}
                       >
-                        <SelectTrigger className="w-full justify-between">
+                        <SelectTrigger className="w-full justify-between text-black">
                           <SelectValue placeholder="Choose an option" />
                         </SelectTrigger>
                         <SelectContent>
