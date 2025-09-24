@@ -14,7 +14,7 @@ export default function Hero() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className=" bg-white md:bg-black  overflow-hidden px-4 md:bg-gradient-to-r from-[#0F172A] via-[#282f3f61] to-[#2d3038cf] flex flex-col lg:flex-row items-center md:items-start  justify-between  max-h-screen  md:pt-10 lg:pl-20  pb-8 md:pb-12 lg:pb-16"
+      className=" bg-white md:bg-black min-h-screen overflow-hidden px-4 md:bg-gradient-to-r from-[#0F172A] via-[#282f3f61] to-[#2d3038cf] flex flex-col lg:flex-row items-center md:items-start  justify-between  max-h-screen  md:pt-10 lg:pl-20  pb-8 md:pb-12 lg:pb-16"
     >
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -112,11 +112,11 @@ export default function Hero() {
         className="hidden md:flex flex-1 lg:flex-none lg:max-w-3xl items-center justify-center lg:justify-center"
       >
         <Image
-          src="/hero.png"
+          src="/release.png"
           alt="Hands holding gold jewelry"
-          width={1500}
+          width={1700}
           height={500}
-          className="max-w-full w-full object-contain"
+          className="max-w-full mt-30 rounded-lg w-full object-contain"
         />
       </motion.div>
 
