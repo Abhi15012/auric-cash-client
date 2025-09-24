@@ -64,10 +64,10 @@ export default function Footer() {
               <a href="#" className="block text-gray-300 text-sm hover:text-white transition-colors font-poppins">
                 Refund Policy
               </a>
-              <a href="#" className="block text-gray-300 text-sm hover:text-white transition-colors font-poppins">
+              <a href="/terms-and-conditions" className="block text-gray-300 text-sm hover:text-white transition-colors font-poppins">
                 Terms & Conditions
               </a>
-              <a href="#" className="block text-gray-300 text-sm hover:text-white transition-colors font-poppins">
+              <a href="/privacy-policy" className="block text-gray-300 text-sm hover:text-white transition-colors font-poppins">
                 Privacy Policy
               </a>
             </div>
