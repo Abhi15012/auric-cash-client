@@ -69,10 +69,12 @@ export default function RootLayout({
           {children}
    
           <GoldHelpDialogWrapper /> {/* ✅ This is client now */}
+
+          <QuickContact title="Quick Contact"/>
           <Footer />
 
 
-<QuickContact title="Quick Contact"/>
+
        
 
              <div className="fixed w-full   md:hidden bottom-0  z-50">

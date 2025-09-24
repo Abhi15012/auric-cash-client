@@ -113,14 +113,14 @@ export default function Hero() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
-        className="hidden  md:flex flex-1 lg:flex-none lg:max-w-3xl -mt-12 justify-start lg:justify-start"
+        className="hidden md:flex flex-1 lg:flex-none lg:max-w-3xl items-center justify-center lg:justify-center"
       >
         <Image
           src="/hero.png"
           alt="Hands holding gold jewelry"
           width={1500}
           height={500}
-          className="max-w-full w-full"
+          className="max-w-full w-full object-contain"
         />
       </motion.div>
 
