@@ -1,0 +1,597 @@
+import Link from "next/link"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import { Button } from "@/components/ui/button"
+import { TermsSidebar } from "./_components/terms-sidebar"
+import { MobileNav } from "./_components/mobile-nav"
+
+export default function TermsAndConditions() {
+  return (
+    <div className="flex min-h-screen flex-col">
+     
+      <main className="flex-1">
+        <section className="w-full py-8 sm:py-12 md:py-24">
+          <div className="container px-4 md:px-6">
+            <div className="mx-auto max-w-4xl space-y-6 sm:space-y-8">
+              <div className="space-y-2 text-center">
+                <h1 className="text-2xl font-bold tracking-tighter sm:text-3xl md:text-4xl lg:text-5xl">Terms & Conditions</h1>
+                <p className="text-sm text-gray-500 mt-2">Last Updated: May 10, 2025</p>
+                <p className="mx-auto max-w-[700px] text-gray-500 text-sm sm:text-base md:text-xl">
+                  Please read these terms and conditions carefully before using Impact369. By accessing or using our
+                  service, you agree to be bound by these terms. Impact369 is committed to following all applicable
+                  laws, regulations, and industry standards.
+                </p>
+              </div>              {/* Mobile Navigation */}
+              <div className="lg:hidden mb-6 sm:mb-8">
+                <div className="bg-blue-50 rounded-lg p-4">
+                  <h3 className="text-sm font-medium mb-3 text-center">Quick Navigation</h3>
+                  <div className="flex flex-wrap justify-center gap-2">
+                    <a href="#acceptance" className="text-xs bg-white text-blue-600 px-3 py-1 rounded-full border">
+                      1. Terms
+                    </a>
+                    <a href="#user-obligations" className="text-xs bg-white text-blue-600 px-3 py-1 rounded-full border">
+                      2. Obligations
+                    </a>
+                    <a href="#intellectual-property" className="text-xs bg-white text-blue-600 px-3 py-1 rounded-full border">
+                      3. IP Rights
+                    </a>
+                    <a href="#data-usage" className="text-xs bg-white text-blue-600 px-3 py-1 rounded-full border">
+                      4. Data
+                    </a>
+                    <a href="#limitation" className="text-xs bg-white text-blue-600 px-3 py-1 rounded-full border">
+                      5. Liability
+                    </a>
+                    <a href="#termination" className="text-xs bg-white text-blue-600 px-3 py-1 rounded-full border">
+                      6. Termination
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div className="grid gap-6 sm:gap-8">
+                <div className="rounded-lg border bg-card shadow-sm">
+                  <div className="p-4 sm:p-6 md:p-8">
+                    <div className="flex flex-col gap-2 md:flex-row md:items-start md:gap-8">
+                      <TermsSidebar className="hidden lg:block" /><div className="mt-4 sm:mt-6 space-y-6 sm:space-y-8 md:mt-0 md:flex-1">
+                        <div id="acceptance" className="scroll-mt-12 sm:scroll-mt-16">
+                          <h2 className="text-xl font-bold">1. Acceptance of Terms</h2>
+                <div className="mt-2 text-gray-700 text-sm sm:text-base">
+                    <p>
+                      By accessing or using the Impact369 platform, you acknowledge that you have read,
+                      understood, and agree to be bound by these Terms and Conditions. If you do not agree with
+                      any part of these terms, you may not use our services.
+                    </p>
+                            <p className="mt-2">
+                              These Terms constitute a legally binding agreement between you and Impact369 regarding
+                              your use of the platform and services. Impact369 strictly adheres to all applicable laws,
+                              regulations, and industry guidelines in the provision of its services.
+                            </p>
+                            <p className="mt-2">
+                              Impact369 reserves the right to update these Terms from time to time. We will notify you
+                              of any changes by posting the new Terms on this page and updating the "Last Updated" date.
+                              Your continued use of the platform after such modifications will constitute your
+                              acknowledgment of the modified Terms.
+                            </p>
+                          </div>
+                        </div>
+
+                        <div id="user-obligations" className="scroll-mt-16">
+                          <h2 className="text-xl font-bold">2. User Obligations</h2>
+                          <div className="mt-2 text-gray-700">
+                            <p>As a user of Impact369, you agree to:</p>
+                            <ul className="mt-2 list-inside list-disc space-y-1">
+                              <li>Provide accurate and complete information when creating an account</li>
+                              <li>Maintain the security and confidentiality of your account credentials</li>
+                              <li>Use the platform in compliance with all applicable laws and regulations</li>
+                              <li>
+                                Not engage in any activity that could harm, disable, or impair the functioning of the
+                                platform
+                              </li>
+                              <li>
+                                Not attempt to gain unauthorized access to any part of the service or other users'
+                                accounts
+                              </li>
+                              <li>
+                                Not use the platform to collect, harvest, or store personal data about other users
+                                without their express consent
+                              </li>
+                              <li>Not use the platform for any illegal, unauthorized, or unethical purpose</li>
+                              <li>
+                                Not redistribute, resell, or sublicense any data or content obtained through the
+                                platform without explicit permission
+                              </li>
+                            </ul>
+                            <p className="mt-2">
+                              Impact369 reserves the right to suspend or terminate accounts that violate these
+                              obligations or engage in any activity deemed harmful to the platform, its users, or third
+                              parties.
+                            </p>
+                          </div>
+                        </div>
+
+                        <div id="intellectual-property" className="scroll-mt-16">
+                          <h2 className="text-xl font-bold">3. Intellectual Property Rights</h2>
+                          <div className="mt-2 text-gray-700">
+                            <p>
+                              All content, features, and functionality of the Impact369 platform, including but not
+                              limited to text, graphics, logos, icons, images, audio clips, digital downloads, and
+                              software, are the exclusive property of Impact369 and are protected by copyright,
+                              trademark, and other intellectual property laws.
+                            </p>
+                            <p className="mt-2">
+                              Users may not reproduce, distribute, modify, create derivative works of, publicly display,
+                              publicly perform, republish, download, store, or transmit any materials from the platform
+                              without express written consent from Impact369.
+                            </p>
+                          </div>
+                        </div>
+
+                        <div id="data-usage" className="scroll-mt-16">
+                          <h2 className="text-xl font-bold">4. Data Usage and Privacy</h2>
+                          <div className="mt-2 text-gray-700">
+                            <p>
+                              Impact369 collects and processes data in accordance with our Privacy Policy and applicable
+                              data protection laws, including but not limited to GDPR, CCPA, and other relevant
+                              regulations.
+                            </p>
+                            <p className="mt-2">
+                              We implement appropriate technical and organizational measures to ensure a level of
+                              security appropriate to the risk, including encryption of sensitive data, regular security
+                              assessments, and strict access controls.
+                            </p>
+                            <p className="mt-2">
+                              Users retain ownership of any data they upload to the platform. By using our services, you
+                              grant Impact369 a non-exclusive, worldwide, royalty-free license to use, process, and
+                              display your data solely for the purpose of providing and improving our services.
+                            </p>
+                            <p className="mt-2">
+                              Impact369 does not sell user data to third parties. We may share anonymized, aggregated
+                              data for analytical purposes, but this will never include personally identifiable
+                              information without explicit consent.
+                            </p>
+                          </div>
+                        </div>
+
+                        <div id="limitation" className="scroll-mt-16">
+                          <h2 className="text-xl font-bold">5. Limitation of Liability</h2>
+                          <div className="mt-2 text-gray-700">
+                            <p>
+                              To the fullest extent permitted by law, Impact369 shall not be liable for any indirect,
+                              incidental, special, consequential, or punitive damages, including but not limited to loss
+                              of profits, data, use, goodwill, or other intangible losses, resulting from:
+                            </p>
+                            <ul className="mt-2 list-inside list-disc space-y-1">
+                              <li>Your access to or use of or inability to access or use the service</li>
+                              <li>Any conduct or content of any third party on the service</li>
+                              <li>Any content obtained from the service</li>
+                              <li>Unauthorized access, use, or alteration of your transmissions or content</li>
+                              <li>Any inaccuracies or incompleteness of data provided through the platform</li>
+                              <li>Interruptions or cessation of transmission to or from the service</li>
+                              <li>
+                                Any bugs, viruses, or other harmful code that may be transmitted through the service
+                              </li>
+                            </ul>
+                            <p className="mt-2">
+                              In no event shall Impact369's total liability to you for all claims exceed the amount paid
+                              by you, if any, for accessing or using the platform during the twelve (12) months
+                              preceding the claim.
+                            </p>
+                            <p className="mt-2">
+                              Some jurisdictions do not allow the exclusion of certain warranties or the limitation or
+                              exclusion of liability for certain types of damages. Accordingly, some of the above
+                              limitations may not apply to you.
+                            </p>
+                          </div>
+                        </div>
+
+                        <div id="termination" className="scroll-mt-16">
+                          <h2 className="text-xl font-bold">6. Termination Clause</h2>
+                          <div className="mt-2 text-gray-700">
+                            <p>
+                              Impact369 reserves the right to terminate or suspend your account and access to the
+                              service immediately, without prior notice or liability, for any reason, including but not
+                              limited to a breach of these Terms.
+                            </p>
+                            <p className="mt-2">
+                              Upon termination, your right to use the service will immediately cease. If you wish to
+                              terminate your account, you may simply discontinue using the service or contact us to
+                              request account deletion.
+                            </p>
+                            <p className="mt-2">
+                              All provisions of the Terms which by their nature should survive termination shall survive
+                              termination, including, without limitation, ownership provisions, warranty disclaimers,
+                              indemnity, and limitations of liability.
+                            </p>
+                          </div>
+                        </div>
+
+                        <div id="subscription" className="scroll-mt-16">
+                          <h2 className="text-xl font-bold">7. Subscription and Payment Terms</h2>
+                          <div className="mt-2 text-gray-700">
+                            <p>
+                              Impact369 offers various subscription plans with different features and pricing. By
+                              selecting a subscription plan, you agree to pay the applicable fees as described at the
+                              time of purchase.
+                            </p>
+                            <p className="mt-2">
+                              Subscription fees are billed in advance on a monthly or annual basis, depending on the
+                              payment cycle you select. Unless otherwise stated, subscriptions automatically renew at
+                              the end of each billing period.
+                            </p>
+                            <p className="mt-2">
+                              You may cancel your subscription at any time through your account settings or by
+                              contacting customer support. Upon cancellation, your subscription will remain active until
+                              the end of the current billing period.
+                            </p>
+                            <p className="mt-2">
+                              Impact369 reserves the right to change subscription fees upon reasonable notice. Any
+                              changes to fees will take effect at the start of the next billing cycle.
+                            </p>
+                            <p className="mt-2">
+                              If payment cannot be processed due to expired credit cards, insufficient funds, or
+                              otherwise, we reserve the right to suspend or terminate your access to the service until
+                              payment is processed successfully.
+                            </p>
+                            <p className="mt-2">
+                              All fees are exclusive of taxes, levies, or duties imposed by taxing authorities, and you
+                              are responsible for payment of all such taxes, levies, or duties.
+                            </p>
+                          </div>
+                        </div>
+
+                        <div id="governing-law" className="scroll-mt-16">
+                          <h2 className="text-xl font-bold">8. Governing Law</h2>
+                          <div className="mt-2 text-gray-700">
+                            <p>
+                              These Terms shall be governed by and construed in accordance with the laws of
+                              [Jurisdiction], without regard to its conflict of law provisions.
+                            </p>
+                            <p className="mt-2">
+                              Any dispute arising from or relating to these Terms or your use of the service shall be
+                              subject to the exclusive jurisdiction of the courts in [Jurisdiction].
+                            </p>
+                            <p className="mt-2">
+                              If any provision of these Terms is found to be invalid under any applicable law, such
+                              provisions shall be deleted without affecting the remaining provisions herein.
+                            </p>
+                          </div>
+                        </div>
+
+                        <div id="compliance" className="scroll-mt-16">
+                          <h2 className="text-xl font-bold">9. Compliance and Regulatory Framework</h2>
+                          <div className="mt-2 text-gray-700">
+                            <p>
+                              Impact369 is committed to operating in full compliance with all applicable laws and
+                              regulations, including but not limited to:
+                            </p>
+                            <ul className="mt-2 list-inside list-disc space-y-1">
+                              <li>Data protection and privacy laws (GDPR, CCPA, etc.)</li>
+                              <li>Electronic communication regulations</li>
+                              <li>Consumer protection laws</li>
+                              <li>Intellectual property laws</li>
+                              <li>Anti-spam legislation</li>
+                              <li>Information security standards</li>
+                            </ul>
+                            <p className="mt-2">
+                              We regularly review and update our practices to ensure ongoing compliance with evolving
+                              legal requirements and industry standards. Impact369 implements appropriate technical and
+                              organizational measures to protect your data and ensure the integrity of our platform.
+                            </p>
+                            <p className="mt-2">
+                              Users are required to use our platform in compliance with all applicable laws and
+                              regulations in their jurisdiction. Impact369 reserves the right to report any illegal
+                              activities to appropriate law enforcement authorities.
+                            </p>
+                          </div>
+                        </div>
+
+                        <div id="modifications" className="scroll-mt-16">
+                          <h2 className="text-xl font-bold">10. Modifications to Terms</h2>
+                          <div className="mt-2 text-gray-700">
+                            <p>
+                              Impact369 reserves the right to modify or replace these Terms at any time at its sole
+                              discretion. The most current version will be posted on our website with the effective
+                              date.
+                            </p>
+                            <p className="mt-2">
+                              Your continued use of the service after any such changes constitutes your acceptance of
+                              the new Terms. It is your responsibility to check the Terms periodically for changes.
+                            </p>
+                            <p className="mt-2">
+                              For material changes to these Terms, Impact369 will make reasonable efforts to provide
+                              notice through the service or by contacting you via the email address associated with your
+                              account.
+                            </p>
+                          </div>
+                        </div>
+
+                        <div id="contact" className="scroll-mt-16">
+                          <h2 className="text-xl font-bold">11. Contact Information</h2>
+                          <div className="mt-2 text-gray-700">
+                            <p>If you have any questions about these Terms, please contact us at:</p>
+                            <p className="mt-2">Email: support@impact369.com</p>
+                            <p>Phone: (555) 123-4567</p>
+                            <p>Address: 123 Impact Street, Suite 369, San Francisco, CA 94103</p>
+                            <p className="mt-2">
+                              For legal notices, please contact our legal department at legal@impact369.com or send
+                              correspondence to the address above, Attention: Legal Department.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>                        <div className="rounded-lg border bg-blue-50 p-4 sm:p-6 text-center">
+                  <h3 className="text-base sm:text-lg font-medium">Have questions about our Terms &amp; Conditions?</h3>
+                  <p className="mt-2 text-sm sm:text-base text-gray-600">Our support team is here to help you understand our policies.</p>
+                  <div className="mt-3 sm:mt-4">
+                    <Button className="bg-blue-600 hover:bg-blue-700 text-sm sm:text-base">Contact Support</Button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Mobile Accordion View */}        <section className="sm:hidden w-full pb-8 sm:pb-12 px-4">
+          <div className="container">
+            <div className="mx-auto max-w-4xl">
+              <Accordion type="single" collapsible className="w-full">
+                <AccordionItem value="item-1">
+                  <AccordionTrigger className="text-left font-semibold text-sm">1. Acceptance of Terms</AccordionTrigger>
+                  <AccordionContent>                <div className="text-gray-700 text-xs sm:text-sm">
+                      <p>
+                        By accessing or using the Impact369 platform, you acknowledge that you have read, understood,
+                        and agree to be bound by these Terms and Conditions. If you do not agree with any part of these
+                        terms, you may not use our services.
+                      </p>
+                      <p className="mt-2">
+                        These Terms constitute a legally binding agreement between you and Impact369 regarding your use
+                        of the platform and services. Impact369 strictly adheres to all applicable laws, regulations,
+                        and industry guidelines in the provision of its services.
+                      </p>
+                      <p className="mt-2">
+                        Impact369 reserves the right to update these Terms from time to time. We will notify you of any
+                        changes by posting the new Terms on this page and updating the "Last Updated" date. Your
+                        continued use of the platform after such modifications will constitute your acknowledgment of
+                        the modified Terms.
+                      </p>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="item-2">
+                  <AccordionTrigger className="text-left font-semibold text-sm">2. User Obligations</AccordionTrigger>
+                  <AccordionContent>
+                    <div className="text-gray-700">
+                      <p>As a user of Impact369, you agree to:</p>
+                      <ul className="mt-2 list-inside list-disc space-y-1">
+                        <li>Provide accurate and complete information when creating an account</li>
+                        <li>Maintain the security and confidentiality of your account credentials</li>
+                        <li>Use the platform in compliance with all applicable laws and regulations</li>
+                        <li>
+                          Not engage in any activity that could harm, disable, or impair the functioning of the platform
+                        </li>
+                        <li>
+                          Not attempt to gain unauthorized access to any part of the service or other users' accounts
+                        </li>
+                        <li>
+                          Not use the platform to collect, harvest, or store personal data about other users without
+                          their express consent
+                        </li>
+                        <li>Not use the platform for any illegal, unauthorized, or unethical purpose</li>
+                        <li>
+                          Not redistribute, resell, or sublicense any data or content obtained through the platform
+                          without explicit permission
+                        </li>
+                      </ul>
+                      <p className="mt-2">
+                        Impact369 reserves the right to suspend or terminate accounts that violate these obligations or
+                        engage in any activity deemed harmful to the platform, its users, or third parties.
+                      </p>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="item-3">                  <AccordionTrigger className="text-left font-semibold text-sm">
+                    3. Intellectual Property Rights
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    <div className="text-gray-700">
+                      <p>
+                        All content, features, and functionality of the Impact369 platform, including but not limited to
+                        text, graphics, logos, icons, images, audio clips, digital downloads, and software, are the
+                        exclusive property of Impact369 and are protected by copyright, trademark, and other
+                        intellectual property laws.
+                      </p>
+                      <p className="mt-2">
+                        Users may not reproduce, distribute, modify, create derivative works of, publicly display,
+                        publicly perform, republish, download, store, or transmit any materials from the platform
+                        without express written consent from Impact369.
+                      </p>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="item-4">
+                  <AccordionTrigger className="text-left font-semibold">4. Data Usage and Privacy</AccordionTrigger>
+                  <AccordionContent>
+                    <div className="text-gray-700">
+                      <p>
+                        Impact369 collects and processes data in accordance with our Privacy Policy and applicable data
+                        protection laws, including but not limited to GDPR, CCPA, and other relevant regulations.
+                      </p>
+                      <p className="mt-2">
+                        We implement appropriate technical and organizational measures to ensure a level of security
+                        appropriate to the risk, including encryption of sensitive data, regular security assessments,
+                        and strict access controls.
+                      </p>
+                      <p className="mt-2">
+                        Users retain ownership of any data they upload to the platform. By using our services, you grant
+                        Impact369 a non-exclusive, worldwide, royalty-free license to use, process, and display your
+                        data solely for the purpose of providing and improving our services.
+                      </p>
+                      <p className="mt-2">
+                        Impact369 does not sell user data to third parties. We may share anonymized, aggregated data for
+                        analytical purposes, but this will never include personally identifiable information without
+                        explicit consent.
+                      </p>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="item-5">
+                  <AccordionTrigger className="text-left font-semibold">5. Limitation of Liability</AccordionTrigger>
+                  <AccordionContent>
+                    <div className="text-gray-700">
+                      <p>
+                        To the fullest extent permitted by law, Impact369 shall not be liable for any indirect,
+                        incidental, special, consequential, or punitive damages, including but not limited to loss of
+                        profits, data, use, goodwill, or other intangible losses.
+                      </p>
+                      <p className="mt-2">
+                        In no event shall Impact369's total liability to you for all claims exceed the amount paid by
+                        you, if any, for accessing or using the platform during the twelve (12) months preceding the
+                        claim.
+                      </p>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="item-6">
+                  <AccordionTrigger className="text-left font-semibold">6. Termination Clause</AccordionTrigger>
+                  <AccordionContent>
+                    <div className="text-gray-700">
+                      <p>
+                        Impact369 reserves the right to terminate or suspend your account and access to the service
+                        immediately, without prior notice or liability, for any reason, including but not limited to a
+                        breach of these Terms.
+                      </p>
+                      <p className="mt-2">
+                        Upon termination, your right to use the service will immediately cease. If you wish to terminate
+                        your account, you may simply discontinue using the service or contact us to request account
+                        deletion.
+                      </p>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="item-7">
+                  <AccordionTrigger className="text-left font-semibold">
+                    7. Subscription and Payment Terms
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    <div className="text-gray-700">
+                      <p>
+                        Impact369 offers various subscription plans with different features and pricing. By selecting a
+                        subscription plan, you agree to pay the applicable fees as described at the time of purchase.
+                      </p>
+                      <p className="mt-2">
+                        Subscription fees are billed in advance on a monthly or annual basis, depending on the payment
+                        cycle you select. Unless otherwise stated, subscriptions automatically renew at the end of each
+                        billing period.
+                      </p>
+                      <p className="mt-2">
+                        All fees are exclusive of taxes, levies, or duties imposed by taxing authorities, and you are
+                        responsible for payment of all such taxes, levies, or duties.
+                      </p>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="item-8">
+                  <AccordionTrigger className="text-left font-semibold">8. Governing Law</AccordionTrigger>
+                  <AccordionContent>
+                    <div className="text-gray-700">
+                      <p>
+                        These Terms shall be governed by and construed in accordance with the laws of [Jurisdiction],
+                        without regard to its conflict of law provisions.
+                      </p>
+                      <p className="mt-2">
+                        Any dispute arising from or relating to these Terms or your use of the service shall be subject
+                        to the exclusive jurisdiction of the courts in [Jurisdiction].
+                      </p>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="item-9">
+                  <AccordionTrigger className="text-left font-semibold">
+                    9. Compliance and Regulatory Framework
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    <div className="text-gray-700">
+                      <p>
+                        Impact369 is committed to operating in full compliance with all applicable laws and regulations,
+                        including but not limited to data protection laws, electronic communication regulations, and
+                        consumer protection laws.
+                      </p>
+                      <p className="mt-2">
+                        We regularly review and update our practices to ensure ongoing compliance with evolving legal
+                        requirements and industry standards.
+                      </p>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="item-10">
+                  <AccordionTrigger className="text-left font-semibold">10. Modifications to Terms</AccordionTrigger>
+                  <AccordionContent>
+                    <div className="text-gray-700">
+                      <p>
+                        Impact369 reserves the right to modify or replace these Terms at any time at its sole
+                        discretion. The most current version will be posted on our website with the effective date.
+                      </p>
+                      <p className="mt-2">
+                        Your continued use of the service after any such changes constitutes your acceptance of the new
+                        Terms. It is your responsibility to check the Terms periodically for changes.
+                      </p>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="item-11">
+                  <AccordionTrigger className="text-left font-semibold">11. Contact Information</AccordionTrigger>
+                  <AccordionContent>
+                    <div className="text-gray-700">
+                      <p>If you have any questions about these Terms, please contact us at:</p>
+                      <p className="mt-2">Email: support@impact369.com</p>
+                      <p>Phone: (555) 123-4567</p>
+                      <p>Address: 123 Impact Street, Suite 369, San Francisco, CA 94103</p>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            </div>
+          </div>
+        </section>        {/* Mobile Quick Navigation */}
+        <section className="sm:hidden w-full pb-6">
+          <div className="container px-4">
+            <div className="mx-auto max-w-4xl">
+              <div className="bg-blue-50 rounded-lg p-4 text-center">
+                <h3 className="text-sm font-medium mb-2">Quick Navigation</h3>
+                <div className="flex flex-wrap justify-center gap-2">
+                  <a href="#acceptance" className="text-xs bg-white text-blue-600 px-3 py-1 rounded-full border">
+                    1. Terms
+                  </a>
+                  <a href="#user-obligations" className="text-xs bg-white text-blue-600 px-3 py-1 rounded-full border">
+                    2. Obligations
+                  </a>
+                  <a href="#intellectual-property" className="text-xs bg-white text-blue-600 px-3 py-1 rounded-full border">
+                    3. IP Rights
+                  </a>
+                  <a href="#data-usage" className="text-xs bg-white text-blue-600 px-3 py-1 rounded-full border">
+                    4. Data
+                  </a>
+                  <a href="#limitation" className="text-xs bg-white text-blue-600 px-3 py-1 rounded-full border">
+                    5. Liability
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+      
+    </div>
+  )
+}

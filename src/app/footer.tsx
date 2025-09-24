@@ -61,14 +61,8 @@ export default function Footer() {
               <a href="#" className="block text-gray-300 text-sm hover:text-white transition-colors font-poppins">
                 Customer Support
               </a>
-              <a href="#" className="block text-gray-300 text-sm hover:text-white transition-colors font-poppins">
-                Refund Policy
-              </a>
-              <a href="#" className="block text-gray-300 text-sm hover:text-white transition-colors font-poppins">
-                Terms & Conditions
-              </a>
-              <a href="#" className="block text-gray-300 text-sm hover:text-white transition-colors font-poppins">
-                Privacy Policy
+              <a href="/terms-and-condition" className="block text-gray-300 text-sm hover:text-white transition-colors font-poppins">
+                Policies
               </a>
             </div>
           </div>
@@ -101,7 +95,7 @@ export default function Footer() {
         {/* Bottom Border */}
         <div className="border-t border-gray-600 pt-6">
           <div className="text-center">
-            <p className="text-gray-400 text-sm">© Copyright 2022, All Rights Reserved by ClarityUI</p>
+            <p className="text-gray-400 text-sm">© Copyright 2025, All Rights Reserved by PRC Gold Buyers</p>
           </div>
         </div>
       </div>

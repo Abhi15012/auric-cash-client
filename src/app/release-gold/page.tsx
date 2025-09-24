@@ -11,6 +11,7 @@ export default function page() {
     <>
       <Hero />
       <How />
+      <FAQSection />
             <ServiceComp
               title={"Release Pledged Gold"}
               data={[
