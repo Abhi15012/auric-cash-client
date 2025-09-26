@@ -5,7 +5,11 @@ import type React from "react"
 import { useEffect, useState } from "react"
 import { cn } from "@/lib/utils"
 
-interface TermsSidebarProps extends React.HTMLAttributes<HTMLDivElement> {}
+
+type TermsSidebarProps = {
+  className?: string;
+};
+// interface TermsSidebarProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export function TermsSidebar({ className, ...props }: TermsSidebarProps) {
   const [activeSection, setActiveSection] = useState("privacy-policy")

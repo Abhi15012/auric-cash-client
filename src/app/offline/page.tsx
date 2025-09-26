@@ -1,3 +1,4 @@
+"use client"
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "../../../components/ui/button";
@@ -34,11 +35,11 @@ export default function OfflinePage() {
           </div>
           
           <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
-            You're Offline
+            You&apos;re Offline
           </h1>
           
           <p className="text-gray-600 mb-6">
-            It looks like you're not connected to the internet. Please check your connection and try again.
+            It looks like you&apos;re not connected to the internet. Please check your connection and try again.
           </p>
         </div>
 

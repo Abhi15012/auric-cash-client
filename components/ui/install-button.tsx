@@ -15,6 +15,9 @@ interface InstallButtonProps {
   children?: React.ReactNode;
 }
 
+interface NavigatorStandalone extends Navigator {
+  standalone?: boolean;
+}
 export default function InstallButton({ 
   variant = "default", 
   size = "default", 
@@ -40,7 +43,7 @@ export default function InstallButton({
 
     // Check if app is already installed
     if (window.matchMedia('(display-mode: standalone)').matches || 
-        (window.navigator as any).standalone === true) {
+        (window.navigator as NavigatorStandalone).standalone === true) {
       setIsInstalled(true);
     }
 

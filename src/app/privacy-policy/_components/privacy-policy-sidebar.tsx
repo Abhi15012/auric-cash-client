@@ -5,7 +5,13 @@ import type React from "react"
 import { useEffect, useState } from "react"
 import { cn } from "@/lib/utils"
 
-interface PrivacyPolicySidebarProps extends React.HTMLAttributes<HTMLDivElement> {}
+
+
+// interface PrivacyPolicySidebarProps extends React.HTMLAttributes<HTMLDivElement> {}
+
+type PrivacyPolicySidebarProps = {
+  className?: string;
+};
 
 export function PrivacyPolicySidebar({ className, ...props }: PrivacyPolicySidebarProps) {
   const [activeSection, setActiveSection] = useState("data-collection")

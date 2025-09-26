@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { Button } from "@/components/ui/button"
+// import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import { Button } from "../../../components/ui/button"
 import { TermsSidebar } from "./_components/terms-sidebar"
 
 export const metadata: Metadata = {
