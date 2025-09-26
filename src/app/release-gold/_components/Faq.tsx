@@ -18,7 +18,7 @@ function FAQTrigger({
 }: React.ComponentProps<typeof AccordionTrigger>) {
   return (
     <AccordionTrigger
-      className="flex flex-1 items-center justify-between py-4 px-4 text-left font-poppins text-base text-heading hover:no-underline group"
+      className="flex flex-1 items-center justify-between py-4 px-4 text-left font-poppins text-sm md:text-base text-heading hover:no-underline group gap-2"
       {...props}
     >
       {children}
@@ -107,7 +107,7 @@ export default function FAQSection() {
       {/* Header */}
       <div className="text-center mb-12">
       <CommonTitle title={"faq"} />
-        <h2 className="text-4xl md:text-5xl font-bold text-heading leading-tight">
+        <h2 className="text-2xl md:text-5xl font-bold text-heading leading-tight">
           You&apos;ve Got Questions,
           <br />
           We&apos;ve Got Answers
@@ -117,7 +117,7 @@ export default function FAQSection() {
       {/* Accordion */}
       <div
         ref={accordionRef}
-        className="bg-[#eef8fe] rounded-2xl p-8 py-10 "
+        className="bg-[#eef8fe] rounded-2xl md:p-8 py-10 "
       >
         <Accordion
           type="single"

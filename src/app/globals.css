@@ -62,7 +62,6 @@ body {
   animation: slideUp 300ms ease-out forwards;
 }
 
-<<<<<<< HEAD
 /* 📱 Hide scrollbar for horizontal scroll */
 .scrollbar-hide {
   -ms-overflow-style: none;  /* Internet Explorer 10+ */
@@ -72,6 +71,4 @@ body {
 .scrollbar-hide::-webkit-scrollbar {
   display: none;  /* Safari and Chrome */
 }
-=======
->>>>>>> 42909bd2d194a7e437245d074a1157e2a744d2d3
 

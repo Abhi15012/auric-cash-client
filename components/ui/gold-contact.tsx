@@ -231,7 +231,7 @@ export function GoldHelpDialog({
             role="dialog"
             aria-modal="true"
             aria-labelledby="gold-help-title"
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 scrollbar-hide overflow-y-auto sm:min-w-4xl sm:max-h-[90vh] w-full h-full max-w-none max-h-none sm:w-auto sm:h-auto sm:rounded-lg rounded-none p-4 sm:p-6"
             onClick={onClose}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -262,7 +262,7 @@ export function GoldHelpDialog({
               {/* Title */}
               <h2
                 id="gold-help-title"
-                className="text-balance pr-12 text-center text-2xl font-poppins font-semibold tracking-tight text-slate-900 md:text-3xl"
+                className=" md:text-balance pr-12 md:text-center text-xl font-poppins font-semibold tracking-tight text-slate-900 md:text-3xl"
               >
                 Get Instant Help with Your Gold 👋
               </h2>
