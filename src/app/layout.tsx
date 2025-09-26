@@ -12,6 +12,8 @@ import React from "react";
 import { DialogProvider } from "../../context/handleDialog";
 import Tabs from "./tabs";
 import QuickContact from "../../components/ui/quickContact";
+import StickyContactIcons from "./stickyicons";
+import InstallPrompt from "../../components/ui/install-prompt";
 
 // Fonts
 const poppins = localFont({
@@ -49,8 +51,23 @@ const inter = Inter({
 
 // Metadata
 export const metadata: Metadata = {
-  title: "PRC Gold Buyers",
-  description: "We buy gold at the best prices and help you release pledged gold with ease",
+  title: "PRC Gold Buyers - We Buy Gold & Release Pledged Gold",
+  description: "We buy gold at the best prices and help you release pledged gold with ease. Download our app for quick access to gold trading services.",
+  manifest: "/manifest.json",
+  themeColor: "#EA5518",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "PRC Gold Buyers",
+  },
+  formatDetection: {
+    telephone: false,
+  },
+  icons: {
+    icon: "/icon.png",
+    shortcut: "/icon.png",
+    apple: "/icon.png",
+  },
 };
 
 export default function RootLayout({
@@ -60,6 +77,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="apple-touch-icon" href="/icon.png" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-title" content="PRC Gold Buyers" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="msapplication-TileColor" content="#EA5518" />
+        <meta name="msapplication-tap-highlight" content="no" />
+      </head>
       <body className={`${poppins.variable} ${inter.variable} antialiased`}>
         <DialogProvider>
         <TabProvider>
@@ -73,8 +100,8 @@ export default function RootLayout({
           <QuickContact title="Quick Contact"/>
           <Footer />
 
-
-
+          <InstallPrompt />
+          <StickyContactIcons />
        
 
              <div className="fixed w-full   md:hidden bottom-0  z-50">
@@ -84,7 +111,25 @@ export default function RootLayout({
       
         </TabProvider>
         </DialogProvider>
-      
+        
+        {/* Service Worker Registration */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              if ('serviceWorker' in navigator) {
+                window.addEventListener('load', function() {
+                  navigator.serviceWorker.register('/sw.js')
+                    .then(function(registration) {
+                      console.log('SW registered: ', registration);
+                    })
+                    .catch(function(registrationError) {
+                      console.log('SW registration failed: ', registrationError);
+                    });
+                });
+              }
+            `,
+          }}
+        />
       </body>
     </html>
   );

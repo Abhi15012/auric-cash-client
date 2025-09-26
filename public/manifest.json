@@ -1,0 +1,81 @@
+{
+  "name": "PRC Gold Buyers - Gold Trading Platform",
+  "short_name": "PRC Gold Buyers",
+  "description": "We buy gold at the best prices and help you release pledged gold with ease",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#EA5518",
+  "orientation": "portrait-primary",
+  "categories": ["finance", "business"],
+  "lang": "en",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icon-256x256.png",
+      "sizes": "256x256",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshot-mobile.png",
+      "sizes": "390x844",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "PRC Gold Buyers Mobile App"
+    },
+    {
+      "src": "/screenshot-desktop.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "PRC Gold Buyers Desktop App"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Sell Gold",
+      "short_name": "Sell",
+      "description": "Sell your gold at best market prices",
+      "url": "/buy-gold",
+      "icons": [
+        {
+          "src": "/sell-a.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Release Gold",
+      "short_name": "Release",
+      "description": "Release your pledged gold easily",
+      "url": "/release-gold",
+      "icons": [
+        {
+          "src": "/loan-a.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ]
+}

@@ -415,25 +415,36 @@ export function GoldHelpDialog({
                         value={field.value}
                         onValueChange={field.onChange}
                         disabled={isSubmitting}
+                        
                       >
-                        <SelectTrigger className="w-full justify-between">
-                          <SelectValue placeholder="Choose an option" />
+                        <SelectTrigger className="w-full justify-between text-black">
+                          <SelectValue  className="text-black">
+                            {field.value === "sellgold"
+                              ? "Sell your gold"
+                              : field.value === "releasegold"
+                              ? "Release pledged gold"
+                              : field.value === "loangold"
+                              ? "Sell pledged gold"
+                              : field.value === "quickContact"
+                              ? "Choose an option"
+                              : "Other"}
+                            </SelectValue>
                         </SelectTrigger>
-                        <SelectContent>
+                        <SelectContent className="bg-white text-black border border-gray-400">
                           <SelectItem
-                            className="!rounded-none overflow-auto h-10"
+                            className="!rounded-none overflow-auto h-10 hover:bg-gray-100"
                             value="sellgold"
                           >
                             Sell your gold
                           </SelectItem>
                           <SelectItem
-                            className="!rounded-none overflow-auto h-10"
+                            className="!rounded-none overflow-auto h-10 hover:bg-gray-100 "
                             value="releasegold"
                           >
                             Release pledged gold
                           </SelectItem>
                           <SelectItem
-                            className="!rounded-none overflow-auto h-10"
+                            className="!rounded-none overflow-auto h-10 hover:bg-gray-100 "
                             value="loangold"
                           >
                             Sell pledged gold

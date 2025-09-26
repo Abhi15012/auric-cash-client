@@ -71,8 +71,8 @@ export default function Tabs() {
   ];
   return (
     <div
-      className={`w-full rounded-t-3xl shadow-3xl shadow-gray-500 border-[1px] border-gray-300 flex-row flex-wrap shrink h-16 bg-white flex justify-around items-center transition-all duration-700 ease-in-out ${
-        isVisible && !open ? "translate-y-0" : "translate-y-full"
+      className={`w-full rounded-t-lg shadow-3xl shadow-gray-500 border-[1px] border-gray-300 flex-row flex-wrap shrink h-16 bg-white flex justify-around items-center transition-all duration-700 ease-in-out ${
+        isVisible && !open ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
       }`}
     >
       {tabs.map((tab) => (

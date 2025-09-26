@@ -11,8 +11,7 @@ export default function page() {
     <>
       <Hero />
       <How />
-      <FAQSection />
-            <ServiceComp
+         <ServiceComp
               title={"Release Pledged Gold"}
               data={[
   "End-to-End Support – From loan closure to gold handover",
@@ -23,6 +22,8 @@ export default function page() {
 
       }
       />  
+      <FAQSection />
+         
       
     </>
   );

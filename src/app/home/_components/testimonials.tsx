@@ -43,17 +43,17 @@ export function Testimonials() {
   ];
 
   return (
-    <motion.section className="w-full min-h-screen lg:px-20 bg-[#EEF8FE] mx-auto px-6 py-16 pb-20">
+    <motion.section className="w-full lg:px-20 bg-[#EEF8FE] mx-auto px-4 py-8 lg:py-16 pb-12 lg:pb-20">
       {/* Header */}
-      <div className="text-center mb-12 md:mb-16 lg:mb-20">
+      <div className="text-center mb-6 md:mb-12 lg:mb-16">
         <CommonTitle title={"What our customers say"} />
-        <h2 className="font-poppins text-heading text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight">
+        <h2 className="font-poppins text-heading text-xl md:text-3xl lg:text-4xl font-semibold leading-tight">
           Customer Testimonials
         </h2>
       </div>
 
       {/* Testimonials Component */}
-      <div className="bg-white rounded-2xl shadow-lg mx-auto max-w-6xl">
+      <div className="bg-white rounded-lg md:rounded-2xl shadow-md md:shadow-lg mx-auto max-w-6xl overflow-hidden">
         <AnimatedTestimonials testimonials={testimonials} />
       </div>
     </motion.section>

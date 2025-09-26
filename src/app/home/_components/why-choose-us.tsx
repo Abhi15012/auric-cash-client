@@ -31,101 +31,114 @@ const row2 = [
   },
 ]
 
+  // Combine all cards into one array for horizontal scrolling
+  const allCards = [...row1, ...row2];
+
   return (
-    <motion.section 
-    
-    className="w-full min-h-screen lg:px-20 bg-[#EEF8FE] mx-auto px-6 py-16 pb-20">
+    <motion.section className="w-full lg:px-20 bg-white mx-auto px-4 py-8 lg:py-16 pb-12 lg:pb-20">
       {/* Header */}
-      <div className="text-center mb-12 md:mb-16 lg:mb-20">
-          <CommonTitle title={"Why us"} />
-        <h2 className="font-poppins text-heading text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight">
+      <div className="text-center mb-6 md:mb-12 lg:mb-16">
+        <CommonTitle title={"Why us"} />
+        <h2 className="font-poppins text-heading text-xl md:text-3xl lg:text-4xl font-semibold leading-tight">
           Why Customers Choose Us
         </h2>
       </div>
 
-    <motion.div className="absolute z-0"
-   
-    >
-          <Image src='/Rectangle-why.svg'
-      alt="rectangle"
-       height={400}
-       width={1000}
-       className="w-full "
-      />
+      {/* Desktop Grid Layout */}
+      <div className="hidden lg:flex flex-col gap-y-8 justify-center">
+        <motion.div className="flex justify-center gap-x-8">
+          {row1.map((item, index) => (
+            <motion.div
+              whileHover={{ scale: 1.03 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.2, delay: 0.2 }}
+              key={index}
+              className="bg-white rounded-lg shadow-md border border-gray-100 p-6 w-[320px] h-[220px] flex flex-col items-center justify-center hover:shadow-lg transition-shadow"
+            >
+              <Image
+                src={item.image}
+                alt={item.title}
+                width={40}
+                height={40}
+                className="w-12 h-12 mb-4"
+              />
+              <h3 className="font-poppins text-gray-800 mb-2 text-lg font-semibold text-center">
+                {item.title}
+              </h3>
+              <p className="font-poppins text-gray-600 text-sm text-center">
+                {item.description}
+              </p>
+            </motion.div>
+          ))}
+        </motion.div>
 
-    </motion.div>
-<div className="flex flex-col  gap-y-10 justify-center py-10">
-          <motion.div className=" flex md:flex-row flex-col sm:gap-y-10 mx-auto self-center z-10 md:gap-x-10   w-full h-full justify-center items-center "
-   
-    
-          >
-            {row1.map((item, index) => (
+        <motion.div className="flex justify-center gap-x-8">
+          {row2.map((item, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.2, delay: 0.4 }}
+              whileHover={{ scale: 1.03 }}
+              className="bg-white rounded-lg shadow-md border border-gray-100 p-6 w-[320px] h-[220px] flex flex-col items-center justify-center hover:shadow-lg transition-shadow"
+            >
+              <Image
+                src={item.image}
+                alt={item.title}
+                width={40}
+                height={40}
+                className="w-12 h-12 mb-4"
+              />
+              <h3 className="font-poppins text-gray-800 mb-2 text-lg font-semibold text-center">
+                {item.title}
+              </h3>
+              <p className="font-poppins text-gray-600 text-sm text-center">
+                {item.description}
+              </p>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+
+      {/* Mobile Horizontal Scroll Layout */}
+      <div className="lg:hidden">
+        <div className="overflow-x-auto scrollbar-hide">
+          <div className="flex gap-3 pb-3" style={{ width: 'fit-content' }}>
+            {allCards.map((item, index) => (
               <motion.div
-                 whileHover={{ scale: 1.03 }}
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.2, delay: 0.2 }}
                 key={index}
-                className="bg-white rounded-lg  p-6 w-[350px] h-[250px] flex md:flex-col  items-center justify-center"
-                >
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.3, delay: index * 0.1 }}
+                whileHover={{ scale: 1.02 }}
+                className="bg-white rounded-lg shadow-md border border-gray-100 p-3 min-w-[260px] w-[260px] h-[160px] flex flex-col items-center justify-center flex-shrink-0 hover:shadow-lg transition-all"
+              >
                 <Image
                   src={item.image}
                   alt={item.title}
-                    width={50}
-                    height={50}
-                  className="w-18 h-16 mb-4"
+                  width={28}
+                  height={28}
+                  className="w-8 h-8 mb-2"
                 />
-                <h3 className="font-poppins text-gray-800 mb-2 text-lg font-semibold">
-                        
+                <h3 className="font-poppins text-gray-800 mb-1 text-sm font-semibold text-center">
                   {item.title}
                 </h3>
-
-                <p className="font-poppins text-gray-600 text-sm text-center">
+                <p className="font-poppins text-gray-600 text-xs text-center leading-relaxed">
                   {item.description}
                 </p>
-                </motion.div>
-
+              </motion.div>
             ))}
-   
-</motion.div>
-
-      <motion.div className=" md:mx-20  flex md:flex-row flex-col   z-10 gap-x-10   w-full h-full justify-center items-center ">
-   {row2.map((item, index) => (
-              <motion.div
-                key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.2, delay: 0.2 }}
-                   whileHover={{ scale: 1.03 }}
-                className="bg-white rounded-lg shadow-lg p-6 w-[350px] h-[250px] flex flex-col items-center justify-center"
-                >
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                    width={55}
-                    height={52}
-                  className="w-14 h-16 mb-4"
-                />
-                <h3 className="font-poppins text-gray-800 mb-2 text-lg font-semibold">
-                {item.title}
-                </h3>
-
-                <p className="font-poppins text-gray-600 text-sm text-center">
-                  {item.description}
-                </p>
-                </motion.div>
-
-            ))}
-     
-   
-</motion.div>
-</div>
+          </div>
+        </div>
+        
+        {/* Scroll indicator for mobile */}
+        <div className="flex justify-center mt-2">
+          <p className="text-gray-400 text-xs">← Swipe to see more →</p>
+        </div>
+      </div>
     
-
-
 {/* // cards */}
-
-
 
     </motion.section>
   );

@@ -41,7 +41,7 @@ export default function QuickContact({ title }: { title: string }) {
   };
 
   return (
-    <motion.section className="bg-white md:py-16 lg:py-20 flex justify-center">
+    <motion.section className="bg-white py-10   md:py-16 lg:py-20 flex justify-center">
       <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-12">
         <div className="text-center md:mb-10 lg:mb-10">
           <CommonTitle title={title} />

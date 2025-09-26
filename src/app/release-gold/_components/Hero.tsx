@@ -14,7 +14,7 @@ export default function Hero() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className=" bg-white md:bg-black min-h-screen overflow-hidden px-4 md:bg-gradient-to-r from-[#0F172A] via-[#282f3f61] to-[#2d3038cf] flex flex-col lg:flex-row items-center md:items-start  justify-between  max-h-screen  md:pt-10 lg:pl-20  pb-8 md:pb-12 lg:pb-16"
+      className=" bg-white md:bg-black md:min-h-screen overflow-hidden px-4 md:bg-gradient-to-r from-[#0F172A] via-[#282f3f61] to-[#2d3038cf] flex flex-col lg:flex-row items-center md:items-start  justify-between  max-h-screen  md:pt-10 lg:pl-20  pb-8 md:pb-12 lg:pb-16"
     >
       <motion.div
         initial={{ opacity: 0, y: 20 }}

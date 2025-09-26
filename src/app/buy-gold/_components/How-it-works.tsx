@@ -60,7 +60,7 @@ export default function How() {
   ];
 
   return (
-    <section className="bg-white py-12 md:py-16 lg:py-20">
+    <section className="bg-white pb-16  md:py-16 lg:py-20">
       <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-12">
         {/* Section Header */}
         <div className="text-center mb-12 md:mb-16 lg:mb-20">
