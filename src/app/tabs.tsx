@@ -14,6 +14,11 @@ export default function Tabs() {
   const router = useRouter();
   const { setOpen, open } = useDialog();
 
+  // Debug logging
+  React.useEffect(() => {
+    console.log('Tabs: Dialog open state:', open);
+  }, [open]);
+
   const pathname =
     typeof window !== "undefined" ? window.location.pathname : "";
   React.useEffect(() => {
@@ -71,7 +76,7 @@ export default function Tabs() {
   ];
   return (
     <div
-      className={`w-full rounded-t-lg shadow-3xl shadow-gray-500 border-[1px] border-gray-300 flex-row flex-wrap shrink h-16 bg-white flex justify-around items-center transition-all duration-700 ease-in-out ${
+      className={`w-full  shadow-3xl shadow-gray-500 border-gray-300 flex-row flex-wrap shrink h-16 bg-white flex justify-around items-center transition-all duration-700 ease-in-out ${
         isVisible && !open ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
       }`}
     >

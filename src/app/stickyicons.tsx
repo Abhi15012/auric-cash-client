@@ -1,9 +1,15 @@
 "use client";
 import Image from "next/image"
 import { useDialog } from "../../context/handleDialog";
+import React from "react";
 
 const StickyContactIcons = () => {
   const { open } = useDialog();
+
+  // Debug logging
+  React.useEffect(() => {
+    console.log('StickyIcons: Dialog open state:', open);
+  }, [open]);
 
   return (
     <div className={`fixed right-0 bottom-1 md:bottom-0 -translate-y-1/2 z-50 flex flex-col space-y-4 p-2 md:p-4 transition-all duration-300 ${

@@ -24,7 +24,7 @@ export default function Hero() {
       >
 
         <h2 className="font-poppins text-primary text-2xl md:text-4xl font-medium line-clamp-5 letter-spacing-wide my-2">
-          Buy Gold
+          Sell Gold
           <span className="md:text-white text-black"> at the</span>
         </h2>
 
@@ -52,7 +52,7 @@ export default function Hero() {
 
         <div className="flex justify-center md:justify-start">
           <Button
-            className="bg-primary  h-14 md:mt-14 md:mb-6 font-poppins text-white px-8 py-4 md:px-10 md:py-5 lg:px-8 lg:py-4 rounded-lg
+            className="bg-primary h-12 md:h-14 md:mt-14 md:mb-6 font-poppins text-white px-8 py-3 md:px-10 md:py-5 lg:px-8 lg:py-4 rounded-lg
            flex items-center justify-center gap-2 hover:bg-orange-400 transition-colors duration-500 ease-in-out
            w-[300px] sm:w-[350px] md:w-[400px] lg:w-[500px]
            text-sm md:text-lg lg:text-xl  

@@ -85,7 +85,7 @@ export const AnimatedTestimonials = ({
                     width={500}
                     height={500}
                     draggable={false}
-                    className="h-full w-full rounded-2xl md:rounded-3xl object-cover object-center"
+                    className="h-full  w-full rounded-2xl md:rounded-3xl object-center"
                   />
                 </motion.div>
               ))}
@@ -112,13 +112,11 @@ export const AnimatedTestimonials = ({
               ease: "easeInOut",
             }}
           >
-            <h3 className="text-lg md:text-2xl font-bold text-black dark:text-white">
+            <h3 className="text-lg md:text-2xl font-bold text-black ">
               {testimonials[active].name}
             </h3>
-            <p className="text-xs md:text-sm text-gray-500 dark:text-neutral-500">
-              {testimonials[active].designation}
-            </p>
-            <motion.p className="mt-4 md:mt-8 text-sm md:text-lg text-gray-500 dark:text-neutral-300 line-clamp-6 md:line-clamp-none">
+          
+            <motion.p className="mt-4 md:mt-8 text-sm md:text-lg text-gray-500  line-clamp-6 md:line-clamp-none">
               {testimonials[active].quote.split(" ").map((word, index) => (
                 <motion.span
                   key={index}

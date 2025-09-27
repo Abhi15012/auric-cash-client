@@ -113,6 +113,12 @@ export function GoldHelpDialog({
     message: string;
   }>({ show: false, message: "" });
 
+  // Popup state for success response
+  const [successPopup, setSuccessPopup] = useState<{
+    show: boolean;
+    message: string;
+  }>({ show: false, message: "" });
+
   const submitUserContact = async (
     data: UserContactFormData
   ): Promise<{ message: string }> => {
@@ -177,11 +183,19 @@ export function GoldHelpDialog({
           "Request submitted successfully! We'll call you back soon.",
       });
 
+      // Show success popup for 200/success response
+      setSuccessPopup({ 
+        show: true, 
+        message: result.message || "Request submitted successfully! We'll call you back soon." 
+      });
+
       // Reset form after successful submission
       setTimeout(() => {
         reset();
         onClose();
         setSubmitStatus({ type: null, message: "" });
+        // Refresh the page after successful submission
+        window.location.reload();
       }, 2000);
     } catch (error) {
       console.error("Error submitting form:", error);
@@ -192,6 +206,11 @@ export function GoldHelpDialog({
             ? error.message
             : "Failed to submit request. Please try again.",
       });
+      
+      // Refresh the page after error response as well
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
     } finally {
       setIsSubmitting(false);
     }
@@ -314,6 +333,32 @@ export function GoldHelpDialog({
                 </motion.div>
               )}
 
+              {/* Success Popup */}
+              {successPopup.show && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60"
+                >
+                  <div className="bg-white rounded-xl shadow-xl p-8 max-w-md w-full flex flex-col items-center">
+                    <CheckCircle className="h-8 w-8 text-green-500 mb-2" />
+                    <h3 className="text-lg font-bold mb-2">
+                      Success!
+                    </h3>
+                    <p className="text-center text-gray-700 mb-4">
+                      {successPopup.message}
+                    </p>
+                    <Button
+                      onClick={() =>
+                        setSuccessPopup({ show: false, message: "" })
+                      }
+                    >
+                      OK
+                    </Button>
+                  </div>
+                </motion.div>
+              )}
+
               <form
                 className="mt-6 space-y-5"
                 onSubmit={handleSubmit(onSubmit)}
@@ -334,7 +379,7 @@ export function GoldHelpDialog({
                   <Input
                     id="fullName"
                     {...register("fullName")}
-                    placeholder="Kiran Kumar"
+                    placeholder=""
                     autoFocus
                     aria-required="true"
                     disabled={isSubmitting}
@@ -364,7 +409,7 @@ export function GoldHelpDialog({
                       id="phone"
                       type="tel"
                       inputMode="tel"
-                      placeholder="9876543210"
+                      placeholder="9876******"
                       {...register("mobile")}
                       aria-required="true"
                       disabled={isSubmitting}

@@ -27,7 +27,8 @@ export default function Footer() {
                 <Facebook className="w-4 h-4" />
               </a>
               <a
-                href="#"
+                href="https://www.instagram.com/prcgoldbuyers?igsh=MWNxanluOTFqNzlhMw=="
+                target='_parent'
                 className="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center hover:bg-yellow-500 transition-colors"
               >
                 <Instagram className="w-4 h-4" />
