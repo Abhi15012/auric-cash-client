@@ -71,7 +71,7 @@ export default function Navbar() {
         {/* Logo placeholder */}
         <div className=" h-[50px]  md:w-[200px] -mt-14 w-[150px]  md:h-18 rounded flex-shrink-0">
           <Image
-            src="/logo.png"
+            src="/logo-new.png"
             alt="Logo"
             width={200}
             height={80}
