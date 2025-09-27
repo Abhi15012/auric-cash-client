@@ -59,9 +59,7 @@ export default function Footer() {
           <div className="lg:col-span-1">
             <h4 className="text-lg font-semibold mb-4 text-white font-poppins">HELP</h4>
             <div className="space-y-3">
-              <a href="#" className="block text-gray-300 text-sm hover:text-white transition-colors font-poppins">
-                Customer Support
-              </a>
+          
               <a href="/terms-and-condition" className="block text-gray-300 text-sm hover:text-white transition-colors font-poppins">
                 Policies
               </a>
