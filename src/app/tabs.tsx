@@ -23,9 +23,7 @@ export default function Tabs() {
     typeof window !== "undefined" ? window.location.pathname : "";
   React.useEffect(() => {
     if (pathname === "/") setActiveTab("Home");
-    else if (pathname === "/buy-gold") setActiveTab("sellGold");
-    else if (pathname === "/release-gold") setActiveTab("releaseGold");
-    else if (pathname === "/about") setActiveTab("Aboutus");
+    else if (pathname === "/ear-piercing") setActiveTab("earPiercing");
     else setActiveTab("Home");
   }, [pathname, setActiveTab]);
 
@@ -58,20 +56,20 @@ export default function Tabs() {
       inactive: "/home-a.png",
     },
     {
-      name: "Sell Gold",
-      href: "/buy-gold",
-      tabActive: "sellGold",
-      iconSize: "w-6 h-6",
-      active: "/sell-ia.png",
-      inactive: "/sell-a.png",
+      name: "Services",
+      tabActive: "services",
+      href: "/#services",
+      iconSize: "w-5 h-5",
+      active: "/favicon.png",
+      inactive: "/favicon.png",
     },
     {
-      name: "Release Gold",
-      tabActive: "releaseGold",
-      href: "/release-gold",
+      name: "FAQ",
+      tabActive: "faq",
+      href: "/#faq",
       iconSize: "w-5 h-5",
-      active: "/loan-ia.png",
-      inactive: "/loan-a.png",
+      active: "/favicon.png",
+      inactive: "/favicon.png",
     },
   ];
   return (
@@ -112,8 +110,8 @@ export default function Tabs() {
 
       <div className="md:flex-shrink-0  md:flex     lg:mx-4">
         <Button
-          className="bg-primary  lg:ml-0 cursor-pointer hover:bg-orange-400 font-semibold text-white px-3 py-2 lg:px-5 lg:py-2 rounded-lg
-            w-[100px] sm:w-[120px] md:w-[140px] lg:w-[180px] h-8 lg:h-12 text-sm lg:text-lg font-poppins transition-colors duration-500 flex items-center justify-center ease-in-out"
+          className="bg-primary lg:ml-0 cursor-pointer hover:bg-[#CA8A04] hover:shadow-md font-semibold text-white px-3 py-2 lg:px-5 lg:py-2 rounded-lg
+            w-[100px] sm:w-[120px] md:w-[140px] lg:w-[180px] h-8 lg:h-12 text-sm lg:text-lg font-outfit transition-colors duration-300 flex items-center justify-center ease-in-out"
           onClick={() => setOpen(true)}
         >
           <span className="sm:inline text-[13px] md:text-base">

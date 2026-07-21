@@ -1,5 +1,6 @@
 import { Facebook, Instagram, Youtube, Phone } from "lucide-react"
 import Image from "next/image"
+import Link from "next/link"
 
 
 export default function Footer() {
@@ -11,11 +12,24 @@ export default function Footer() {
           {/* Brand Section */}
           <div className="lg:col-span-1">
             <div className="flex items-center mb-4">
-              <Image src="/icon.png" alt="Logo" className="h-10 w-10 mr-3" width={24} height={24} />
-              <h3 className="text-xl font-poppins font-bold">PRC GOLD BUYERS</h3>
+              <Image
+                src="/logo.png"
+                alt="Vigneshwara Logo"
+                width={40}
+                height={40}
+                className="h-10 w-10 mr-3 object-contain"
+              />
+              <div className="flex flex-col text-left">
+                <span className="font-outfit font-extrabold text-[16px] md:text-[20px] leading-none text-primary tracking-tight whitespace-nowrap">
+                  VIGNESHWARA
+                </span>
+                <span className="font-outfit font-semibold text-[10px] md:text-[11px] leading-tight text-gray-400 tracking-wide uppercase">
+                  Ear & Nose Piercing
+                </span>
+              </div>
             </div>
-            <p className="text-gray-300 text-sm leading-relaxed font-poppins mb-6">
-              We buy gold at the best prices and help you release pledged gold with ease
+            <p className="text-gray-300 text-sm leading-relaxed font-outfit mb-6">
+              Safe, hygienic, and painless manual & gunshot ear and nose piercing services in the comfort of your home across Hyderabad.
             </p>
 
             {/* Social Media Icons */}
@@ -55,14 +69,28 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Help Section */}
+          {/* Help/Services Section */}
           <div className="lg:col-span-1">
-            <h4 className="text-lg font-semibold mb-4 text-white font-poppins">HELP</h4>
+            <h4 className="text-lg font-semibold mb-4 text-white font-poppins">SERVICES & INFO</h4>
             <div className="space-y-3">
-          
-              <a href="/terms-and-condition" className="block text-gray-300 text-sm hover:text-white transition-colors font-poppins">
+              <Link href="/" className="block text-gray-300 text-sm hover:text-white transition-colors font-poppins">
+                Home
+              </Link>
+              <Link href="/#services" className="block text-gray-300 text-sm hover:text-white transition-colors font-poppins">
+                Services
+              </Link>
+              <Link href="/#how-it-works" className="block text-gray-300 text-sm hover:text-white transition-colors font-poppins">
+                Process
+              </Link>
+              <Link href="/#why-us" className="block text-gray-300 text-sm hover:text-white transition-colors font-poppins">
+                Why Us
+              </Link>
+              <Link href="/#faq" className="block text-gray-300 text-sm hover:text-white transition-colors font-poppins">
+                FAQ
+              </Link>
+              <Link href="/terms-and-condition" className="block text-gray-300 text-sm hover:text-white transition-colors font-poppins">
                 Policies
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -71,11 +99,11 @@ export default function Footer() {
             <div className="mb-4">
               <div className="w-full h-32 md:h-40 bg-gray-700 rounded-lg overflow-hidden">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3807.2183627155005!2d78.56118127521064!3d17.401305283488277!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb99330f0b460b%3A0xf6dd19f426ca6f31!2sMekala%20Complex%201%2C%20Uppal%20Main%20Road%2C%20Hyderabad%2C%20Telangana%20500039!5e0!3m2!1sen!2sin!4v1755627311315!5m2!1sen!2sin"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3805.7197822552985!2d78.35756057546575!3d17.473121100329116!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb93003f49eb19%3A0xef5bd8a63395ecc4!2sRaghavendra%20colony%20Kondapur%20Hyderabad%20Telangana!5e0!3m2!1sen!2sin!4v1784592394473!5m2!1sen!2sin"
+                  style={{ border: 0 }}
+                  allowFullScreen={true}
                   width="100%"
                   height="100%"
-                  style={{ border: 0 }}
-                    allowFullScreen={false}
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                   className="transition-all duration-300"
@@ -83,10 +111,10 @@ export default function Footer() {
               </div>
             </div>
             <div className="text-gray-300 text-xs font-poppins leading-relaxed">
-              <p>Mekala Complex 1,</p>
-              <p>Above Raymonds Showroom,</p>
-              <p>Main Road Uppal, Hyderabad,</p>
-              <p>Telangana, India</p>
+              <p>Raghavendra Colony,</p>
+              <p>Kondapur,</p>
+              <p>Hyderabad,</p>
+              <p>Telangana</p>
             </div>
           </div>
         </div>
@@ -94,7 +122,7 @@ export default function Footer() {
         {/* Bottom Border */}
         <div className="border-t border-gray-600 pt-6">
           <div className="text-center">
-            <p className="text-gray-400 text-sm">© Copyright 2025, All Rights Reserved by PRC Gold Buyers</p>
+            <p className="text-gray-400 text-sm">© Copyright 2026, All Rights Reserved by Vigneshwara Ear & Nose Piercing</p>
           </div>
         </div>
       </div>

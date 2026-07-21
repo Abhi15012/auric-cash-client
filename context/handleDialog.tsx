@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useState, ReactNode } from "react";
 
-type DialogIntent = "sell" | "sell-pledged" | "release" | undefined;
+type DialogIntent = "sell" | "sell-pledged" | "release" | "ear-piercing" | undefined;
 
 type DialogContextType = {
   open: boolean;

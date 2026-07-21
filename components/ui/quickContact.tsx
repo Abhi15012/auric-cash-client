@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { ArrowRight, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
-import CommonTitle from "../../src/app/buy-gold/_components/commonTitle";
+import CommonTitle from "@/app/home/_components/commonTitle";
 import { useForm, Controller } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -264,8 +264,8 @@ export default function QuickContact({ title }: { title: string }) {
         <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-12">
           <div className="text-center md:mb-10 lg:mb-10">
             <CommonTitle title={title} />
-            <h2 className="font-poppins text-heading text-2xl md:text-4xl font-medium lg:text-5xl md:font-semibold leading-tight">
-              Get Instant Help with Your Gold 👋
+            <h2 className="font-outfit text-heading text-2xl md:text-4xl font-medium lg:text-5xl md:font-semibold leading-tight">
+              Book Your Piercing Appointment 👋
             </h2>
           </div>
 
@@ -378,7 +378,7 @@ export default function QuickContact({ title }: { title: string }) {
                   id="address"
                   rows={3}
                   placeholder="123 MG Road, Bangalore, India"
-                  className="w-full resize-none rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-slate-900 placeholder:text-slate-400 shadow-sm outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-500/30 disabled:opacity-50"
+                  className="w-full resize-none rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-slate-900 placeholder:text-slate-400 shadow-sm outline-none focus:border-[#9E1B56] focus:ring-2 focus:ring-[#9E1B56]/30 disabled:opacity-50"
                   {...register("address")}
                   disabled={isSubmitting}
                 />
@@ -389,7 +389,7 @@ export default function QuickContact({ title }: { title: string }) {
                 <Button
                   type="submit"
                   disabled={isSubmitting || submitStatus.type === "success"}
-                  className="h-14 w-full font-poppins rounded-lg bg-primary text-white hover:bg-orange-400 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="h-14 w-full font-outfit rounded-lg bg-primary text-[#1B0A3A] font-bold hover:bg-[#CA8A04] hover:text-white transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isSubmitting ? (
                     <div className="flex items-center gap-2">

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "./Navbar";
 import localFont from "next/font/local";
-import { Inter } from "next/font/google";
+import { Inter, Outfit } from "next/font/google";
 import Footer from "./footer";
 
 import { TabProvider } from "../../context/TabContext";
@@ -42,6 +42,13 @@ const poppins = localFont({
   variable: "--font-poppins",
 });
 
+const outfit = Outfit({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800"],
+  variable: "--font-outfit",
+  display: "swap",
+});
+
 const inter = Inter({
   subsets: ["latin"],
   weight: ["700"],
@@ -51,22 +58,22 @@ const inter = Inter({
 
 // Metadata
 export const metadata: Metadata = {
-  title: "PRC Gold Buyers - We Buy Gold & Release Pledged Gold",
-  description: "We buy gold at the best prices and help you release pledged gold with ease. Download our app for quick access to gold trading services.",
+  title: "Vigneshwara Ear & Nose Piercing - Painless Home Visits in Hyderabad City",
+  description: "Premium gunshot and manual ear & nose piercing services at your doorstep across Hyderabad. Pre-sterilized equipment, safe for babies, kids, and adults starting at just ₹1,500.",
   manifest: "/manifest.json",
-  themeColor: "#EA5518",
+  themeColor: "#EAB308",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "PRC Gold Buyers",
+    title: "Vigneshwara Piercing",
   },
   formatDetection: {
     telephone: false,
   },
   icons: {
-    icon: "/icon.png",
-    shortcut: "/icon.png",
-    apple: "/icon.png",
+    icon: "/favicon.png",
+    shortcut: "/favicon.png",
+    apple: "/favicon.png",
   },
 };
 
@@ -79,39 +86,40 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="manifest" href="/manifest.json" />
-        <link rel="apple-touch-icon" href="/icon.png" />
+        <link rel="apple-touch-icon" href="/favicon.png" />
+        <link rel="icon" type="image/png" href="/favicon.png" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <meta name="apple-mobile-web-app-title" content="PRC Gold Buyers" />
+        <meta name="apple-mobile-web-app-title" content="Vigneshwara Piercing" />
         <meta name="mobile-web-app-capable" content="yes" />
-        <meta name="msapplication-TileColor" content="#EA5518" />
+        <meta name="msapplication-TileColor" content="#EAB308" />
         <meta name="msapplication-tap-highlight" content="no" />
       </head>
-      <body className={`${poppins.variable} ${inter.variable} antialiased`}>
+      <body className={`${poppins.variable} ${outfit.variable} ${inter.variable} antialiased`}>
         <DialogProvider>
-        <TabProvider>
-          <div className=" sm-hidden mg-fixed lg-fixed  top-0 left-0 w-full z-50">
-            <Navbar />
-          </div>
-          {children}
-   
-          <GoldHelpDialogWrapper /> {/* ✅ This is client now */}
+          <TabProvider>
+            <div className=" sm-hidden mg-fixed lg-fixed  top-0 left-0 w-full z-50">
+              <Navbar />
+            </div>
+            {children}
 
-          <QuickContact title="Quick Contact"/>
-          <Footer />
+            <GoldHelpDialogWrapper /> {/* ✅ This is client now */}
 
-          <InstallPrompt />
-          <StickyContactIcons />
-       
+            <QuickContact title="Quick Contact" />
+            <Footer />
 
-             <div className="fixed w-full   md:hidden bottom-0  z-50">
-          <Tabs />
-          </div>
+            <InstallPrompt />
+            <StickyContactIcons />
 
-      
-        </TabProvider>
+
+            <div className="fixed w-full   md:hidden bottom-0  z-50">
+              <Tabs />
+            </div>
+
+
+          </TabProvider>
         </DialogProvider>
-        
+
         {/* Service Worker Registration */}
         <script
           dangerouslySetInnerHTML={{

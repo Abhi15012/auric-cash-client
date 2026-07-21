@@ -7,16 +7,16 @@
 
 @theme inline {
   /* 🎨 Custom Colors */
-  --color-primary: #EA5518;
-  --color-footer: #0F172A;
+  --color-primary: #EAB308;
+  --color-footer: #0D041A;
   --color-label: #000000;
-  --color-heading: #101828;
+  --color-heading: #12072B;
   --color-roman: #F4D1C3;
-   --color-gold: #FFD700;
-   --color-gold-hover:#B8860B;
+   --color-gold: #EAB308;
+   --color-gold-hover:#CA8A04;
   /* 🔤 Custom Fonts */
   --font-poppins: var(--font-poppins);
-  --font-button: 'Inter', sans-serif;
+  --font-button: var(--font-outfit), sans-serif;
 
   /* 📏 Custom Sizes */
   --font-size-button: 16px;
@@ -24,7 +24,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #0d040a;
     --foreground: #ededed;
   }
 }
@@ -32,7 +32,7 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-outfit), var(--font-poppins), Arial, sans-serif;
 }
 
 /* 🎬 Accordion animations */
@@ -70,5 +70,42 @@ body {
 
 .scrollbar-hide::-webkit-scrollbar {
   display: none;  /* Safari and Chrome */
+}
+
+/* 🎠 Marquee animation styles */
+@keyframes marqueeLeft {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marqueeRight {
+  0% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee-left {
+  display: flex;
+  width: max-content;
+  animation: marqueeLeft 35s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-right {
+  display: flex;
+  width: max-content;
+  animation: marqueeRight 35s linear infinite;
+  will-change: transform;
+}
+
+.marquee-container:hover .animate-marquee-left,
+.marquee-container:hover .animate-marquee-right,
+.animate-marquee-left:hover,
+.animate-marquee-right:hover {
+  animation-play-state: paused !important;
 }
 

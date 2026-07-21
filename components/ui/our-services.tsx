@@ -1,7 +1,7 @@
 'use client'
 import React from "react";
-import Image from "next/image";
-import CommonTitle from "../../src/app/buy-gold/_components/commonTitle";
+import CommonTitle from "@/app/home/_components/commonTitle";
+import { Check } from "lucide-react";
 
 import { motion } from "framer-motion";
 
@@ -36,7 +36,7 @@ export default function ServiceComp({title, data}: {title: string, data : string
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.3, delay: index * 0.1 }}
             >
-              <Image src={'/check.png'} alt={item} width={20} height={20} className="inline-block mr-2 mb-2"/>
+              <Check className="w-5 h-5 text-amber-500 inline-block mr-2 shrink-0 mb-1" />
               <p className="text-gray-700 text-lg md:text-xl font-poppins mb-4 inline-block">{item}</p>
             </motion.div>
           ))}
@@ -55,13 +55,7 @@ export default function ServiceComp({title, data}: {title: string, data : string
                 whileHover={{ scale: 1.02 }}
               >
                 <div className="flex items-start gap-3">
-                  <Image 
-                    src={'/check.png'} 
-                    alt={item} 
-                    width={16} 
-                    height={16} 
-                    className="mt-1 flex-shrink-0"
-                  />
+                  <Check className="w-4 h-4 text-amber-500 mt-1 flex-shrink-0" />
                   <p className="text-gray-700 text-sm font-poppins leading-relaxed flex-1">
                     {item}
                   </p>

@@ -10,7 +10,7 @@ export default function OfflinePage() {
         <div className="mb-8">
           <Image
             src="/logo.png"
-            alt="PRC Gold Buyers"
+            alt="Vigneshwara Ear & Nose Piercing"
             width={120}
             height={60}
             className="mx-auto mb-6"
@@ -46,7 +46,7 @@ export default function OfflinePage() {
         <div className="space-y-4">
           <Button
             onClick={() => window.location.reload()}
-            className="w-full bg-primary hover:bg-orange-400 text-white font-semibold py-3 rounded-lg"
+            className="w-full bg-primary hover:bg-[#CA8A04] hover:text-white text-[#1B0A3A] font-bold py-3 rounded-lg transition-colors"
           >
             Try Again
           </Button>
@@ -54,7 +54,7 @@ export default function OfflinePage() {
           <Link href="/">
             <Button
               variant="outline"
-              className="w-full border-gray-300 text-gray-700 font-semibold py-3 rounded-lg hover:bg-gray-50"
+              className="w-full border-primary text-primary font-bold py-3 rounded-lg hover:bg-primary hover:text-[#1B0A3A] transition-colors"
             >
               Go to Home
             </Button>
@@ -63,7 +63,7 @@ export default function OfflinePage() {
 
         <div className="mt-8 p-4 bg-gray-50 rounded-lg">
           <p className="text-sm text-gray-600">
-            <strong>Tip:</strong> Install our app for a better offline experience and quick access to gold buying and pledged gold release services.
+            <strong>Tip:</strong> Install our app for a better offline experience and quick access to doorstep piercing services.
           </p>
         </div>
       </div>

@@ -8,6 +8,7 @@ import Image from "next/image";
 
 import { useDialog } from "../../context/handleDialog";
 
+
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
   const [expandedSection, setExpandedSection] = React.useState<string | null>(null);
@@ -17,17 +18,21 @@ export default function Navbar() {
 
   const pathname = typeof window !== "undefined" ? window.location.pathname : "";
   React.useEffect(() => {
-    if (pathname === "/") setActiveTab("Home");
-    else if (pathname === "/buy-gold") setActiveTab("sellGold");
-    else if (pathname === "/release-gold") setActiveTab("releaseGold");
-    else if (pathname === "/about") setActiveTab("Aboutus");
+    if (pathname === "/") {
+      if (typeof window !== "undefined" && window.location.hash === "#about") {
+        setActiveTab("about");
+      } else {
+        setActiveTab("Home");
+      }
+    }
+    else if (pathname === "/ear-piercing") setActiveTab("earPiercing");
     else setActiveTab("Home");
   }, [pathname, setActiveTab]);
 
   const [isVisible, setIsVisible] = React.useState(true);
   const [isPastHero, setIsPastHero] = React.useState(false);
   const lastScrollYRef = React.useRef(0);
-  const {setOpen, open } = useDialog();
+  const { setOpen, open } = useDialog();
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -63,76 +68,109 @@ export default function Navbar() {
 
   return (
     <div
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ease-in-out ${
-        isVisible && !open ? "translate-y-0" : "-translate-y-full"
-      } ${isPastHero ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-transparent'}`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ease-in-out ${isVisible && !open ? "translate-y-0" : "-translate-y-full"
+        } ${isPastHero ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-transparent'}`}
     >
       <header className="flex items-center justify-between px-5 py-6 lg:px-20 lg:py-6">
-        {/* Logo placeholder */}
-        <div className=" h-[50px]  md:w-[200px] -mt-14 w-[150px]  md:h-18 rounded flex-shrink-0">
-          <Image
-            src="/logo-new.png"
-            alt="Logo"
-            width={200}
-            height={80}
-            className="max-w-full md:-ml-9 w-full mt-2 md:mt-0 h-24  md:h-32 object-contain"
-          />
-        </div>
+        {/* Logo / Brand Name */}
+        <Link href="/" className="flex items-center gap-2 flex-shrink-0">
+        <Image
+        src="/logo.png"
+        alt="Logo"
+        width={50}
+        height={50}
+        />
+          <div className="flex flex-col text-left">
+            <span className="font-outfit font-extrabold text-[16px] md:text-[20px] leading-none text-primary tracking-tight whitespace-nowrap">
+              VIGNESHWARA
+            </span>
+            <span className="font-outfit font-semibold text-[10px] md:text-[11px] leading-tight text-gray-400 tracking-wide uppercase">
+              Ear & Nose Piercing
+            </span>
+          </div>
+        </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex ml-20 items-center space-x-4 lg:space-x-6 divide-x divide-gray-300">
+        <nav className="hidden md:flex ml-12 lg:ml-20 items-center space-x-4 lg:space-x-6 divide-x divide-gray-300">
           <Link
-            href="/"
+            href="/#about"
             className={`px-2 lg:px-3 text-base lg:text-lg font-medium font-poppins transition-colors ${
-              activeTab === "Home"
-                ? "text-primary"
-                : isPastHero ? "text-gray-800" : "text-white"
+              activeTab === "about"
+                ? "text-primary font-bold"
+                : isPastHero ? "text-gray-800 hover:text-primary" : "text-white hover:text-primary/80"
             }`}
-            onClick={() => setActiveTab("Home")}
+            onClick={() => setActiveTab("about")}
           >
-            Home
+            About
           </Link>
           <Link
-            href="/buy-gold"
+            href="/#services"
             className={`px-2 lg:px-3 text-base lg:text-lg font-medium font-poppins transition-colors ${
-              activeTab === "sellGold"
-                ? "text-primary"
-                : isPastHero ? "text-gray-800" : "text-white"
+              activeTab === "services"
+                ? "text-primary font-bold"
+                : isPastHero ? "text-gray-800 hover:text-primary" : "text-white hover:text-primary/80"
             }`}
-            onClick={() => setActiveTab("sellGold")}
+            onClick={() => setActiveTab("services")}
           >
-            Sell your Gold
+            Services
           </Link>
           <Link
-            href="/release-gold"
+            href="/#how-it-works"
             className={`px-2 lg:px-3 text-base lg:text-lg font-medium font-poppins transition-colors ${
-              activeTab === "releaseGold"
-                ? "text-primary"
-                : isPastHero ? "text-gray-800" : "text-white"
+              activeTab === "howItWorks"
+                ? "text-primary font-bold"
+                : isPastHero ? "text-gray-800 hover:text-primary" : "text-white hover:text-primary/80"
             }`}
-            onClick={() => setActiveTab("releaseGold")}
+            onClick={() => setActiveTab("howItWorks")}
           >
-            Release Pledged Gold
+            Process
           </Link>
-
-          
+          <Link
+            href="/#why-us"
+            className={`px-2 lg:px-3 text-base lg:text-lg font-medium font-poppins transition-colors ${
+              activeTab === "whyUs"
+                ? "text-primary font-bold"
+                : isPastHero ? "text-gray-800 hover:text-primary" : "text-white hover:text-primary/80"
+            }`}
+            onClick={() => setActiveTab("whyUs")}
+          >
+            Reviews
+          </Link>
+          <Link
+            href="/#faq"
+            className={`px-2 lg:px-3 text-base lg:text-lg font-medium font-poppins transition-colors ${
+              activeTab === "faq"
+                ? "text-primary font-bold"
+                : isPastHero ? "text-gray-800 hover:text-primary" : "text-white hover:text-primary/80"
+            }`}
+            onClick={() => setActiveTab("faq")}
+          >
+            FAQ
+          </Link>
         </nav>
 
-        {/* Enquire Now - Mobile optimized */}
-        <div className="md:flex-shrink-0  md:flex hidden    lg:mx-4">
+        {/* Catalogue & Booking - Mobile optimized */}
+        <div className="hidden md:flex items-center gap-3 lg:mx-4">
+          <Link href="/#services">
+            <Button
+              variant="outline"
+              className="border-primary text-primary hover:bg-primary hover:text-[#1B0A3A] font-bold font-outfit px-4 py-2 rounded-full text-xs lg:text-sm h-9 lg:h-10 transition-all duration-300"
+            >
+              View Catalogue
+            </Button>
+          </Link>
           <Button
-            className="bg-primary  lg:ml-0 cursor-pointer hover:bg-orange-400 font-semibold text-white px-3 py-2 lg:px-5 lg:py-2 rounded-lg
-            w-[100px] sm:w-[120px] md:w-[140px] lg:w-[180px] h-8 lg:h-12 text-sm lg:text-lg font-poppins transition-colors duration-500 flex items-center justify-center ease-in-out"
+            className="bg-primary hover:bg-[#CA8A04] text-[#1B0A3A] font-bold font-outfit px-4 py-2 rounded-full text-xs lg:text-sm h-9 lg:h-10 transition-all duration-300 shadow-md hover:shadow-lg hover:shadow-yellow-500/30 flex items-center gap-1.5 animate-pulse"
             onClick={() => setOpen(true)}
           >
-            <span className="sm:inline text-[13px] md:text-base">Enquire Now</span>
-       
+            <Phone className="w-3.5 h-3.5" />
+            Book Now
           </Button>
         </div>
 
         {/* Mobile Menu Button */}
         <div className="md:hidden flex space-x-3 items-center">
-        
+
           <button
             onClick={toggleMobileMenu}
             className="text-black hover:opacity-70 focus:outline-none transition-colors"
@@ -155,49 +193,28 @@ export default function Navbar() {
           {/* Navigation Links */}
           <div className="border-b pb-3 mb-3 border-gray-200">
             <div className="space-y-2">
-              <Link
-                href="/"
-                className={`block text-base font-medium font-poppins transition-colors py-2 ${
-                  activeTab === "Home"
-                    ? "text-orange-500"
-                    : "text-gray-800"
-                }`}
-                onClick={() => {
-                  setActiveTab("Home");
-                  setIsMobileMenuOpen(false);
-                }}
-              >
-                Home
-              </Link>
-              <Link
-                href="/buy-gold"
-                className={`block text-base font-medium font-poppins transition-colors py-2 ${
-                  activeTab === "sellGold"
-                    ? "text-orange-500"
-                    : "text-gray-800"
-                }`}
-                onClick={() => {
-                  setActiveTab("sellGold");
-                  setIsMobileMenuOpen(false);
-                }}
-              >
-                Sell your Gold
-              </Link>
-              <Link
-                href="/release-gold"
-                className={`block text-base font-medium font-poppins transition-colors py-2 ${
-                  activeTab === "releaseGold"
-                    ? "text-orange-500"
-                    : "text-gray-800"
-                }`}
-                onClick={() => {
-                  setActiveTab("releaseGold");
-                  setIsMobileMenuOpen(false);
-                }}
-              >
-                Release Pledged Gold
-              </Link>
-        
+              {[
+                { name: "About", href: "/#about", tab: "about" },
+                { name: "Services", href: "/#services", tab: "services" },
+                { name: "Process", href: "/#how-it-works", tab: "howItWorks" },
+                { name: "Reviews", href: "/#why-us", tab: "whyUs" },
+                { name: "FAQ", href: "/#faq", tab: "faq" },
+              ].map((link) => (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  className={`block text-base font-medium font-poppins transition-colors py-2 ${activeTab === link.tab
+                      ? "text-primary font-bold"
+                      : "text-gray-800 hover:text-primary"
+                    }`}
+                  onClick={() => {
+                    setActiveTab(link.tab);
+                    setIsMobileMenuOpen(false);
+                  }}
+                >
+                  {link.name}
+                </Link>
+              ))}
             </div>
           </div>
 

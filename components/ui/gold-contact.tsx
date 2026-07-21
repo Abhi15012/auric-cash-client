@@ -23,7 +23,7 @@ import { getUserLocation } from "../lib/getLoction";
 type GoldHelpDialogProps = {
   open: boolean;
   onClose: () => void;
-  defaultIntent?: "sell" | "sell-pledged" | "release";
+  defaultIntent?: "sell" | "sell-pledged" | "release" | "ear-piercing";
 };
 
 // Updated Zod schema with CountryCode
@@ -76,6 +76,8 @@ export function GoldHelpDialog({
     }
   };
 
+  const [piercingMethod, setPiercingMethod] = useState<string>("manual");
+
   const {
     register,
     handleSubmit,
@@ -88,15 +90,7 @@ export function GoldHelpDialog({
       fullName: "",
       CountryCode: "+91",
       mobile: "",
-      customerType: defaultIntent
-        ? defaultIntent === "sell"
-          ? "sellgold"
-          : defaultIntent === "release"
-          ? "releasegold"
-          : defaultIntent === "sell-pledged"
-          ? "loangold"
-          : "quickContact"
-        : "quickContact",
+      customerType: "other",
       address: "",
       isVerified: false,
       isWhatsApp: false,
@@ -171,8 +165,13 @@ export function GoldHelpDialog({
     setSubmitStatus({ type: null, message: "" });
 
     try {
+      const finalAddress = values.address 
+        ? `${values.address} | Method: ${piercingMethod}` 
+        : `Method: ${piercingMethod}`;
       const result = await submitUserContact({
         ...values,
+        address: finalAddress,
+        customerType: "other",
         isVerified: true,
       });
 
@@ -281,9 +280,9 @@ export function GoldHelpDialog({
               {/* Title */}
               <h2
                 id="gold-help-title"
-                className=" md:text-balance pr-12 md:text-center text-xl font-poppins font-semibold tracking-tight text-slate-900 md:text-3xl"
+                className=" md:text-balance pr-12 md:text-center text-xl font-outfit font-semibold tracking-tight text-slate-900 md:text-3xl"
               >
-                Get Instant Help with Your Gold 👋
+                Book Your Piercing Appointment 👋
               </h2>
 
               {/* Success/Error Messages */}
@@ -441,68 +440,52 @@ export function GoldHelpDialog({
                   />
                 </div>
 
-                {/* Customer Type Dropdown */}
+                {/* Piercing Method Dropdown */}
                 <div className="space-y-2">
                   <Label
-                    htmlFor="customerType"
+                    htmlFor="piercingMethod"
                     className="inline-flex items-center gap-1"
                   >
-                    What do you want to do?
+                    Select Piercing Method
                     <span aria-hidden="true" className="text-red-600">
                       *
                     </span>
                   </Label>
-                  <Controller
-                    control={control}
-                    name="customerType"
-                    render={({ field }) => (
-                      <Select
-                        value={field.value}
-                        onValueChange={field.onChange}
-                        disabled={isSubmitting}
-                        
+                  <Select
+                    value={piercingMethod}
+                    onValueChange={setPiercingMethod}
+                    disabled={isSubmitting}
+                  >
+                    <SelectTrigger className="w-full justify-between text-black bg-white border border-slate-200 rounded-xl">
+                      <SelectValue className="text-black">
+                        {piercingMethod === "manual"
+                          ? "Manual Piercing (Traditional & Precise)"
+                          : piercingMethod === "gunshot"
+                          ? "Gunshot Piercing (Fast & Painless)"
+                          : "Not Sure / Consult Specialist"}
+                      </SelectValue>
+                    </SelectTrigger>
+                    <SelectContent className="bg-white text-black border border-slate-200">
+                      <SelectItem
+                        className="!rounded-none overflow-auto h-10 hover:bg-gray-100"
+                        value="manual"
                       >
-                        <SelectTrigger className="w-full justify-between text-black">
-                          <SelectValue  className="text-black">
-                            {field.value === "sellgold"
-                              ? "Sell your gold"
-                              : field.value === "releasegold"
-                              ? "Release pledged gold"
-                              : field.value === "loangold"
-                              ? "Sell pledged gold"
-                              : field.value === "quickContact"
-                              ? "Choose an option"
-                              : "Other"}
-                            </SelectValue>
-                        </SelectTrigger>
-                        <SelectContent className="bg-white text-black border border-gray-400">
-                          <SelectItem
-                            className="!rounded-none overflow-auto h-10 hover:bg-gray-100"
-                            value="sellgold"
-                          >
-                            Sell your gold
-                          </SelectItem>
-                          <SelectItem
-                            className="!rounded-none overflow-auto h-10 hover:bg-gray-100 "
-                            value="releasegold"
-                          >
-                            Release pledged gold
-                          </SelectItem>
-                          <SelectItem
-                            className="!rounded-none overflow-auto h-10 hover:bg-gray-100 "
-                            value="loangold"
-                          >
-                            Sell pledged gold
-                          </SelectItem>
-                        </SelectContent>
-                      </Select>
-                    )}
-                  />
-                  {errors.customerType && (
-                    <span className="text-xs text-red-600">
-                      {errors.customerType.message}
-                    </span>
-                  )}
+                        Manual Piercing (Traditional & Precise)
+                      </SelectItem>
+                      <SelectItem
+                        className="!rounded-none overflow-auto h-10 hover:bg-gray-100"
+                        value="gunshot"
+                      >
+                        Gunshot Piercing (Fast & Painless)
+                      </SelectItem>
+                      <SelectItem
+                        className="!rounded-none overflow-auto h-10 hover:bg-gray-100"
+                        value="not_sure"
+                      >
+                        Not Sure / Consult Specialist
+                      </SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
 
                 {/* Address */}
@@ -528,7 +511,7 @@ export function GoldHelpDialog({
                   <Button
                     type="submit"
                     disabled={isSubmitting || submitStatus.type === "success"}
-                    className="h-11 w-full font-poppins rounded-xl bg-primary text-white hover:bg-orange-400 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="h-11 w-full font-outfit rounded-xl bg-primary text-[#1B0A3A] font-bold hover:bg-[#CA8A04] hover:text-white transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {isSubmitting ? (
                       <div className="flex items-center gap-2">

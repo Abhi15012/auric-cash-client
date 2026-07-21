@@ -1,7 +1,8 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import { Button } from "./button";
-import { X, Download, Smartphone } from "lucide-react";
+import { X, Download } from "lucide-react";
 
 interface BeforeInstallPromptEvent extends Event {
   prompt: () => Promise<void>;
@@ -86,15 +87,21 @@ export default function InstallPrompt() {
         <div className="bg-white border border-gray-200 rounded-lg shadow-lg p-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              <div className="bg-primary/10 p-2 rounded-full">
-                <Smartphone className="w-5 h-5 text-primary" />
+              <div className="flex-shrink-0">
+                <Image
+                  src="/logo.png"
+                  alt="Vigneshwara Logo"
+                  width={40}
+                  height={40}
+                  className="w-10 h-10 object-contain rounded-lg"
+                />
               </div>
               <div className="flex-1">
                 <h3 className="text-sm font-semibold text-gray-900">
-                  Install PRC Gold Buyers App
+                  Install Vigneshwara Piercing App
                 </h3>
                 <p className="text-xs text-gray-600">
-                  Get faster access to gold services
+                  Get fast access to doorstep piercing services
                 </p>
               </div>
             </div>
@@ -102,13 +109,13 @@ export default function InstallPrompt() {
               <Button
                 onClick={handleInstallClick}
                 size="sm"
-                className="bg-primary hover:bg-orange-400 text-white text-xs px-3 py-1"
+                className="bg-primary hover:bg-[#CA8A04] hover:text-white text-[#1B0A3A] font-bold text-xs px-3 py-1 transition-colors"
               >
                 Install
               </Button>
               <button
                 onClick={handleDismiss}
-                className="text-gray-400 hover:text-gray-600 p-1"
+                className="text-gray-400 hover:text-primary p-1 transition-colors"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -123,22 +130,28 @@ export default function InstallPrompt() {
           <div className="bg-gradient-to-r from-primary/10 to-orange-100 border border-primary/20 rounded-lg shadow-md p-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-4">
-                <div className="bg-primary/20 p-3 rounded-full">
-                  <Download className="w-6 h-6 text-primary" />
+                <div className="flex-shrink-0">
+                  <Image
+                    src="/logo.png"
+                    alt="Vigneshwara Logo"
+                    width={44}
+                    height={44}
+                    className="w-11 h-11 object-contain rounded-lg"
+                  />
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900">
-                    Install PRC Gold Buyers App
+                    Install Vigneshwara Ear & Nose Piercing App
                   </h3>
                   <p className="text-sm text-gray-600">
-                    Download our app for quick access to gold buying and pledged gold release services
+                    Download our app for quick access to doorstep ear and nose piercing services
                   </p>
                 </div>
               </div>
               <div className="flex items-center space-x-3">
                 <Button
                   onClick={handleInstallClick}
-                  className="bg-primary hover:bg-orange-400 text-white px-6"
+                  className="bg-primary hover:bg-[#CA8A04] hover:text-white text-[#1B0A3A] font-bold px-6 transition-colors"
                 >
                   <Download className="w-4 h-4 mr-2" />
                   Install App

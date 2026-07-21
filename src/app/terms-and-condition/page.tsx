@@ -118,7 +118,7 @@ export default function PoliciesPage() {
             <h3 className="text-base sm:text-lg font-medium">Have questions about our Policies?</h3>
             <p className="mt-2 text-sm sm:text-base text-gray-600">Our support team is here to help you understand our policies.</p>
             <div className="mt-3 sm:mt-4">
-              <a href="tel:+918142659346" className="inline-flex items-center justify-center px-4 py-2 bg-orange-600 hover:bg-orange-700 text-white font-medium rounded-lg text-sm sm:text-base transition-colors">
+              <a href="tel:+918142659346" className="inline-flex items-center justify-center px-4 py-2 bg-primary hover:bg-[#CA8A04] text-[#1B0A3A] hover:text-white font-bold rounded-lg text-sm sm:text-base transition-colors">
                 Contact Support
               </a>
             </div>

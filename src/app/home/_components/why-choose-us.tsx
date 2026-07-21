@@ -7,35 +7,35 @@ import { motion } from "framer-motion";
 export default function WhyChooseUs() {
     const row1 = [
   {
-    title: "Best Market Rates",
-    description: "Get the higest value for your gold at today's prices",
-    image: "/why-rupee.png", // replace with your image path
+    title: "100% Sterile & Hygienic",
+    description: "Clean medical-grade sanitized equipment and single-use studs",
+    image: "/lock.png",
   },
   {
-    title: "Fast & Transparent Process",
-    description: "No hidden charges or delays, completely transparent",
-    image: "/why-icon2.png", // replace with your image path
+    title: "Home Service Convenience",
+    description: "Safe ear piercing in the comfort and privacy of your home",
+    image: "/why-icon2.png",
   },
 ];
 
 const row2 = [
-      {
-    title: "Secure Handling",
-    description: "Your gold is safe with our trusted team",
-    image: "/why-icon3.png",
+  {
+    title: "Safe for All Ages",
+    description: "Extremely gentle care customized for babies, kids, and adults",
+    image: "/grp.png",
   },
   {
-    title: "Expert Guidance",
-    description: "We handle negotiations and paperwork for you",
+    title: "Trained Specialists",
+    description: "Experienced professionals who ensure a painless, safe process",
     image: "/why-icon4.png",
   },
-]
+];
 
   // Combine all cards into one array for horizontal scrolling
   const allCards = [...row1, ...row2];
 
   return (
-    <motion.section className="w-full lg:px-20 bg-white mx-auto px-4 py-8 lg:py-16 pb-12 lg:pb-20">
+    <motion.section id="why-us" className="w-full lg:px-20 bg-white mx-auto px-4 py-8 lg:py-16 pb-12 lg:pb-20">
       {/* Header */}
       <div className="text-center mb-6 md:mb-12 lg:mb-16">
         <CommonTitle title={"Why us"} />
