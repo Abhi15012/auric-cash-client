@@ -1,9 +1,9 @@
 "use client";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { Button } from "../../components/ui/button";
 import { useDialog } from "../../context/handleDialog";
+import { Home, Sparkles, HelpCircle } from "lucide-react";
 
 export default function Tabs() {
   const [tabActive, setActiveTab] = React.useState("Home");
@@ -51,25 +51,19 @@ export default function Tabs() {
       name: "Home",
       href: "/",
       tabActive: "Home",
-      active: "/home-ia.png",
-      iconSize: "w-4 h-5",
-      inactive: "/home-a.png",
+      icon: Home,
     },
     {
       name: "Services",
       tabActive: "services",
       href: "/#services",
-      iconSize: "w-5 h-5",
-      active: "/favicon.png",
-      inactive: "/favicon.png",
+      icon: Sparkles,
     },
     {
       name: "FAQ",
       tabActive: "faq",
       href: "/#faq",
-      iconSize: "w-5 h-5",
-      active: "/favicon.png",
-      inactive: "/favicon.png",
+      icon: HelpCircle,
     },
   ];
   return (
@@ -78,35 +72,27 @@ export default function Tabs() {
         isVisible && !open ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
       }`}
     >
-      {tabs.map((tab) => (
-        <div
-          key={tab.name}
-          onClick={() => {
-            setActiveTab(tab.tabActive);
-            router.push(tab.href);
-          }}
-          className={`flex flex-col  items-center justify-center cursor-pointer  ${
-            tabActive === tab.tabActive
-              ? "text-primary text-[5px] font-medium"
-              : "text-gray-600 font-medium"
-          }`}
-        >
-          <div className={`relative ${tab.iconSize} mb-1`}>
-            <Image
-              src={tabActive === tab.tabActive ? tab.active : tab.inactive}
-              alt={tab.name}
-              fill 
-              
-              className={`object-contain ${
-                tabActive === tab.tabActive ? "text-primary" : "fill-gray-900"
-              }`}
-            />
+      {tabs.map((tab) => {
+        const IconComponent = tab.icon;
+        const isActive = tabActive === tab.tabActive;
+        return (
+          <div
+            key={tab.name}
+            onClick={() => {
+              setActiveTab(tab.tabActive);
+              router.push(tab.href);
+            }}
+            className={`flex flex-col items-center justify-center cursor-pointer ${
+              isActive ? "text-primary font-semibold" : "text-gray-600 font-medium"
+            }`}
+          >
+            <IconComponent className={`w-5 h-5 mb-0.5 ${isActive ? "text-primary" : "text-gray-500"}`} />
+            <span className="text-[11.5px] md:text-base lg:text-lg">
+              {tab.name}
+            </span>
           </div>
-          <span className="text-[11.5px] md:text-base lg:text-lg ">
-            {tab.name}
-          </span>
-        </div>
-      ))}
+        );
+      })}
 
       <div className="md:flex-shrink-0  md:flex     lg:mx-4">
         <Button

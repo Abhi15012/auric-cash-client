@@ -148,7 +148,7 @@ function TestimonialCard({ item }: { item: TestimonialItem }) {
 
         {/* Quote text */}
         <p className="text-slate-600 text-xs sm:text-sm leading-relaxed mb-4 font-poppins line-clamp-3">
-          "{item.quote}"
+          &quot;{item.quote}&quot;
         </p>
       </div>
 

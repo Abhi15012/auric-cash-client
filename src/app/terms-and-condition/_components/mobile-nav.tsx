@@ -15,7 +15,7 @@ export function MobileNav({ className }: MobileNavProps) {
   }
   
   return (
-    <div className="lg:hidden mb-6 sm:mb-8">
+    <div className={`lg:hidden mb-6 sm:mb-8 ${className || ''}`}>
       <div className="bg-blue-50 rounded-lg p-4">
         <h3 className="text-sm font-medium mb-3 text-center">Quick Navigation</h3>
         <div className="flex flex-wrap justify-center gap-2">

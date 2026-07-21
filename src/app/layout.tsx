@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import Navbar from "./Navbar";
 import localFont from "next/font/local";
@@ -56,12 +56,15 @@ const inter = Inter({
   display: "swap",
 });
 
+export const viewport: Viewport = {
+  themeColor: "#EAB308",
+};
+
 // Metadata
 export const metadata: Metadata = {
   title: "Vigneshwara Ear & Nose Piercing - Painless Home Visits in Hyderabad City",
   description: "Premium gunshot and manual ear & nose piercing services at your doorstep across Hyderabad. Pre-sterilized equipment, safe for babies, kids, and adults starting at just ₹1,500.",
   manifest: "/manifest.json",
-  themeColor: "#EAB308",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",

@@ -1,5 +1,4 @@
 import React from "react";
-import { ArrowRight } from "lucide-react";
 import CommonTitle from "./commonTitle";
 
 export default function How() {
